@@ -1,0 +1,13 @@
+// output:../../views/stage-builder-menu.html
+
+.challenge-stage-add-new
+  .btn-group(uib-dropdown)
+    button.btn.btn-link(uib-dropdown-toggle)
+      i.fa.fa-chevron-down
+    ul.dropdown-menu.stage-builder-menu(uib-dropdown-menu, role="menu")
+      li(
+        ng-click="$ctrl.onAddStage({'type':type})"
+        ng-repeat="type in $ctrl.stageTypes track by $index"
+        ng-class="type"
+      ) 
+        a #[span(ng-class="type")] {$ type $}

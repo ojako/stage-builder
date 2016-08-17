@@ -1,0 +1,26 @@
+// output:../../views/stage-builder-options.html
+//- Various options defined by stage type
+div(ng-switch="$ctrl.type")
+  div(ng-switch-when="Open")
+    div
+      label.input-checkbox
+        | #[input(type="checkbox")] Do something fun?
+  div(ng-switch-when="Capture")
+    div
+      label.input-checkbox
+        | #[input(type="checkbox")] Do nothing?
+  div(ng-switch-when="Review")
+    div
+      label.input-checkbox
+        | #[input(type="checkbox")] Do something?
+  div(ng-switch-when="Discuss")
+    div
+      label.input-radio
+        |  #[input(type="radio")] Yes - anyone can see ideas
+    div
+      label.input-radio
+        |  #[input(type="radio")] No - only Admins can see ideas
+  div(ng-switch-when="Development")
+    div
+      label.input-checkbox
+        | #[input(type="checkbox")] Release deadly nervegas?

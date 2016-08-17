@@ -1,0 +1,43 @@
+
+<div ng-switch="$ctrl.type">
+  <div ng-switch-when="Open">
+    <div>
+      <label class="input-checkbox">
+        <input type="checkbox"/> Do something fun?
+      </label>
+    </div>
+  </div>
+  <div ng-switch-when="Capture">
+    <div>
+      <label class="input-checkbox">
+        <input type="checkbox"/> Do nothing?
+      </label>
+    </div>
+  </div>
+  <div ng-switch-when="Review">
+    <div>
+      <label class="input-checkbox">
+        <input type="checkbox"/> Do something?
+      </label>
+    </div>
+  </div>
+  <div ng-switch-when="Discuss">
+    <div>
+      <label class="input-radio"> 
+        <input type="radio"/> Yes - anyone can see ideas
+      </label>
+    </div>
+    <div>
+      <label class="input-radio"> 
+        <input type="radio"/> No - only Admins can see ideas
+      </label>
+    </div>
+  </div>
+  <div ng-switch-when="Development">
+    <div>
+      <label class="input-checkbox">
+        <input type="checkbox"/> Release deadly nervegas?
+      </label>
+    </div>
+  </div>
+</div>

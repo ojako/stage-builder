@@ -1,0 +1,7 @@
+// output:../../views/stage-builder-menu.html
+ul.list-group.stage-builder-menu
+  li.list-group-item(
+    ng-click="$ctrl.onAddStage({'type':type})"
+    ng-repeat="type in $ctrl.stageTypes track by $index"
+    ng-class="type"
+  ) #[span(ng-class="type")] {$ type $}

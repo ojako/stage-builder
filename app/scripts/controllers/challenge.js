@@ -10,20 +10,10 @@
 angular.module('app')
 .controller('ChallengeCtrl', function ($scope) {
     $scope.sectionTitle = 'Create Challenge';
-    // var vm = this;
-    // vm = {
-    //
-    // };
-
-    this.awesomeThings = [
-        'HTML5 Boilerplate',
-        'AngularJS',
-        'Karma'
-    ];
 })
 
 .component('stageBuilder', {
-    templateUrl: 'stage-builder.html',
+    templateUrl: 'views/stage-builder.html',
     bindings: {},
     controller: function() {
         var ctrl = this;
@@ -39,9 +29,10 @@ angular.module('app')
             'type': 'Review'
         }, ];
 
-        ctrl.addStage = function(type) {
+        ctrl.addStage = function(type, stageIndex) {
+            console.log(type + ': ' + stageIndex);
             if(type) {
-                ctrl.currentStages.push({
+                ctrl.currentStages.splice(stageIndex + 1, 0, {
                     'name': type,
                     'type': type
                 });
@@ -72,29 +63,38 @@ angular.module('app')
             ctrl.selected = stage;
         };
 
-        // var el = document.getElementById('stageList');
-        // var sortable = new Sortable(el, {
-        //     animation: 250,
-        //     scroll: true,
-        //     delay: 10,
-        //     // handle: '.sortable-drag-handle',
-        //     // draggable: 'sortable-item',
-        //     chosenClass: 'sortable-chosen',
-        //     ghostClass: 'sortable-ghost',
-        //     // Not working?
-        //     filter: 'sortable-ignored',
-        // });
+        var el = document.getElementById('stageList');
+        var sortable;
+        sortable = new Sortable(el, {
+            animation: 250,
+            scroll: true,
+            delay: 10,
+            // handle: '.sortable-drag-handle',
+            // draggable: 'sortable-item',
+            chosenClass: 'sortable-chosen',
+            ghostClass: 'sortable-ghost',
+            // Not working?
+            filter: 'sortable-ignored',
+            fallbackOnBody: true,
+        });
     }
 })
 .component('stageBuilderMenu', {
-    templateUrl: 'stage-builder-menu.html',
+    templateUrl: 'views/stage-builder-menu.html',
     bindings: {
         onAddStage: '&',
         stageTypes: '<',
+        stageIndex: '<',
+    },
+})
+.component('stageBuilderOptions', {
+    templateUrl: 'views/stage-builder-options.html',
+    bindings: {
+        type: '<',
     },
 })
 .component('stageDetail', {
-    templateUrl: 'stage-detail.html',
+    templateUrl: 'views/stage-detail.html',
     bindings: {
         stage: '<',
         last: '<',
