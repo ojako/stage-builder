@@ -17,7 +17,7 @@
           </div>
           <ul id="stageList" class="list-unstyled">
             <li ng-repeat="stage in $ctrl.currentStages" class="challenge-stage-list-item">
-              <stage-detail stage="stage" last="$last" on-delete="$ctrl.deleteStage(stage)" on-add-stage="$ctrl.addStage()" stage-types="$ctrl.stageTypes" select-stage="$ctrl.selectedStage(stage)" selected-stage="$ctrl.selected" ng-class="'selected': $ctrl.selectedStage === stage"></stage-detail>
+              <stage-detail stage="stage" last="$last" on-delete="$ctrl.deleteStage(stage)" on-add-stage="$ctrl.addStage()" stage-types="$ctrl.stageTypes" select-stage="$ctrl.selectedStage(stage)" selected-stage="$ctrl.selected" ng-class="{'selected': $ctrl.selectedStage === stage}"></stage-detail>
             </li>
           </ul>
           <div ng-model="endStage" ng-click="$ctrl.inspectorTabActive = 2" class="challenge-stages-end">{$ endStageName ? endStageName : 'Finish' $}</div>
