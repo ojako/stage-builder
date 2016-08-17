@@ -9,6 +9,7 @@ body {
   background: white;
 }
 
+
 @challenge-stage-z-index: 9999;
 
 .stage-colouring() {
@@ -43,49 +44,17 @@ form {
   }
 }
 
+@import 'components/stage-builder.less';
+@import 'components/stage-builder-menu.less';
+
 .challenge-stages-container {
   max-width: 750px;
   margin: 0 auto 2em auto;
   position: relative;
   height: 100%;
   z-index: @challenge-stage-z-index;
-  // .challenge-stages-line {
-  //   display: block;
-  //   width: 5px;
-  //   position: absolute;
-  //   top: 0;
-  //   bottom: 0;
-  //   left: 0;
-  //   // left: ~'calc(50% - 2px)';
-  //   background: #cecece;
-  //   z-index: @challenge-stage-z-index - 999;
-  //   content: '';
-  // }
 }
 
-// challenge stages
-.challenge-stages-start,
-.challenge-stages-end {
-  // sets height, width and lineheight
-  @challenge-stages-dimension: auto;
-  position: relative;
-  z-index: @challenge-stage-z-index;
-  display: block;
-  width: @challenge-stages-dimension;
-  height: @challenge-stages-dimension;
-  line-height: @challenge-stages-dimension;
-  text-align: center;
-  font-size: 3em;
-  background: green;
-  // border: 2px solid green;
-  color: white;
-  border-radius: 6px;
-  margin: 0 auto;
-  cursor: pointer;
-}
-.challenge-stages-end {
-  background: red;
-}
 .sortable-drag-handle {
   width: 1em;
   padding: 0 0.75em 0 0.55em;
@@ -114,6 +83,7 @@ form {
   display: block;
   width: 100%;
   text-align: center;
+  user-select: none;
   // width: ~'calc(100% - 5px)';
   // &:before {
   //   content: '';
@@ -132,6 +102,9 @@ form {
     z-index: @challenge-stage-z-index;
     background: white;
     padding: 0;
+    max-width: 100%;
+    word-wrap: break-word;
+    white-space: normal;
     display: inline-block;
     position: relative;
     cursor: pointer;
@@ -139,7 +112,6 @@ form {
     // box-shadow: 0 0 1px #ececec;
     transition: 0.25s box-shadow linear;
     .challenge-stage-title {
-      white-space: nowrap;
       word-wrap: break-word;
       padding: 0.2em 0.5em;
       color: #111;
@@ -147,6 +119,7 @@ form {
       height: auto;
       text-align: center;
       display: inline-block;
+      max-width: 100%;
       .fa-trash {
         border-radius: 50%;
         padding: 0.25em;
@@ -186,90 +159,6 @@ form {
     }
   }
 }
-.challenge-stage-add-new {
-  text-align: center;
-  position: relative;
-  z-index: @challenge-stage-z-index + 1;
-  button {
-    padding: 0.25em;
-    background: white;
-    // border: 1px dashed green;
-    color: green;
-    border-radius: 50%;
-    width: 1em;
-    height: 1em;
-    display: inline-block;
-    margin: 0 auto;
-    padding: 1em;
-    position: relative;
-    line-height: 1em;
-    text-align: center;
-    &:hover,
-    &:active,
-    &:focus {
-      // border: 1px dashed green;
-      background: white;
-      color: green;
-    }
-  }
-  i {
-    padding: 0;
-    width: 0;
-    height: 0;
-    margin: 0;
-    position: relative;
-    left: -4px;
-    top: -6px;
-  }
-}
-
-
-.challenge-stage-list-item {
-  max-height: 200px;
-  transition: 1s opacity, 1s max-height;
-  &.ng-enter {
-    opacity: 0;
-    max-height: 0px;
-  }
-  &.ng-enter-active {
-    opacity: 1;
-    max-height: 200px;
-  }
-  // &.ng-leave {
-  //   transition: 1s opacity, 1s max-height;
-  // }
-  &.ng-leave-active  {
-    opacity: 0;
-    max-height: 0px;
-  }
-  &.selected header {
-    background: green;
-  }
-}
-
-// .challenge-stage-list-item {
-//   &.ng-enter {
-//     max-height: 0px;
-//     transition: 3s max-height ease-in, 3s opacity ease-in;
-//     opacity:0;
-//   }
-//   &.ng-enter-active {
-//     max-height: 200px;
-//     opacity:1;
-//   }
-//   &.ng-leave {
-//     max-height: 0px;
-//     opacity: 0;
-//     transition: 2s max-height ease-in, 3s opacity ease-in;
-//   }
-//   &.ng-leave-active  {
-//     opacity:0;
-//     max-height: 0px;
-//   }
-//   &.selected header {
-//     background: green;
-//   }
-// }
 
 .challenge-stages-inspector {
   overflow: auto;
@@ -291,7 +180,7 @@ form {
   position: relative;
   z-index: @challenge-stage-z-index - 10;
   display: inline-block;
-  margin: 1em auto 0 auto;
+  margin: 0.25em auto 0 auto;
   background: @challenge-transition-stage-colour;
   color: black;
   padding: 0.5em;
@@ -306,32 +195,6 @@ form {
     top: -20px;
     left: 49%;
     background: @challenge-transition-stage-colour;
-  }
-}
-
-.stage-builder-menu {
-  left: -75px;
-  width: 150px;
-  li {
-    span {
-      .stage-colouring();
-      width: 1em;
-      border-radius: 50%;
-      height: 1em;
-      display: inline-block;
-      float: left;
-      margin-right: 1em;
-      position: relative;
-      top: 2px;
-    }
-    white-space: nowrap;
-    color: black;
-    opacity: 0.7;
-    overflow: hidden;
-    &:hover {
-      cursor: pointer;
-      opacity: 1;
-    }
   }
 }
 

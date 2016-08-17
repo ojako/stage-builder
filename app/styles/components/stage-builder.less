@@ -1,0 +1,83 @@
+// add new stage
+.challenge-stage-add-new {
+  text-align: center;
+  position: relative;
+  z-index: @challenge-stage-z-index + 1;
+  button {
+    padding: 0.25em;
+    background: white;
+    // border: 1px dashed green;
+    color: green;
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    margin: 0 auto;
+    padding: 1em;
+    position: relative;
+    line-height: 1em;
+    text-align: center;
+    &:hover,
+    &:active,
+    &:focus {
+      // border: 1px dashed green;
+      background: white;
+      color: green;
+    }
+  }
+  i {
+    padding: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+    position: relative;
+    left: -4px;
+    top: -6px;
+  }
+}
+
+.challenge-stage-list-item {
+  transition: 1s opacity, 1s max-height;
+  &.ng-enter {
+    opacity: 0;
+    max-height: 0px;
+  }
+  &.ng-enter-active {
+    opacity: 1;
+    max-height: 200px;
+  }
+  // &.ng-leave {
+  //   transition: 1s opacity, 1s max-height;
+  // }
+  &.ng-leave-active  {
+    opacity: 0;
+    max-height: 0px;
+  }
+  &.selected header {
+    background: green;
+  }
+}
+
+// challenge stages
+.challenge-stages-start,
+.challenge-stages-end {
+  // sets height, width and lineheight
+  @challenge-stages-dimension: auto;
+  position: relative;
+  z-index: @challenge-stage-z-index;
+  display: block;
+  width: @challenge-stages-dimension;
+  height: @challenge-stages-dimension;
+  line-height: @challenge-stages-dimension;
+  text-align: center;
+  font-size: 3em;
+  background: green;
+  // border: 2px solid green;
+  color: white;
+  border-radius: 6px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+.challenge-stages-end {
+  background: red;
+}
