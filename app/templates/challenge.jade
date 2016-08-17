@@ -1,0 +1,154 @@
+// output:../views/challenge.html
+
+.row
+  section.col-xs-12
+    h2.text-center {$ sectionTitle $}
+    hr
+    stage-builder
+      //- Stage Article
+
+  //- SCRIPTS
+  //- stage builder
+  script(type="text/ng-template", id="stage-builder.html")
+    .row
+      .col-xs-6
+        .challenge-stages-container
+
+          //- Indicator line
+          .challenge-stages-line
+
+          //- Start stage
+          .challenge-stages-start(ng-model="startStage", ng-click="$ctrl.inspectorTabActive = 1") {$ startStageName ? startStageName : 'Capture' $}
+
+          //- Start stage add
+          .challenge-stage-add-new.text-center
+            button.btn.btn-link(ng-click="$ctrl.addStage()") #[i.fa.fa-plus]
+
+          //- Challenge list
+          ul.list-unstyled#stageList
+            li.challenge-stage-list-item(ng-repeat="stage in $ctrl.currentStages")
+              stage-detail(
+                stage="stage"
+                last="$last"
+                on-delete="$ctrl.deleteStage(stage)"
+                on-add-stage="$ctrl.addStage()"
+                stage-types="$ctrl.stageTypes"
+                select-stage="$ctrl.selectedStage(stage)"
+                selected-stage="$ctrl.selected"
+                ng-class="'selected': $ctrl.selectedStage === stage"
+              )
+
+          //- End stage
+          .challenge-stages-end(ng-model="endStage", ng-click="$ctrl.inspectorTabActive = 2")
+            | {$ endStageName ? endStageName : 'Finish' $}
+      
+      //- 
+      .col-xs-6
+        .challenge-stages-inspector(
+          sticky,
+          offset="10",
+        )
+          uib-tabset(active="$ctrl.inspectorTabActive")
+            uib-tab(heading="Settings", index="0")
+              h3 Global Challenge Settings
+              stage-builder-menu(on-add-stage="$ctrl.addStage(type)", stage-types="$ctrl.stageTypes")
+              .checkbox
+                label #[input(type="checkbox")] Option 1
+              .checkbox
+                label #[input(type="checkbox")] Option 2
+              .checkbox
+                label #[input(type="checkbox")] Option 3
+              .checkbox
+                label #[input(type="checkbox")] Option 4
+                
+            uib-tab(index="1", heading="Capture")
+              h3 Capture
+              p Various settings pertaining to your open stage
+              
+              img.img-responsive(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/318382/Screen_Shot_2016-08-08_at_11.30.55.png", alt="picker")
+            
+            uib-tab(index="2", heading="Finish")
+              h3 Finish
+              p Various settings pertaining to your finish stage
+              
+              .checkbox
+                label #[input(type="checkbox")] Option 1
+              .checkbox
+                label #[input(type="checkbox")] Option 2
+              .checkbox
+                label #[input(type="checkbox")] Option 3
+              .checkbox
+                label #[input(type="checkbox")] Option 4
+
+            uib-tab(heading="{$ $ctrl.selected.name ? $ctrl.selected.name : 'New Stage' $}", ng-show="$ctrl.selected", index="3")
+              h3 Stage Settings
+              
+              form(name="stage-settings")
+              
+                //- Stage name
+                .form-group
+                  input.form-control(type="text", ng-model="$ctrl.selected.name", required)
+                
+                //- Type select
+                .form-group
+                  select.form-control(ng-model="$ctrl.selected.type", ng-class="$ctrl.stage.type", required)
+                    option(disabled, selected, value) -- Select Stage Type --
+                    option(ng-repeat="type in $ctrl.stageTypes track by $index", value="{$ type $}") {$ type $}
+                
+                //- Various options defined by stage type
+                div(ng-switch="$ctrl.selected.type")
+                  div(ng-switch-when="Open")
+                    div
+                      label.input-checkbox
+                        | #[input(type="checkbox")] Do something fun?
+                  div(ng-switch-when="Capture")
+                    div
+                      label.input-checkbox
+                        | #[input(type="checkbox")] Do nothing?
+                  div(ng-switch-when="Review")
+                    div
+                      label.input-checkbox
+                        | #[input(type="checkbox")] Do something?
+                  div(ng-switch-when="Discuss")
+                    div
+                      label.input-radio
+                        |  #[input(type="radio")] Yes - anyone can see ideas
+                    div
+                      label.input-radio
+                        |  #[input(type="radio")] No - only Admins can see ideas
+                  div(ng-switch-when="Development")
+                    div
+                      label.input-checkbox
+                        | #[input(type="checkbox")] Release deadly nervegas?
+
+              pre {$ $ctrl | json : spacing $}
+
+  //- stage detail
+  script(type="text/ng-template", id="stage-detail.html")
+    //- Individual Stages
+    article.challenge-stage(ng-model="challengeStage")
+      .challenge-stage-inner
+        header.challenge-stage-title(ng-click="$ctrl.selectStage(stage)", ng-class="{'selected': $ctrl.selectedStage === stage}")
+          h3 {$ $ctrl.stage.name ? $ctrl.stage.name : 'New Stage' $}
+          span.pull-right
+            span.label(ng-class="$ctrl.stage.type") {$ $ctrl.stage.type $}
+            span(uib-dropdown, dropdown-append-to-body)
+              button.btn.btn-link(uib-dropdown-toggle, aria-hidden="true")
+                i.fa.fa-trash
+              ul.dropdown-menu(uib-dropdown-menu, role="menu")
+                li(ng-click="$ctrl.delete()")
+                  button.btn.btn-link Confirm remove stage
+      
+      //- Add new stage
+      .challenge-stage-add-new.text-center.sortable-ignored
+        button.btn.btn-link(ng-click="$ctrl.onAddStage()")
+          i.fa.fa-plus
+
+  //- stage builder menu
+  script(type="text/ng-template", id="stage-builder-menu.html")
+    ul.list-group.stage-builder-menu
+      li.list-group-item(
+        ng-click="$ctrl.onAddStage({'type':type})"
+        ng-repeat="type in $ctrl.stageTypes track by $index"
+        ng-class="type"
+      ) #[span(ng-class="type")] {$ type $}

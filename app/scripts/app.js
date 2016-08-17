@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('stageBuilderApp', [
+  .module('app', [
     'ngAnimate',
     'ngAria',
     'ngCookies',
@@ -17,14 +17,23 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ui.bootstrap',
+    'ngTouch',
+    'sticky',
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $interpolateProvider) {
+    $interpolateProvider.startSymbol('{$');
+    $interpolateProvider.endSymbol('$}');
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
+      })
+      .when('/challenge', {
+        templateUrl: 'views/challenge.html',
+        controller: 'ChallengeCtrl',
+        controllerAs: 'challenge'
       })
       .when('/about', {
         templateUrl: 'views/about.html',

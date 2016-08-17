@@ -1,0 +1,166 @@
+
+<div class="row">
+  <section class="col-xs-12">
+    <h2 class="text-center">{$ sectionTitle $}</h2>
+    <hr/>
+    <stage-builder>
+    </stage-builder>
+  </section>
+  <script type="text/ng-template" id="stage-builder.html">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="challenge-stages-container">
+          <div class="challenge-stages-line"></div>
+          <div ng-model="startStage" ng-click="$ctrl.inspectorTabActive = 1" class="challenge-stages-start">{$ startStageName ? startStageName : 'Capture' $}</div>
+          <div class="challenge-stage-add-new text-center">
+            <button ng-click="$ctrl.addStage()" class="btn btn-link"><i class="fa fa-plus"></i></button>
+          </div>
+          <ul id="stageList" class="list-unstyled">
+            <li ng-repeat="stage in $ctrl.currentStages" class="challenge-stage-list-item">
+              <stage-detail stage="stage" last="$last" on-delete="$ctrl.deleteStage(stage)" on-add-stage="$ctrl.addStage()" stage-types="$ctrl.stageTypes" select-stage="$ctrl.selectedStage(stage)" selected-stage="$ctrl.selected" ng-class="'selected': $ctrl.selectedStage === stage"></stage-detail>
+            </li>
+          </ul>
+          <div ng-model="endStage" ng-click="$ctrl.inspectorTabActive = 2" class="challenge-stages-end">{$ endStageName ? endStageName : 'Finish' $}</div>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div sticky="sticky" offset="10" class="challenge-stages-inspector">
+          <uib-tabset active="$ctrl.inspectorTabActive">
+            <uib-tab heading="Settings" index="0">
+              <h3>Global Challenge Settings</h3>
+              <stage-builder-menu on-add-stage="$ctrl.addStage(type)" stage-types="$ctrl.stageTypes"></stage-builder-menu>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"/> Option 1
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"/> Option 2
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"/> Option 3
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"/> Option 4
+                </label>
+              </div>
+            </uib-tab>
+            <uib-tab index="1" heading="Capture">
+              <h3>Capture</h3>
+              <p>Various settings pertaining to your open stage</p><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/318382/Screen_Shot_2016-08-08_at_11.30.55.png" alt="picker" class="img-responsive"/>
+            </uib-tab>
+            <uib-tab index="2" heading="Finish">
+              <h3>Finish</h3>
+              <p>Various settings pertaining to your finish stage</p>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"/> Option 1
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"/> Option 2
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"/> Option 3
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"/> Option 4
+                </label>
+              </div>
+            </uib-tab>
+            <uib-tab heading="{$ $ctrl.selected.name ? $ctrl.selected.name : 'New Stage' $}" ng-show="$ctrl.selected" index="3">
+              <h3>Stage Settings</h3>
+              <form name="stage-settings">
+                <div class="form-group">
+                  <input type="text" ng-model="$ctrl.selected.name" required="required" class="form-control"/>
+                </div>
+                <div class="form-group">
+                  <select ng-model="$ctrl.selected.type" ng-class="$ctrl.stage.type" required="required" class="form-control">
+                    <option disabled="disabled" selected="selected" value="value">-- Select Stage Type --</option>
+                    <option ng-repeat="type in $ctrl.stageTypes track by $index" value="{$ type $}">{$ type $}</option>
+                  </select>
+                </div>
+                <div ng-switch="$ctrl.selected.type">
+                  <div ng-switch-when="Open">
+                    <div>
+                      <label class="input-checkbox">
+                        <input type="checkbox"/> Do something fun?
+                      </label>
+                    </div>
+                  </div>
+                  <div ng-switch-when="Capture">
+                    <div>
+                      <label class="input-checkbox">
+                        <input type="checkbox"/> Do nothing?
+                      </label>
+                    </div>
+                  </div>
+                  <div ng-switch-when="Review">
+                    <div>
+                      <label class="input-checkbox">
+                        <input type="checkbox"/> Do something?
+                      </label>
+                    </div>
+                  </div>
+                  <div ng-switch-when="Discuss">
+                    <div>
+                      <label class="input-radio"> 
+                        <input type="radio"/> Yes - anyone can see ideas
+                      </label>
+                    </div>
+                    <div>
+                      <label class="input-radio"> 
+                        <input type="radio"/> No - only Admins can see ideas
+                      </label>
+                    </div>
+                  </div>
+                  <div ng-switch-when="Development">
+                    <div>
+                      <label class="input-checkbox">
+                        <input type="checkbox"/> Release deadly nervegas?
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <pre>{$ $ctrl | json : spacing $}</pre>
+            </uib-tab>
+          </uib-tabset>
+        </div>
+      </div>
+    </div>
+  </script>
+  <script type="text/ng-template" id="stage-detail.html">
+    <article ng-model="challengeStage" class="challenge-stage">
+      <div class="challenge-stage-inner">
+        <header ng-click="$ctrl.selectStage(stage)" ng-class="{'selected': $ctrl.selectedStage === stage}" class="challenge-stage-title">
+          <h3>{$ $ctrl.stage.name ? $ctrl.stage.name : 'New Stage' $}</h3><span class="pull-right"><span ng-class="$ctrl.stage.type" class="label">{$ $ctrl.stage.type $}</span><span uib-dropdown="uib-dropdown" dropdown-append-to-body="dropdown-append-to-body">
+              <button uib-dropdown-toggle="uib-dropdown-toggle" aria-hidden="true" class="btn btn-link"><i class="fa fa-trash"></i></button>
+              <ul uib-dropdown-menu="uib-dropdown-menu" role="menu" class="dropdown-menu">
+                <li ng-click="$ctrl.delete()">
+                  <button class="btn btn-link">Confirm remove stage</button>
+                </li>
+              </ul></span></span>
+        </header>
+      </div>
+      <div class="challenge-stage-add-new text-center sortable-ignored">
+        <button ng-click="$ctrl.onAddStage()" class="btn btn-link"><i class="fa fa-plus"></i></button>
+      </div>
+    </article>
+  </script>
+  <script type="text/ng-template" id="stage-builder-menu.html">
+    <ul class="list-group stage-builder-menu">
+      <li ng-click="$ctrl.onAddStage({'type':type})" ng-repeat="type in $ctrl.stageTypes track by $index" ng-class="type" class="list-group-item"><span ng-class="type"></span> {$ type $}</li>
+    </ul>
+  </script>
+</div>

@@ -1,1 +1,294 @@
 // out: style.css, sourcemap: true, compress: true
+
+body {
+  background: #ececec;
+}
+.container {
+  max-width: 1024px;
+  padding-top: 50px;
+  background: white;
+}
+
+@challenge-stage-z-index: 9999;
+
+.stage-colouring() {
+  &.Discuss {
+    background: red;
+  }
+  &.Open {
+    background: indigo;
+  }
+  &.Review {
+    background: maroon;
+  }
+  &.Evaluate {
+    background: orange;
+  }
+  &.Discussion {
+    background: blue;
+  }
+  &.Development {
+    background: pink;
+  }
+  &.Capture {
+    background: teal;
+  }
+}
+
+form {
+  input, select {
+    &.ng-invalid.ng-dirty {
+      border-color: red;
+    }
+  }
+}
+
+.challenge-stages-container {
+  max-width: 750px;
+  margin: 0 auto 2em auto;
+  position: relative;
+  height: 100%;
+  z-index: @challenge-stage-z-index;
+  .challenge-stages-line {
+    display: block;
+    width: 5px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: ~'calc(50% - 2px)';
+    background: #cecece;
+    z-index: @challenge-stage-z-index - 999;
+    content: '';
+  }
+}
+
+// challenge stages
+.challenge-stages-start,
+.challenge-stages-end {
+  // sets height, width and lineheight
+  @challenge-stages-dimension: auto;
+  position: relative;
+  z-index: @challenge-stage-z-index;
+  display: block;
+  width: @challenge-stages-dimension;
+  height: @challenge-stages-dimension;
+  line-height: @challenge-stages-dimension;
+  text-align: center;
+  font-size: 3em;
+  border: 2px solid green;
+  background: white;
+  color: black;
+  border-radius: 6px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+.challenge-stages-end {
+  border-color: red;
+}
+
+.sortable-drag-handle {
+  width: 1em;
+  padding: 0 0.75em 0 0.55em;
+  opacity: 0.5;
+}
+.sortable-ghost {
+  transition: 0.25s opacity;
+  opacity: 0.6;
+  background: white;
+  position: relative;
+  z-index: @challenge-stage-z-index;
+  header {
+    background: white;
+    transition: 0.25s background;
+  }
+}
+.sortable-chosen {
+  .challenge-stage-add-new {
+    opacity: 0;
+  }
+}
+
+.challenge-stage {
+  padding: 0.5em 2em;
+  .challenge-stage-inner {
+    border: 1px solid #999;
+    position: relative;
+    z-index: @challenge-stage-z-index;
+    background: white;
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 5px;
+    // box-shadow: 0 0 1px #ececec;
+    transition: 0.25s box-shadow linear;
+  }
+  .form-group {
+    padding: 0.5em 1em;
+    input {
+      outline: none;
+      border: none;
+      box-shadow: none;
+      border-bottom: 2px solid grey;
+      border-radius: 0;
+    }
+  }
+}
+.challenge-stage-add-new {
+  margin-top: 1em;
+  position: relative;
+  z-index: @challenge-stage-z-index;
+  button {
+    padding: 0.25em;
+    background: white;
+    border: 1px dashed green;
+    color: green;
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    margin: 0 auto;
+    padding: 1em;
+    position: relative;
+    line-height: 1em;
+    text-align: center;
+    &:hover,
+    &:active,
+    &:focus {
+      border: 1px dashed green;
+      background: white;
+      color: green;
+    }
+  }
+  i {
+    padding: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+    position: relative;
+    left: -4px;
+    top: -6px;
+  }
+}
+.challenge-stage-title {
+  white-space: nowrap;
+  word-wrap: break-word;
+  /*margin: 0;*/
+  padding: 0.2em 0.5em;
+  color: #111;
+  background: white;
+  height: auto;
+  display: table;
+  width: 100%;
+  .fa-pencil, .fa-trash {
+    border-radius: 50%;
+    padding: 0.25em;
+    color: green;
+    &:hover {
+      background: black;
+      color: white;
+    }
+  }
+  .fa-trash {
+    color: red;
+  }
+  .btn {
+    color: #111;
+  }
+  h3 {
+    display: inline;
+    font-size: 1.25em;
+    position: relative;
+    top: 8px;
+  }
+  .label {
+    margin-right: 1em;
+    .stage-colouring();
+  }
+}
+
+.challenge-stage-list-item {
+  &.selected header {
+    background: green;
+  }
+}
+
+.challenge-stages-inspector {
+  overflow: auto;
+  max-height: 100%;
+  .tab-content {
+    border: 1px solid #ececec;
+    border-top: 0;
+    padding: 15px 10px;
+    h3 {
+      margin-top: 0;
+    }
+  }
+}
+
+.stage-builder-menu {
+  li {
+    span {
+      .stage-colouring();
+      width: 1em;
+      border-radius: 50%;
+      height: 1em;
+      display: inline-block;
+      float: left;
+      margin-right: 1em;
+      position: relative;
+      top: 2px;
+    }
+    white-space: nowrap;
+    color: black;
+    opacity: 0.7;
+    overflow: hidden;
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
+}
+
+/* Generics */
+.site-header {
+  z-index: 99999;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  background: darkgrey;
+  color: lightgrey;
+  ul {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0 15px;
+    li {
+      display: inline-block;
+      text-align: center;
+      a {
+        height: 50px;
+        line-height: 50px;
+        padding: 0.25em 0.75em;
+        display: inline-block;
+        color: white;
+        &:hover {
+          background: grey;
+          text-decoration: none;
+        }
+      }
+      &:last-child {
+        float: right;
+      }
+    }
+  }
+}
+.site-footer {
+  padding: 1em 0;
+  border-top: 1px solid #ececec;
+  margin-top: 1em;
+}
