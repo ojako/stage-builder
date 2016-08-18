@@ -37,7 +37,7 @@ angular.module('app')
         // bootstrap some current stages
         ctrl.currentStages = [{
             'name': 'Develop',
-            'type': 'Evaluate'
+            'type': 'Develop'
         }, {
             'name': 'Rank',
             'type': 'Rank'
@@ -82,21 +82,6 @@ angular.module('app')
             ctrl.inspectorTabActive = 3;
             ctrl.selected = stage;
         };
-
-        var el = document.getElementById('stageList');
-        var sortable;
-        sortable = new Sortable(el, {
-            animation: 250,
-            scroll: true,
-            delay: 10,
-            // handle: '.sortable-drag-handle',
-            // draggable: 'sortable-item',
-            chosenClass: 'sortable-chosen',
-            ghostClass: 'sortable-ghost',
-            // Not working?
-            filter: 'sortable-ignored',
-            fallbackOnBody: true,
-        });
     }
 })
 .component('stageBuilderMenu', {

@@ -17,7 +17,7 @@
       stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
 
       //- Challenge list
-      ul.list-unstyled#stageList
+      ul.list-unstyled#stageList(ng-sortable="{animation: 150}")
         li.challenge-stage-list-item(ng-repeat="stage in $ctrl.currentStages")
           stage-detail(
             stage="stage"
@@ -43,6 +43,7 @@
       uib-tabset(active="$ctrl.inspectorTabActive")
         uib-tab(heading="Settings", index="0")
           h3 Global Challenge Settings
+          pre {$ $ctrl.currentStages | json $}
           .checkbox
             label #[input(type="checkbox")] Option 1
           .checkbox

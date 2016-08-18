@@ -7,7 +7,7 @@
         <div class="challenge-transition-stage text-center sortable-ignored"> Manually Closes</div>
       </div>
       <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index"></stage-builder-menu>
-      <ul id="stageList" class="list-unstyled">
+      <ul id="stageList" ng-sortable="{animation: 150}" class="list-unstyled">
         <li ng-repeat="stage in $ctrl.currentStages" class="challenge-stage-list-item">
           <stage-detail stage="stage" last="$last" on-delete="$ctrl.deleteStage(stage)" on-add-stage="$ctrl.addStage()" stage-types="$ctrl.stageTypes" select-stage="$ctrl.selectedStage(stage)" selected-stage="$ctrl.selected" ng-class="{'selected': $ctrl.selectedStage === stage}"></stage-detail>
           <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index"></stage-builder-menu>
@@ -19,6 +19,7 @@
       <uib-tabset active="$ctrl.inspectorTabActive">
         <uib-tab heading="Settings" index="0">
           <h3>Global Challenge Settings</h3>
+          <pre>{$ $ctrl.currentStages | json $}</pre>
           <div class="checkbox">
             <label>
               <input type="checkbox"/> Option 1

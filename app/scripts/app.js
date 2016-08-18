@@ -20,6 +20,7 @@ angular
     'ui.bootstrap',
     'ngTouch',
     'sticky',
+    'ng-sortable',
   ])
   .config(function ($routeProvider, $interpolateProvider) {
     $interpolateProvider.startSymbol('{$');
