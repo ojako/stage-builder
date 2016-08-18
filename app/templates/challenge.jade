@@ -2,7 +2,13 @@
 
 .row
   section.col-xs-12
-    h2.text-center {$ sectionTitle $}
+    h2.text-center {$ challenge.sectionTitle $}
+    p.text-center Refer to bottom of page for issues list
     hr
     stage-builder
       //- Stage Article
+      
+.row
+  section.col-xs-12
+    hr
+    pre {$ challenge.issues | json $}

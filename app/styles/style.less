@@ -9,27 +9,25 @@ body {
   background: white;
 }
 
-
 @challenge-stage-z-index: 9999;
+@challenge-border-radius: 2px;
+@challenge-builder-stages-width: 300px;
 
 .stage-colouring() {
   &.Discuss {
     background: red;
   }
-  &.Open {
-    background: indigo;
-  }
-  &.Review {
+  &.Rank {
     background: maroon;
   }
   &.Evaluate {
     background: orange;
   }
-  &.Discussion {
+  &.Measure {
     background: blue;
   }
-  &.Development {
-    background: pink;
+  &.Develop {
+    background: black;
   }
   &.Capture {
     background: teal;
@@ -46,14 +44,6 @@ form {
 
 @import 'components/stage-builder.less';
 @import 'components/stage-builder-menu.less';
-
-.challenge-stages-container {
-  max-width: 750px;
-  margin: 0 auto 2em auto;
-  position: relative;
-  height: 100%;
-  z-index: @challenge-stage-z-index;
-}
 
 .sortable-drag-handle {
   width: 1em;
@@ -73,8 +63,21 @@ form {
 }
 .sortable-chosen {
   .challenge-stage-add-new {
+    transition: 0.25s opacity ease;
     opacity: 0;
   }
+}
+
+.challenge-stages-container {
+  max-width: 100%;
+  width: @challenge-builder-stages-width;
+  margin: 0 auto 2em auto;
+  position: relative;
+  height: 100%;
+  float: left;
+  border-radius: @challenge-border-radius;
+  z-index: @challenge-stage-z-index;
+  background: #ececec;
 }
 
 .challenge-stage {
@@ -96,12 +99,13 @@ form {
   //   left: 0;
   // }
   .challenge-stage-inner {
-    border: 1px solid #cccccc;
-    box-shadow: 0 2px 3px 0 #ececec;
+    // border: 1px solid #cccccc;
+    box-shadow: 0 2px 3px 0 #cecece;
     position: relative;
     z-index: @challenge-stage-z-index;
     background: white;
     padding: 0;
+    border-radius: @challenge-border-radius;
     max-width: 100%;
     word-wrap: break-word;
     white-space: normal;
@@ -124,10 +128,6 @@ form {
         border-radius: 50%;
         padding: 0.25em;
         color: green;
-        &:hover {
-          background: black;
-          color: white;
-        }
       }
       .fa-trash {
         color: red;
@@ -146,6 +146,10 @@ form {
         margin: 0 1em 0 2em;
         .stage-colouring();
       }
+      > span {
+        display: inline-block;
+        text-align: center;
+      }
     }
   }
   .form-group {
@@ -162,7 +166,8 @@ form {
 
 .challenge-stages-inspector {
   overflow: auto;
-  max-height: 100%;
+  width: ~'calc(100% - 310px)';
+  float: right;
   // height: auto !important;
   // width: 100% !important;
   .tab-content {
@@ -184,8 +189,7 @@ form {
   background: @challenge-transition-stage-colour;
   color: black;
   padding: 0.5em;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
+  border-radius: @challenge-border-radius;
   &:before {
     content: '';
     display: block;

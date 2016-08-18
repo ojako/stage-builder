@@ -1,9 +1,16 @@
 
 <div class="row">
   <section class="col-xs-12">
-    <h2 class="text-center">{$ sectionTitle $}</h2>
+    <h2 class="text-center">{$ challenge.sectionTitle $}</h2>
+    <p class="text-center">Refer to bottom of page for issues list</p>
     <hr/>
     <stage-builder>
     </stage-builder>
+  </section>
+</div>
+<div class="row">
+  <section class="col-xs-12">
+    <hr/>
+    <pre>{$ challenge.issues | json $}</pre>
   </section>
 </div>

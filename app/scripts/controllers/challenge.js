@@ -8,8 +8,25 @@
 * Controller of the stageBuilderApp
 */
 angular.module('app')
-.controller('ChallengeCtrl', function ($scope) {
-    $scope.sectionTitle = 'Create Challenge';
+.controller('ChallengeCtrl', function () {
+    // ctrl as challenge
+    var vm = this;
+    vm.sectionTitle = 'Create Challenge';
+    vm.issues = {
+        'Drag and drop': [
+            'Drag handles sometimes act as text selectors and thus break dragging temporarily',
+            'Reordering the stage list using drag and drop does not update the index. When adding new stages they\'ll insert to the initial index rather than the updated one',
+            'Animations likely will NOT work for IE9. Anims need vendor prefixes',
+            'Dragging to the very last slot doesn\'t always work as you might expect',
+            'Dragging a stage with a dropdown open won\'t close it',
+        ],
+        'Layout': [
+            'Needs media q\'s and slide out toggles',
+            'Needs fixed widths for stages builder',
+            'Vertical icon stack for the stages when in small screen view and sidebar expanded',
+        ],
+        'Stages': ['First and last stage should be as proper stage data rather than custom elements/models'],
+    };
 })
 
 .component('stageBuilder', {
@@ -19,15 +36,18 @@ angular.module('app')
         var ctrl = this;
         // bootstrap some current stages
         ctrl.currentStages = [{
-            'name': 'OP',
-            'type': 'Open'
+            'name': 'Develop',
+            'type': 'Evaluate'
+        }, {
+            'name': 'Rank',
+            'type': 'Rank'
         }, {
             'name': 'Capture',
             'type': 'Capture'
         }, {
-            'name': 'Review',
-            'type': 'Review'
-        }, ];
+            'name': 'Discuss',
+            'type': 'Discuss'
+        },];
 
         ctrl.addStage = function(type, stageIndex) {
             console.log(type + ': ' + stageIndex);
@@ -45,12 +65,12 @@ angular.module('app')
         };
 
         ctrl.stageTypes = [
-            'Open',
-            'Review',
-            'Discussion',
-            'Open',
-            'Development',
+            'Evaluate',
+            'Rank',
+            'Discuss',
+            'Develop',
             'Capture',
+            'Measure',
         ];
 
         ctrl.deleteStage = function(stage) {

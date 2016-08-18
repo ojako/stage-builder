@@ -1,40 +1,4 @@
 // add new stage
-.challenge-stage-add-new {
-  text-align: center;
-  position: relative;
-  z-index: @challenge-stage-z-index + 1;
-  button {
-    padding: 0.25em;
-    background: white;
-    // border: 1px dashed green;
-    color: green;
-    border-radius: 50%;
-    width: 1em;
-    height: 1em;
-    display: inline-block;
-    margin: 0 auto;
-    padding: 1em;
-    position: relative;
-    line-height: 1em;
-    text-align: center;
-    &:hover,
-    &:active,
-    &:focus {
-      // border: 1px dashed green;
-      background: white;
-      color: green;
-    }
-  }
-  i {
-    padding: 0;
-    width: 0;
-    height: 0;
-    margin: 0;
-    position: relative;
-    left: -4px;
-    top: -6px;
-  }
-}
 
 .challenge-stage-list-item {
   transition: 1s opacity, 1s max-height;
@@ -74,10 +38,16 @@
   background: green;
   // border: 2px solid green;
   color: white;
-  border-radius: 6px;
+  border-radius: @challenge-border-radius;
   margin: 0 auto;
   cursor: pointer;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: 5px;
 }
 .challenge-stages-end {
+  margin-bottom: 0;
   background: red;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }

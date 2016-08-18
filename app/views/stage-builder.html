@@ -1,8 +1,11 @@
 
 <div class="row">
-  <div class="col-xs-5">
+  <div class="col-xs-12">
     <div class="challenge-stages-container">
       <div ng-model="startStage" ng-click="$ctrl.inspectorTabActive = 1" class="challenge-stages-start"><i class="fa fa-trophy"></i> {$ startStageName ? startStageName : 'Capture' $}</div>
+      <div class="text-center">
+        <div class="challenge-transition-stage text-center sortable-ignored"> Manually Closes</div>
+      </div>
       <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index"></stage-builder-menu>
       <ul id="stageList" class="list-unstyled">
         <li ng-repeat="stage in $ctrl.currentStages" class="challenge-stage-list-item">
@@ -12,13 +15,10 @@
       </ul>
       <div ng-model="endStage" ng-click="$ctrl.inspectorTabActive = 2" class="challenge-stages-end"><i class="fa fa-flag-checkered"></i> {$ endStageName ? endStageName : 'Finish' $}</div>
     </div>
-  </div>
-  <div class="col-xs-7">
-    <div sticky="sticky" offset="10" class="challenge-stages-inspector">
+    <div class="challenge-stages-inspector">
       <uib-tabset active="$ctrl.inspectorTabActive">
         <uib-tab heading="Settings" index="0">
           <h3>Global Challenge Settings</h3>
-          <stage-builder-menu on-add-stage="$ctrl.addStage(type)" stage-types="$ctrl.stageTypes"></stage-builder-menu>
           <div class="checkbox">
             <label>
               <input type="checkbox"/> Option 1
