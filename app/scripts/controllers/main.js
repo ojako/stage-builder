@@ -2,12 +2,12 @@
 
 /**
 * @ngdoc function
-* @name app.controller:MainCtrl
+* @name stageBuilderApp.controller:MainCtrl
 * @description
 * # MainCtrl
 * Controller of the stageBuilderApp
 */
-angular.module('app')
+angular.module('stageBuilderApp')
 .controller('MainCtrl', function ($scope) {
   this.awesomeThings = [
     'HTML5 Boilerplate',

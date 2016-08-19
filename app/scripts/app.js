@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('app', [
+  .module('stageBuilderApp', [
     'ngAnimate',
     'ngAria',
     'ngCookies',

@@ -7,7 +7,7 @@
 * # ChallengeBuilderCtrl
 * Controller of the stageBuilderApp
 */
-angular.module('app')
+angular.module('stageBuilderApp')
 .controller('ChallengeCtrl', function () {
     // ctrl as challenge
     var vm = this;
