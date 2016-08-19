@@ -38,8 +38,10 @@
     //- Stage inspector
     //- sticky,
     //- offset="10",
-    .challenge-stages-inspector
+    .challenge-stages-inspector.sticky
       .challenge-stages-inspector-inner()
+        .alert.alert-info(ng-show="!$ctrl.selected")
+          | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, voluptates laudantium, perferendis reprehenderit quidem assumenda rem fuga voluptatem voluptas dignissimos incidunt amet adipisci ducimus, cumque placeat quod similique officia enim.
         uib-tabset(active="$ctrl.inspectorTabActive", ng-show="$ctrl.selected")
           //- uib-tab(heading="Settings", index="0")
           //-   h3 Global Challenge Settings

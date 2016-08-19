@@ -15,8 +15,9 @@
       </ul>
       <div ng-model="endStage" ng-click="$ctrl.inspectorTabActive = 2" class="challenge-stages-end"><i class="fa fa-flag-checkered"></i> {$ endStageName ? endStageName : 'Finish' $}</div>
     </div>
-    <div class="challenge-stages-inspector">
+    <div class="challenge-stages-inspector sticky">
       <div class="challenge-stages-inspector-inner">
+        <div ng-show="!$ctrl.selected" class="alert alert-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, voluptates laudantium, perferendis reprehenderit quidem assumenda rem fuga voluptatem voluptas dignissimos incidunt amet adipisci ducimus, cumque placeat quod similique officia enim.</div>
         <uib-tabset active="$ctrl.inspectorTabActive" ng-show="$ctrl.selected">
           <uib-tab heading="{$ $ctrl.selected.name ? $ctrl.selected.name : 'New Stage' $}" ng-show="$ctrl.selected" index="3">
             <h3>Stage Settings</h3>

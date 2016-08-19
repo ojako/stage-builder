@@ -9,6 +9,17 @@ body {
   background: white;
 }
 
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+  }
+}
+
 @challenge-stage-z-index: 9999;
 @challenge-border-radius: 2px;
 @challenge-builder-stages-width: 195px;
@@ -167,14 +178,11 @@ form {
   }
 }
 
-
 .challenge-stages-inspector {
-  overflow: auto;
   width: ~'calc(100% - 200px)';
   float: right;
-  padding: 0 2em;
-  position: sticky;
   top: 10px;
+  padding: 0 2em;
   .challenge-stages-inspector-inner {
     margin: 0 auto;
     width: 500px;
