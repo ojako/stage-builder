@@ -4,7 +4,7 @@ article.challenge-stage(ng-model="challengeStage")
   .challenge-stage-inner
     header.challenge-stage-title(ng-click="$ctrl.selectStage(stage)", ng-class="{'selected': $ctrl.selectedStage === stage}")
       h3 {$ $ctrl.stage.name ? $ctrl.stage.name : 'New Stage' $}
-      span
+      .text-center
         span.label(ng-class="$ctrl.stage.type") {$ $ctrl.stage.type $}
         span(uib-dropdown, dropdown-append-to-body)
           button.btn.btn-link(uib-dropdown-toggle, aria-hidden="true")
@@ -16,4 +16,4 @@ article.challenge-stage(ng-model="challengeStage")
   .text-center
     //- Transition stage
     .challenge-transition-stage.text-center.sortable-ignored
-      |  Manually Closes
+      |  {$ $ctrl.stage.progression $}

@@ -34,35 +34,6 @@ angular.module('app')
     bindings: {},
     controller: function() {
         var ctrl = this;
-        // bootstrap some current stages
-        ctrl.currentStages = [{
-            'name': 'Develop',
-            'type': 'Develop'
-        }, {
-            'name': 'Rank',
-            'type': 'Rank'
-        }, {
-            'name': 'Capture',
-            'type': 'Capture'
-        }, {
-            'name': 'Discuss',
-            'type': 'Discuss'
-        },];
-
-        ctrl.addStage = function(type, stageIndex) {
-            console.log(type + ': ' + stageIndex);
-            if(type) {
-                ctrl.currentStages.splice(stageIndex + 1, 0, {
-                    'name': type,
-                    'type': type
-                });
-            } else {
-                ctrl.currentStages.push({
-                    'name': '',
-                    'type': '',
-                });
-            }
-        };
 
         ctrl.stageTypes = [
             'Evaluate',
@@ -73,7 +44,49 @@ angular.module('app')
             'Measure',
         ];
 
-        ctrl.changeStageType => console.log("woop");
+        ctrl.progressionTypes = [
+            'Auto',
+            'Manual',
+            'Comments',
+            'Ratings',
+            'Views'
+        ];
+
+        // bootstrap some current stages
+        ctrl.currentStages = [{
+            'name': 'Develop',
+            'type': 'Develop',
+            'progression': ctrl.progressionTypes[0],
+        }, {
+            'name': 'Rank',
+            'type': 'Rank',
+            'progression': ctrl.progressionTypes[0],
+        }, {
+            'name': 'Capture',
+            'type': 'Capture',
+            'progression': ctrl.progressionTypes[0],
+        }, {
+            'name': 'Discuss',
+            'type': 'Discuss',
+            'progression': ctrl.progressionTypes[0],
+        },];
+
+        ctrl.addStage = function(type, stageIndex) {
+            console.log(type + ': ' + stageIndex);
+            if(type) {
+                ctrl.currentStages.splice(stageIndex + 1, 0, {
+                    'name': type,
+                    'type': type,
+                    'progression': ctrl.progressionTypes[0],
+                });
+            } else {
+                ctrl.currentStages.push({
+                    'name': '',
+                    'type': '',
+                    'progression': ctrl.progressionTypes[0],
+                });
+            }
+        };
 
         ctrl.deleteStage = function(stage) {
             var index = ctrl.currentStages.indexOf(stage);

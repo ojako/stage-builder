@@ -87,6 +87,12 @@
                 option(disabled, selected, value) -- Select Stage Type --
                 option(ng-repeat="type in $ctrl.stageTypes track by $index", value="{$ type $}") {$ type $}
                 
+            //- Timing
+            .form-group
+              select.form-control(ng-model="$ctrl.selected.progression", required)
+                option(disabled, selected, value) -- Select Stage Type --
+                option(ng-repeat="type in $ctrl.progressionTypes track by $index", value="{$ type $}") {$ type $}
+                
             stage-builder-options(type="$ctrl.selected.type")
 
           //- pre {$ $ctrl | json : spacing $}
