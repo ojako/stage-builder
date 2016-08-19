@@ -1,0 +1,89 @@
+// output:../../views/stage-progression-options.html
+//- Various options defined by stage type
+div(ng-switch="$ctrl.type")
+
+  div(ng-switch-when="Auto")
+    p Do you want to send email confirmation when an idea is added?
+    div.form-group
+      label.input-radio
+        input(type="checkbox")
+        | Yes
+      label.input-radio
+        input(type="checkbox")
+        | No
+    p Are ideas visible to anyone?
+      div.form-group
+        label.input-radio
+          | #[input(type="checkbox")] Yes - anyone can see ideas
+        label.input-radio
+          | #[input(type="checkbox")] No - only admins can see ideas
+          
+  div(ng-switch-when="Manual")
+    uib-tabset
+      uib-tab(heading="Criteria") 
+        .form-group
+          label.input-radio
+            |  #[input(type="radio")] Categories
+          label.input-radio
+            |  #[input(type="radio")] Challenge
+        img.img-responsive(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/318382/Screen_Shot_2016-08-08_at_11.30.55.png", alt="drag and dropper")
+      uib-tab(heading="Evaluators")
+        .form-group
+          .input-group
+            input.form-control(type="text", placeholder="Search by name or group")
+            span.input-group-btn
+              button.btn.btn-default Add
+        .form-group
+          input(type="text")
+        .form-group
+          label.input-checkbox
+            | Evaluators can invite additional people on specific ideas #[input(type="checkbox")]
+          
+    .btn-wrapper
+      button.btn.btn-default Save
+      button.btn.btn-cancel Cancel
+    
+  div(ng-switch-when="Comments")
+    div
+      label.input-checkbox
+        | #[input(type="checkbox")] Do something?
+        
+  div(ng-switch-when="Ratings")
+    div
+      label.input-radio
+        | #[input(type="radio")] Yes - anyone can see ideas
+    div
+      label.input-radio
+        | #[input(type="radio")] No - only Admins can see ideas
+        
+  div(ng-switch-when="Views")
+    .form-group
+      img.img-responsive(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/318382/Screen_Shot_2016-08-08_at_11.30.55.png", alt="drag and dropper")
+    .form-group
+      p Can new ideas be added?
+      label.input-checkbox
+        | #[input(type="checkbox")] Yes - brand new ideas can be added
+      label.input-checkbox
+        | #[input(type="checkbox")] No - only ideas from previous stages
+    .form-group
+      p Are ideas visible to anyone?
+      label.input-checkbox
+        | #[input(type="checkbox")] Yes - anyone can see ideas
+      label.input-checkbox
+        | #[input(type="checkbox")] No - only Admins can see ideas
+    .btn-wrapper
+      button.btn.btn-default Save
+      button.btn.btn-cancel Cancel
+      
+  div(ng-switch-when="Measure")
+    p Select an idea form:
+    .form-group
+      img.img-responsive(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/318382/Screen_Shot_2016-08-08_at_11.30.55.png", alt="drag and dropper")
+    .form-group
+      p Are ideas visible to anyone?
+      label.input-radio
+        | #[input(type="radio")] Yes - anyone can see ideas
+      label.input-radio
+        | #[input(type="radio")] No - only admins can see ideas
+      
+  

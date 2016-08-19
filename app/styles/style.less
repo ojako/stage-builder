@@ -71,7 +71,7 @@ form {
 .challenge-stages-container {
   max-width: 100%;
   width: @challenge-builder-stages-width;
-  margin: 0 auto 2em auto;
+  margin: 0 auto 1em auto;
   position: relative;
   height: 100%;
   float: left;
@@ -81,96 +81,105 @@ form {
   ul {
     margin: 0;
   }
+  .challenge-stage {
+    position: relative;
+    padding: 0.5em 1em;
+    display: block;
+    width: 100%;
+    text-align: center;
+    user-select: none;
+    // width: ~'calc(100% - 5px)';
+    // &:before {
+    //   content: '';
+    //   display: block;
+    //   position: absolute;
+    //   height: 2px;
+    //   width: 100px;
+    //   top: 25%;
+    //   background: red;
+    //   left: 0;
+    // }
+    transition: 0.5s background;
+    &.selected {
+      background: #cecece;
+    }
+    .challenge-stage-inner {
+      // border: 1px solid #cccccc;
+      box-shadow: 0 2px 3px 0 #cecece;
+      position: relative;
+      z-index: @challenge-stage-z-index;
+      background: white;
+      padding: 0;
+      border-radius: @challenge-border-radius;
+      max-width: 100%;
+      word-wrap: break-word;
+      white-space: normal;
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      // box-shadow: 0 0 1px #ececec;
+      transition: 0.25s box-shadow linear;
+      .challenge-stage-title {
+        word-wrap: break-word;
+        padding: 0.2em 0.5em;
+        color: #111;
+        background: white;
+        height: auto;
+        text-align: center;
+        display: inline-block;
+        max-width: 100%;
+        .fa-times {
+          border-radius: 50%;
+          padding: 0.25em;
+          color: red;
+        }
+        .btn {
+          color: #111;
+        }
+        h3 {
+          display: block;
+          text-align: center;
+          font-size: 1.25em;
+          position: relative;
+          margin: 0.25em 0.15em;
+        }
+        .label {
+          // margin: 0 1em 0 2em;
+          .stage-colouring();
+        }
+        > span {
+          display: inline-block;
+          text-align: center;
+        }
+      }
+    }
+    .form-group {
+      padding: 0.5em 1em;
+      input {
+        outline: none;
+        border: none;
+        box-shadow: none;
+        border-bottom: 2px solid grey;
+        border-radius: 0;
+      }
+    }
+  }
 }
 
-.challenge-stage {
-  position: relative;
-  padding: 0.5em 1em;
-  display: block;
-  width: 100%;
-  text-align: center;
-  user-select: none;
-  // width: ~'calc(100% - 5px)';
-  // &:before {
-  //   content: '';
-  //   display: block;
-  //   position: absolute;
-  //   height: 2px;
-  //   width: 100px;
-  //   top: 25%;
-  //   background: red;
-  //   left: 0;
-  // }
-  .challenge-stage-inner {
-    // border: 1px solid #cccccc;
-    box-shadow: 0 2px 3px 0 #cecece;
-    position: relative;
-    z-index: @challenge-stage-z-index;
-    background: white;
-    padding: 0;
-    border-radius: @challenge-border-radius;
-    max-width: 100%;
-    word-wrap: break-word;
-    white-space: normal;
-    display: inline-block;
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-    // box-shadow: 0 0 1px #ececec;
-    transition: 0.25s box-shadow linear;
-    .challenge-stage-title {
-      word-wrap: break-word;
-      padding: 0.2em 0.5em;
-      color: #111;
-      background: white;
-      height: auto;
-      text-align: center;
-      display: inline-block;
-      max-width: 100%;
-      .fa-trash {
-        border-radius: 50%;
-        padding: 0.25em;
-        color: green;
-      }
-      .fa-trash {
-        color: red;
-      }
-      .btn {
-        color: #111;
-      }
-      h3 {
-        display: block;
-        text-align: center;
-        font-size: 1.25em;
-        position: relative;
-        margin: 0.25em 0.15em;
-      }
-      .label {
-        // margin: 0 1em 0 2em;
-        .stage-colouring();
-      }
-      > span {
-        display: inline-block;
-        text-align: center;
-      }
-    }
-  }
-  .form-group {
-    padding: 0.5em 1em;
-    input {
-      outline: none;
-      border: none;
-      box-shadow: none;
-      border-bottom: 2px solid grey;
-      border-radius: 0;
-    }
-  }
-}
 
 .challenge-stages-inspector {
   overflow: auto;
   width: ~'calc(100% - 200px)';
   float: right;
+  padding: 0 2em;
+  position: sticky;
+  top: 10px;
+  .challenge-stages-inspector-inner {
+    margin: 0 auto;
+    width: 500px;
+    max-width: 100%;
+  }
   // height: auto !important;
   // width: 100% !important;
   .tab-content {

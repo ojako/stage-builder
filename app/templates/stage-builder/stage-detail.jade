@@ -1,19 +1,23 @@
 // output:../../views/stage-detail.html
 //- Individual Stages
-article.challenge-stage(ng-model="challengeStage")
+article.challenge-stage(ng-model="challengeStage", ng-class="{'selected': $ctrl.selectedStage === $ctrl.stage}")
   .challenge-stage-inner
-    header.challenge-stage-title(ng-click="$ctrl.selectStage(stage)", ng-class="{'selected': $ctrl.selectedStage === stage}")
+    header.challenge-stage-title(ng-click="$ctrl.selectStage(stage)")
       h3 {$ $ctrl.stage.name ? $ctrl.stage.name : 'New Stage' $}
       .text-center
+      div.text-center
         span.label(ng-class="$ctrl.stage.type") {$ $ctrl.stage.type $}
-        span(uib-dropdown, dropdown-append-to-body)
-          button.btn.btn-link(uib-dropdown-toggle, aria-hidden="true")
-            i.fa.fa-trash
-          ul.dropdown-menu(uib-dropdown-menu, role="menu")
-            li(ng-click="$ctrl.delete()")
-              button.btn.btn-link Confirm remove stage
-              
+        button.btn.btn-link(ng-click="$ctrl.delete();")
+          i.fa.fa-times
+        //- span(uib-dropdown, dropdown-append-to-body, is-open="menuActive")
+        //-   button.btn.btn-link(uib-dropdown-toggle, aria-hidden="true")
+        //-     i.fa.fa-times
+        //-   ul.dropdown-menu(uib-dropdown-menu, role="menu")
+        //-     li(ng-click="$ctrl.delete();")
+        //-       button.btn.btn-link Confirm remove stage
+
   .text-center
     //- Transition stage
-    .challenge-transition-stage.text-center.sortable-ignored
-      |  {$ $ctrl.stage.progression $}
+    .challenge-transition-stage.text-center.sortable-ignored(
+      ng-click="$ctrl.selectStage(stage)"
+    ) {$ $ctrl.stage.progression $}

@@ -1,18 +1,15 @@
 
-<article ng-model="challengeStage" class="challenge-stage">
+<article ng-model="challengeStage" ng-class="{'selected': $ctrl.selectedStage === $ctrl.stage}" class="challenge-stage">
   <div class="challenge-stage-inner">
-    <header ng-click="$ctrl.selectStage(stage)" ng-class="{'selected': $ctrl.selectedStage === stage}" class="challenge-stage-title">
+    <header ng-click="$ctrl.selectStage(stage)" class="challenge-stage-title">
       <h3>{$ $ctrl.stage.name ? $ctrl.stage.name : 'New Stage' $}</h3>
-      <div class="text-center"><span ng-class="$ctrl.stage.type" class="label">{$ $ctrl.stage.type $}</span><span uib-dropdown="uib-dropdown" dropdown-append-to-body="dropdown-append-to-body">
-          <button uib-dropdown-toggle="uib-dropdown-toggle" aria-hidden="true" class="btn btn-link"><i class="fa fa-trash"></i></button>
-          <ul uib-dropdown-menu="uib-dropdown-menu" role="menu" class="dropdown-menu">
-            <li ng-click="$ctrl.delete()">
-              <button class="btn btn-link">Confirm remove stage</button>
-            </li>
-          </ul></span></div>
+      <div class="text-center"></div>
+      <div class="text-center"><span ng-class="$ctrl.stage.type" class="label">{$ $ctrl.stage.type $}</span>
+        <button ng-click="$ctrl.delete();" class="btn btn-link"><i class="fa fa-times"></i></button>
+      </div>
     </header>
   </div>
   <div class="text-center">
-    <div class="challenge-transition-stage text-center sortable-ignored"> {$ $ctrl.stage.progression $}</div>
+    <div ng-click="$ctrl.selectStage(stage)" class="challenge-transition-stage text-center sortable-ignored">{$ $ctrl.stage.progression $}</div>
   </div>
 </article>

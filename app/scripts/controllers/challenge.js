@@ -113,6 +113,12 @@ angular.module('stageBuilderApp')
         type: '<',
     },
 })
+.component('stageProgressionOptions', {
+    templateUrl: 'views/stage-progression-options.html',
+    bindings: {
+        type: '<',
+    },
+})
 .component('stageDetail', {
     templateUrl: 'views/stage-detail.html',
     bindings: {

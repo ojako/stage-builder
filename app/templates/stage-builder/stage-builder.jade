@@ -38,61 +38,66 @@
     //- Stage inspector
     //- sticky,
     //- offset="10",
-    .challenge-stages-inspector(
-    )
-      uib-tabset(active="$ctrl.inspectorTabActive")
-        uib-tab(heading="Settings", index="0")
-          h3 Global Challenge Settings
-          pre {$ $ctrl.currentStages | json $}
-          .checkbox
-            label #[input(type="checkbox")] Option 1
-          .checkbox
-            label #[input(type="checkbox")] Option 2
-          .checkbox
-            label #[input(type="checkbox")] Option 3
-          .checkbox
-            label #[input(type="checkbox")] Option 4
-            
-        uib-tab(index="1", heading="Capture")
-          h3 Capture
-          p Various settings pertaining to your open stage
-          
-          img.img-responsive(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/318382/Screen_Shot_2016-08-08_at_11.30.55.png", alt="picker")
-        
-        uib-tab(index="2", heading="Finish")
-          h3 Finish
-          p Various settings pertaining to your finish stage
-          
-          .checkbox
-            label #[input(type="checkbox")] Option 1
-          .checkbox
-            label #[input(type="checkbox")] Option 2
-          .checkbox
-            label #[input(type="checkbox")] Option 3
-          .checkbox
-            label #[input(type="checkbox")] Option 4
+    .challenge-stages-inspector
+      .challenge-stages-inspector-inner()
+        uib-tabset(active="$ctrl.inspectorTabActive", ng-show="$ctrl.selected")
+          //- uib-tab(heading="Settings", index="0")
+          //-   h3 Global Challenge Settings
+          //-   pre {$ $ctrl.currentStages | json $}
+          //-   .checkbox
+          //-     label #[input(type="checkbox")] Option 1
+          //-   .checkbox
+          //-     label #[input(type="checkbox")] Option 2
+          //-   .checkbox
+          //-     label #[input(type="checkbox")] Option 3
+          //-   .checkbox
+          //-     label #[input(type="checkbox")] Option 4
+          //-     
+          //- uib-tab(index="1", heading="Capture")
+          //-   h3 Capture
+          //-   p Various settings pertaining to your open stage
+          //-   
+          //-   img.img-responsive(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/318382/Screen_Shot_2016-08-08_at_11.30.55.png", alt="picker")
+          //- 
+          //- uib-tab(index="2", heading="Finish")
+          //-   h3 Finish
+          //-   p Various settings pertaining to your finish stage
+          //-   
+          //-   .checkbox
+          //-     label #[input(type="checkbox")] Option 1
+          //-   .checkbox
+          //-     label #[input(type="checkbox")] Option 2
+          //-   .checkbox
+          //-     label #[input(type="checkbox")] Option 3
+          //-   .checkbox
+          //-     label #[input(type="checkbox")] Option 4
 
-        uib-tab(heading="{$ $ctrl.selected.name ? $ctrl.selected.name : 'New Stage' $}", ng-show="$ctrl.selected", index="3")
-          h3 Stage Settings
-          
-          form(name="stage-settings")
-          
-            //- Stage name
-            .form-group
-              input.form-control(type="text", ng-model="$ctrl.selected.name", required)
+          uib-tab(heading="{$ $ctrl.selected.name ? $ctrl.selected.name : 'New Stage' $}", ng-show="$ctrl.selected", index="3")
+            h3 Stage Settings
             
-            //- Type select
-            .form-group
-              select.form-control(ng-model="$ctrl.selected.type", ng-class="$ctrl.stage.type", required)
-                option(disabled, selected, value) -- Select Stage Type --
-                option(ng-repeat="type in $ctrl.stageTypes track by $index", value="{$ type $}") {$ type $}
-                
+            form(name="stage-settings")
+            
+              //- Stage name
+              .form-group
+                input.form-control(type="text", ng-model="$ctrl.selected.name", required)
+              
+              //- Type select
+              .form-group
+                select.form-control(ng-model="$ctrl.selected.type", ng-class="$ctrl.stage.type", required)
+                  option(disabled, selected, value) -- Select Stage Type --
+                  option(ng-repeat="type in $ctrl.stageTypes track by $index", value="{$ type $}") {$ type $}
+                                    
+              stage-builder-options(type="$ctrl.selected.type")
+              
+          uib-tab(heading="Advanced")
+            h3 Advanced Settings
+            
             //- Timing
             .form-group
               select.form-control(ng-model="$ctrl.selected.progression", required)
                 option(disabled, selected, value) -- Select Stage Type --
                 option(ng-repeat="type in $ctrl.progressionTypes track by $index", value="{$ type $}") {$ type $}
                 
-            stage-builder-options(type="$ctrl.selected.type")
+            stage-progression-options(type="$ctrl.selected.progression")
 
-          //- pre {$ $ctrl | json : spacing $}
+            //- pre {$ $ctrl | json : spacing $}

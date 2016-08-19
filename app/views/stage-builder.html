@@ -16,81 +16,35 @@
       <div ng-model="endStage" ng-click="$ctrl.inspectorTabActive = 2" class="challenge-stages-end"><i class="fa fa-flag-checkered"></i> {$ endStageName ? endStageName : 'Finish' $}</div>
     </div>
     <div class="challenge-stages-inspector">
-      <uib-tabset active="$ctrl.inspectorTabActive">
-        <uib-tab heading="Settings" index="0">
-          <h3>Global Challenge Settings</h3>
-          <pre>{$ $ctrl.currentStages | json $}</pre>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"/> Option 1
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"/> Option 2
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"/> Option 3
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"/> Option 4
-            </label>
-          </div>
-        </uib-tab>
-        <uib-tab index="1" heading="Capture">
-          <h3>Capture</h3>
-          <p>Various settings pertaining to your open stage</p><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/318382/Screen_Shot_2016-08-08_at_11.30.55.png" alt="picker" class="img-responsive"/>
-        </uib-tab>
-        <uib-tab index="2" heading="Finish">
-          <h3>Finish</h3>
-          <p>Various settings pertaining to your finish stage</p>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"/> Option 1
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"/> Option 2
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"/> Option 3
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"/> Option 4
-            </label>
-          </div>
-        </uib-tab>
-        <uib-tab heading="{$ $ctrl.selected.name ? $ctrl.selected.name : 'New Stage' $}" ng-show="$ctrl.selected" index="3">
-          <h3>Stage Settings</h3>
-          <form name="stage-settings">
-            <div class="form-group">
-              <input type="text" ng-model="$ctrl.selected.name" required="required" class="form-control"/>
-            </div>
-            <div class="form-group">
-              <select ng-model="$ctrl.selected.type" ng-class="$ctrl.stage.type" required="required" class="form-control">
-                <option disabled="disabled" selected="selected" value="value">-- Select Stage Type --</option>
-                <option ng-repeat="type in $ctrl.stageTypes track by $index" value="{$ type $}">{$ type $}</option>
-              </select>
-            </div>
+      <div class="challenge-stages-inspector-inner">
+        <uib-tabset active="$ctrl.inspectorTabActive" ng-show="$ctrl.selected">
+          <uib-tab heading="{$ $ctrl.selected.name ? $ctrl.selected.name : 'New Stage' $}" ng-show="$ctrl.selected" index="3">
+            <h3>Stage Settings</h3>
+            <form name="stage-settings">
+              <div class="form-group">
+                <input type="text" ng-model="$ctrl.selected.name" required="required" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <select ng-model="$ctrl.selected.type" ng-class="$ctrl.stage.type" required="required" class="form-control">
+                  <option disabled="disabled" selected="selected" value="value">-- Select Stage Type --</option>
+                  <option ng-repeat="type in $ctrl.stageTypes track by $index" value="{$ type $}">{$ type $}</option>
+                </select>
+              </div>
+              <stage-builder-options type="$ctrl.selected.type"></stage-builder-options>
+            </form>
+          </uib-tab>
+          <uib-tab heading="Advanced">
+            <h3>Advanced Settings</h3>
             <div class="form-group">
               <select ng-model="$ctrl.selected.progression" required="required" class="form-control">
                 <option disabled="disabled" selected="selected" value="value">-- Select Stage Type --</option>
                 <option ng-repeat="type in $ctrl.progressionTypes track by $index" value="{$ type $}">{$ type $}</option>
               </select>
             </div>
-            <stage-builder-options type="$ctrl.selected.type"></stage-builder-options>
-          </form>
-        </uib-tab>
-      </uib-tabset>
+            <stage-progression-options type="$ctrl.selected.progression"></stage-progression-options>
+          </uib-tab>
+        </uib-tabset>
+      </div>
     </div>
   </div>
 </div>
