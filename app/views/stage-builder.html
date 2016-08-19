@@ -9,7 +9,7 @@
       <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index"></stage-builder-menu>
       <ul id="stageList" ng-sortable="{animation: 150}" class="list-unstyled">
         <li ng-repeat="stage in $ctrl.currentStages" class="challenge-stage-list-item">
-          <stage-detail stage="stage" last="$last" on-delete="$ctrl.deleteStage(stage)" on-add-stage="$ctrl.addStage()" stage-types="$ctrl.stageTypes" select-stage="$ctrl.selectedStage(stage)" selected-stage="$ctrl.selected" ng-class="{'selected': $ctrl.selectedStage === stage}"></stage-detail>
+          <stage-detail stage="stage" last="$last" on-delete="$ctrl.deleteStage(stage)" stage-types="$ctrl.stageTypes" select-stage="$ctrl.selectedStage(stage)" selected-stage="$ctrl.selected" inspector-tab="$ctrl.inspectorTabActive" ng-class="{'selected': $ctrl.selectedStage === stage}"></stage-detail>
           <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index"></stage-builder-menu>
         </li>
       </ul>
@@ -19,7 +19,7 @@
       <div class="challenge-stages-inspector-inner">
         <div ng-show="!$ctrl.selected" class="alert alert-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, voluptates laudantium, perferendis reprehenderit quidem assumenda rem fuga voluptatem voluptas dignissimos incidunt amet adipisci ducimus, cumque placeat quod similique officia enim.</div>
         <uib-tabset active="$ctrl.inspectorTabActive" ng-show="$ctrl.selected">
-          <uib-tab heading="{$ $ctrl.selected.name ? $ctrl.selected.name : 'New Stage' $}" ng-show="$ctrl.selected" index="3">
+          <uib-tab heading="{$ $ctrl.selected.name ? $ctrl.selected.name : 'New Stage' $}" ng-show="$ctrl.selected" index="0">
             <h3>Stage Settings</h3>
             <form name="stage-settings">
               <div class="form-group">
@@ -34,8 +34,17 @@
               <stage-builder-options type="$ctrl.selected.type"></stage-builder-options>
             </form>
           </uib-tab>
-          <uib-tab heading="Advanced">
-            <h3>Advanced Settings</h3>
+          <uib-tab heading="Progression" index="1">
+            <h3>Progression Settings</h3>
+            <div class="form-group">
+              <select ng-model="$ctrl.selected.progression" required="required" class="form-control">
+                <option disabled="disabled" selected="selected" value="value">-- Select Stage Type --</option>
+                <option ng-repeat="type in $ctrl.progressionTypes track by $index" value="{$ type $}">{$ type $}</option>
+              </select>
+            </div>
+          </uib-tab>
+          <uib-tab heading="Advanced" index="2" class="pull-right">
+            <h3>Progression Settings</h3>
             <div class="form-group">
               <select ng-model="$ctrl.selected.progression" required="required" class="form-control">
                 <option disabled="disabled" selected="selected" value="value">-- Select Stage Type --</option>

@@ -56,11 +56,11 @@ angular.module('stageBuilderApp')
         ctrl.currentStages = [{
             'name': 'Develop',
             'type': 'Develop',
-            'progression': ctrl.progressionTypes[0],
+            'progression': 'Closes (3 sep 2016 @ 12:00)',
         }, {
             'name': 'Rank',
             'type': 'Rank',
-            'progression': ctrl.progressionTypes[0],
+            'progression': 'Closes when more than 20 comments',
         }, {
             'name': 'Capture',
             'type': 'Capture',
@@ -94,8 +94,12 @@ angular.module('stageBuilderApp')
         };
 
         ctrl.selectedStage = function(stage) {
-            ctrl.inspectorTabActive = 3;
             ctrl.selected = stage;
+        };
+
+        ctrl.setInspectorTab = function(index) {
+            console.log(index);
+            ctrl.inspectorTabActive = index;
         };
 
         var stickyElements = document.getElementsByClassName('sticky');
@@ -130,11 +134,11 @@ angular.module('stageBuilderApp')
     bindings: {
         stage: '<',
         last: '<',
-        onAddStage: '&',
         onDelete: '&',
         stageTypes: '<',
         selectedStage: '<',
         selectStage: '&',
+        inspectorTab: '=',
     },
     controller: function() {
         var ctrl = this;
@@ -143,6 +147,9 @@ angular.module('stageBuilderApp')
             ctrl.onDelete({
                 'stage': ctrl.stage
             });
+            if(ctrl.selectedStage === ctrl.stage) {
+                console.log('hide selected');
+            }
         };
     }
 })

@@ -2,7 +2,7 @@
 //- Individual Stages
 article.challenge-stage(ng-model="challengeStage", ng-class="{'selected': $ctrl.selectedStage === $ctrl.stage}")
   .challenge-stage-inner
-    header.challenge-stage-title(ng-click="$ctrl.selectStage(stage)")
+    header.challenge-stage-title(ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 0")
       h3 {$ $ctrl.stage.name ? $ctrl.stage.name : 'New Stage' $}
       .text-center
       div.text-center
@@ -19,5 +19,5 @@ article.challenge-stage(ng-model="challengeStage", ng-class="{'selected': $ctrl.
   .text-center
     //- Transition stage
     .challenge-transition-stage.text-center.sortable-ignored(
-      ng-click="$ctrl.selectStage(stage)"
+      ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1"
     ) {$ $ctrl.stage.progression $}

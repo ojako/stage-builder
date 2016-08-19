@@ -23,10 +23,10 @@
             stage="stage"
             last="$last"
             on-delete="$ctrl.deleteStage(stage)"
-            on-add-stage="$ctrl.addStage()"
             stage-types="$ctrl.stageTypes"
             select-stage="$ctrl.selectedStage(stage)"
             selected-stage="$ctrl.selected"
+            inspector-tab="$ctrl.inspectorTabActive"
             ng-class="{'selected': $ctrl.selectedStage === stage}"
           )
           stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
@@ -74,7 +74,7 @@
           //-   .checkbox
           //-     label #[input(type="checkbox")] Option 4
 
-          uib-tab(heading="{$ $ctrl.selected.name ? $ctrl.selected.name : 'New Stage' $}", ng-show="$ctrl.selected", index="3")
+          uib-tab(heading="{$ $ctrl.selected.name ? $ctrl.selected.name : 'New Stage' $}", ng-show="$ctrl.selected", index="0")
             h3 Stage Settings
             
             form(name="stage-settings")
@@ -91,8 +91,17 @@
                                     
               stage-builder-options(type="$ctrl.selected.type")
               
-          uib-tab(heading="Advanced")
-            h3 Advanced Settings
+          uib-tab(heading="Progression", index="1")
+            h3 Progression Settings
+            
+            //- Timing
+            .form-group
+              select.form-control(ng-model="$ctrl.selected.progression", required)
+                option(disabled, selected, value) -- Select Stage Type --
+                option(ng-repeat="type in $ctrl.progressionTypes track by $index", value="{$ type $}") {$ type $}
+          
+          uib-tab.pull-right(heading="Advanced", index="2")
+            h3 Progression Settings
             
             //- Timing
             .form-group
