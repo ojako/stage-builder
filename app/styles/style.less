@@ -190,10 +190,32 @@ form {
   }
   // height: auto !important;
   // width: 100% !important;
+  .nav-tabs {
+    border-bottom: 3px solid grey;
+    li {
+      &.active a {
+        background: grey !important;
+        color: white !important;
+        &:hover {
+          border: none;
+        }
+      }
+      a {
+        border-radius: 0;
+        border: none;
+        &:hover,
+        &:focus {
+          border: none;
+          outline: 0;
+          background: none;
+        }
+      }
+    }
+  }
   .tab-content {
-    border: 1px solid #ececec;
     border-top: 0;
     padding: 15px 10px;
+    border: 2px solid grey;
     h3 {
       margin-top: 0;
     }
