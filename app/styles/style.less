@@ -78,11 +78,14 @@ form {
   border-radius: @challenge-border-radius;
   z-index: @challenge-stage-z-index;
   background: #ececec;
+  ul {
+    margin: 0;
+  }
 }
 
 .challenge-stage {
   position: relative;
-  padding: 0.5em 2em;
+  padding: 0.5em 1em;
   display: block;
   width: 100%;
   text-align: center;
@@ -136,14 +139,14 @@ form {
         color: #111;
       }
       h3 {
-        display: inline;
+        display: block;
+        text-align: center;
         font-size: 1.25em;
         position: relative;
-        top: 2px;
-        padding-left: 0.75em;
+        margin: 0.25em 0.15em;
       }
       .label {
-        margin: 0 1em 0 2em;
+        // margin: 0 1em 0 2em;
         .stage-colouring();
       }
       > span {
