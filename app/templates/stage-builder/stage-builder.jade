@@ -1,8 +1,9 @@
 // output:../../views/stage-builder.html
+
+pre {$ $ctrl | json $}
 .row
   .col-xs-12
     .challenge-stages-container
-
       //- Indicator line
       //- .challenge-stages-line
 
@@ -38,10 +39,10 @@
     //- Stage inspector
     //- sticky,
     //- offset="10",
+    .challenge-stage-helper
+      stage-build-helper(helper-object-current-stage="$ctrl.helperObjectCurrentStage", helper-object-stages="$ctrl.helperObjectStages")
     .challenge-stages-inspector.sticky
-      .challenge-stages-inspector-inner()
-        .alert.alert-info(ng-show="!$ctrl.selected")
-          | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, voluptates laudantium, perferendis reprehenderit quidem assumenda rem fuga voluptatem voluptas dignissimos incidunt amet adipisci ducimus, cumque placeat quod similique officia enim.
+      .challenge-stages-inspector-inner
         uib-tabset(active="$ctrl.inspectorTabActive", ng-show="$ctrl.selected")
           //- uib-tab(heading="Settings", index="0")
           //-   h3 Global Challenge Settings

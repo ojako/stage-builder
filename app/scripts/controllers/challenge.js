@@ -35,6 +35,7 @@ angular.module('stageBuilderApp')
     controller: function() {
         var ctrl = this;
 
+        // Stage Types
         ctrl.stageTypes = [
             'Evaluate',
             'Rank',
@@ -44,6 +45,7 @@ angular.module('stageBuilderApp')
             'Measure',
         ];
 
+        // Types of Progression
         ctrl.progressionTypes = [
             'Auto',
             'Manual',
@@ -52,7 +54,7 @@ angular.module('stageBuilderApp')
             'Views'
         ];
 
-        // bootstrap some current stages
+        // Bootstrap some current stages
         ctrl.currentStages = [{
             'name': 'Develop',
             'type': 'Develop',
@@ -71,8 +73,47 @@ angular.module('stageBuilderApp')
             'progression': ctrl.progressionTypes[0],
         },];
 
+        /* Create Helper Object */
+        // Current stage represents the name of the currently active stage
+        ctrl.helperObjectCurrentStage = 'bootstrapChallenge';
+        // Collection of helper stages with name and status
+        ctrl.helperObjectStages = [
+            {
+                name: 'bootstrapChallenge',
+                status: 'incomplete',
+            },
+            {
+                name: 'createStage',
+                status: 'incomplete',
+            },
+            {
+                name: 'removeStage',
+                status: 'incomplete',
+            },
+            {
+                name: 'editStage',
+                status: 'incomplete',
+            },
+            {
+                name: 'editTransition',
+                status: 'incomplete',
+            },
+        ];
+        // ctrl.helperObjectProgress = function(stage) {
+        //     // if(!ctrl.helperObjectCompleted.indexOf('completed')) {
+        //     //     if(!ctrl.helperObjectCompleted.indexOf(stage)) {
+        //     //         ctrl.helperObjectCompleted.push(stage);
+        //     //     }
+        //     // }
+        // };
+
+        // Add stage to current list
         ctrl.addStage = function(type, stageIndex) {
-            console.log(type + ': ' + stageIndex);
+
+            // Check for helper stage
+            ctrl.helperObjectProgress('adding');
+//
+            // Add stage
             if(type) {
                 ctrl.currentStages.splice(stageIndex + 1, 0, {
                     'name': type,
@@ -88,27 +129,32 @@ angular.module('stageBuilderApp')
             }
         };
 
+        // Remove stage as a current stage
         ctrl.deleteStage = function(stage) {
             var index = ctrl.currentStages.indexOf(stage);
             ctrl.currentStages.splice(index, 1);
         };
 
+        // Select a stage to inspect
         ctrl.selectedStage = function(stage) {
             ctrl.selected = stage;
         };
 
+        // Set the tab for the inspect (on tab index)
         ctrl.setInspectorTab = function(index) {
-            console.log(index);
             ctrl.inspectorTabActive = index;
         };
 
+        // Grab sticky classes
         var stickyElements = document.getElementsByClassName('sticky');
 
+        // Apply sticky stuff
         for (var i = stickyElements.length - 1; i >= 0; i--) {
             Stickyfill.add(stickyElements[i]);
         }
     }
 })
+// Dropdown adding new stages
 .component('stageBuilderMenu', {
     templateUrl: 'views/stage-builder-menu.html',
     bindings: {
@@ -117,18 +163,36 @@ angular.module('stageBuilderApp')
         stageIndex: '<',
     },
 })
+// Helper object for advising users
+.component('stageBuildHelper', {
+    templateUrl: 'views/stage-builder-helper.html',
+    transclude: true,
+    bindings: {
+        helperObjectCurrentStage: '=',
+        helperObjectStages: '<',
+    },
+    controllerAs: 'ctrl',
+    controller: function() {
+        this.nextHelp = function() {
+            console.log('fun times');
+        };
+    },
+})
+// Stage options/settings displayed in the inspector
 .component('stageBuilderOptions', {
     templateUrl: 'views/stage-builder-options.html',
     bindings: {
         type: '<',
     },
 })
+// Stage progression options/settings displayed in progression tab of the inspector
 .component('stageProgressionOptions', {
     templateUrl: 'views/stage-progression-options.html',
     bindings: {
         type: '<',
     },
 })
+// The detail of individual stages in the stage timeline
 .component('stageDetail', {
     templateUrl: 'views/stage-detail.html',
     bindings: {
@@ -136,7 +200,7 @@ angular.module('stageBuilderApp')
         last: '<',
         onDelete: '&',
         stageTypes: '<',
-        selectedStage: '<',
+        selectedStage: '=',
         selectStage: '&',
         inspectorTab: '=',
     },
@@ -147,9 +211,11 @@ angular.module('stageBuilderApp')
             ctrl.onDelete({
                 'stage': ctrl.stage
             });
-            if(ctrl.selectedStage === ctrl.stage) {
-                console.log('hide selected');
-            }
+            // if(ctrl.selectedStage === ctrl.stage) {
+            //     ctrl.selectStage({
+            //         'stage': '',
+            //     });
+            // }
         };
     }
 })
