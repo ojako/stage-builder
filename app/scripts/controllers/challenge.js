@@ -130,6 +130,21 @@ angular.module('stageBuilderApp')
         ctrl.deleteStage = function(stage) {
             var index = ctrl.currentStages.indexOf(stage);
             ctrl.currentStages.splice(index, 1);
+            // Add index to stage
+            stage.undoIndex = index;
+            // Add to undo block at top
+            ctrl.deletedStages.splice(0, 0, stage);
+        };
+
+        // Deleted Stages
+        ctrl.deletedStages = [];
+        // Undo the last delete
+        ctrl.undoDelete = function() {
+            var stage = ctrl.deletedStages[0];
+            var index = stage.undoIndex;
+            delete stage.undoIndex;
+            ctrl.currentStages.splice(index, 0, stage);
+            ctrl.deletedStages.splice(0, 1);
         };
 
         // Select a stage to inspect

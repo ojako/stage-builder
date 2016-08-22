@@ -2,6 +2,9 @@
 <div class="row">
   <div class="col-xs-12">
     <div class="challenge-stages-container">
+      <div ng-show="$ctrl.deletedStages.length &gt; 0" class="well well-sm">
+        <button ng-click="$ctrl.undoDelete()">Undo Removed ({$ $ctrl.deletedStages.length $})</button>
+      </div>
       <div ng-model="startStage" ng-click="$ctrl.inspectorTabActive = 1" class="challenge-stages-start"><i class="fa fa-trophy"></i> {$ startStageName ? startStageName : 'Capture' $}</div>
       <div class="text-center">
         <div class="challenge-transition-stage text-center sortable-ignored"> Manually Closes</div>
