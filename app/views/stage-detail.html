@@ -1,15 +1,13 @@
 
 <article ng-model="challengeStage" ng-class="{'selected': $ctrl.selectedStage === $ctrl.stage}" class="challenge-stage">
   <div class="challenge-stage-inner">
-    <header ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 0" class="challenge-stage-title">
-      <h3>{$ $ctrl.stage.name ? $ctrl.stage.name : 'New Stage' $}</h3>
-      <div class="text-center"></div>
-      <div class="text-center"><span ng-class="$ctrl.stage.type" class="label">{$ $ctrl.stage.type $}</span>
-        <button ng-click="$ctrl.delete();" class="btn btn-link"><i class="fa fa-times"></i></button>
-      </div>
-    </header>
-  </div>
-  <div class="text-center">
-    <div ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1" class="challenge-transition-stage text-center sortable-ignored">{$ $ctrl.stage.progression $}</div>
+    <header ng-click="$ctrl.selectStage(stage);" class="challenge-stage-title clearfix"><span>
+        <h3>{$ $ctrl.stage.name ? $ctrl.stage.name : 'New Stage' $}</h3></span><span class="pull-right text-center"><span ng-class="$ctrl.stage.type" class="label">{$ $ctrl.stage.type $}</span>
+        <div ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1" class="challenge-transition-stage text-center sortable-ignored">{$ $ctrl.stage.progression $}</div>
+        <button ng-click="showMore = !showMore;" class="btn btn-link"><i class="fa fa-pencil"></i></button>
+        <button ng-click="$ctrl.delete();" class="btn btn-link"><i class="fa fa-times"></i></button></span></header>
+    <div ng-show="showMore" class="col-xs-12 clearfix">
+      <stage-builder-options type="$ctrl.stage.type"></stage-builder-options>
+    </div>
   </div>
 </article>

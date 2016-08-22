@@ -64,12 +64,12 @@ angular.module('stageBuilderApp')
             'type': 'Rank',
             'progression': 'Closes when more than 20 comments',
         }, {
-            'name': 'Capture',
-            'type': 'Capture',
+            'name': 'Gather',
+            'type': 'Gather',
             'progression': ctrl.progressionTypes[0],
         }, {
-            'name': 'Discuss',
-            'type': 'Discuss',
+            'name': 'Review',
+            'type': 'Review',
             'progression': ctrl.progressionTypes[0],
         },];
 
@@ -110,9 +110,6 @@ angular.module('stageBuilderApp')
         // Add stage to current list
         ctrl.addStage = function(type, stageIndex) {
 
-            // Check for helper stage
-            ctrl.helperObjectProgress('adding');
-//
             // Add stage
             if(type) {
                 ctrl.currentStages.splice(stageIndex + 1, 0, {
@@ -216,6 +213,9 @@ angular.module('stageBuilderApp')
             //         'stage': '',
             //     });
             // }
+        };
+        ctrl.heyThere = function() {
+            console.log('hey there');
         };
     }
 })

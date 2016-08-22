@@ -2,22 +2,17 @@
 //- Individual Stages
 article.challenge-stage(ng-model="challengeStage", ng-class="{'selected': $ctrl.selectedStage === $ctrl.stage}")
   .challenge-stage-inner
-    header.challenge-stage-title(ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 0")
-      h3 {$ $ctrl.stage.name ? $ctrl.stage.name : 'New Stage' $}
-      .text-center
-      div.text-center
+    header.challenge-stage-title.clearfix(ng-click="$ctrl.selectStage(stage);")
+      span
+        h3 {$ $ctrl.stage.name ? $ctrl.stage.name : 'New Stage' $}
+      span.pull-right.text-center
         span.label(ng-class="$ctrl.stage.type") {$ $ctrl.stage.type $}
+        .challenge-transition-stage.text-center.sortable-ignored(
+          ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1"
+        ) {$ $ctrl.stage.progression $}
+        button.btn.btn-link(ng-click="showMore = !showMore;")
+          i.fa.fa-pencil
         button.btn.btn-link(ng-click="$ctrl.delete();")
           i.fa.fa-times
-        //- span(uib-dropdown, dropdown-append-to-body, is-open="menuActive")
-        //-   button.btn.btn-link(uib-dropdown-toggle, aria-hidden="true")
-        //-     i.fa.fa-times
-        //-   ul.dropdown-menu(uib-dropdown-menu, role="menu")
-        //-     li(ng-click="$ctrl.delete();")
-        //-       button.btn.btn-link Confirm remove stage
-
-  .text-center
-    //- Transition stage
-    .challenge-transition-stage.text-center.sortable-ignored(
-      ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1"
-    ) {$ $ctrl.stage.progression $}
+    .col-xs-12.clearfix(ng-show="showMore")
+      stage-builder-options(type="$ctrl.stage.type")
