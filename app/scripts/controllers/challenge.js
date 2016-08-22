@@ -99,6 +99,7 @@ angular.module('stageBuilderApp')
                 status: 'incomplete',
             },
         ];
+
         // ctrl.helperObjectProgress = function(stage) {
         //     // if(!ctrl.helperObjectCompleted.indexOf('completed')) {
         //     //     if(!ctrl.helperObjectCompleted.indexOf(stage)) {
@@ -109,7 +110,6 @@ angular.module('stageBuilderApp')
 
         // Add stage to current list
         ctrl.addStage = function(type, stageIndex) {
-
             // Add stage
             if(type) {
                 ctrl.currentStages.splice(stageIndex + 1, 0, {
@@ -142,6 +142,7 @@ angular.module('stageBuilderApp')
         ctrl.undoDelete = function() {
             var stage = ctrl.deletedStages[0];
             var index = stage.undoIndex;
+            // Remove undo index reference
             delete stage.undoIndex;
             ctrl.currentStages.splice(index, 0, stage);
             ctrl.deletedStages.splice(0, 1);
@@ -159,7 +160,6 @@ angular.module('stageBuilderApp')
 
         // Grab sticky classes
         var stickyElements = document.getElementsByClassName('sticky');
-
         // Apply sticky stuff
         for (var i = stickyElements.length - 1; i >= 0; i--) {
             Stickyfill.add(stickyElements[i]);

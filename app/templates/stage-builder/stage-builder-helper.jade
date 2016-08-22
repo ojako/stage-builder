@@ -23,11 +23,11 @@ article.well.well-sm(ng-if="$ctrl.helperObjectCurrentStage != 'closed'", ng-swit
     h3 Challenge stage builder
     p We've started you off with a basic stage setup with manual progression. The first stage is always your open stage where you can begin to collect ideas. The last stage is where we end the challenge and measure the outcome.
     p This is all you need in order to create a challenge. Would you like to know more about setting up your challenge?
-  div.btn-wrapper
-    button.btn.btn-default(ng-click="$ctrl.helperObjectProgress") Click here to continue
-    button.btn.btn-cancel(ng-click="$ctrl.helperObjectProgress") Close help object
-  button(ng-click="$ctrl.nextHelp()") Click me
-  p {$ $ctrl.helperObjectStages.length $}
+  //- div.btn-wrapper
+  //-   button.btn.btn-default(ng-click="$ctrl.helperObjectProgress") Click here to continue
+  //-   button.btn.btn-cancel(ng-click="$ctrl.helperObjectProgress") Close help object
+  //- button(ng-click="$ctrl.nextHelp()") Click me
+  //- p {$ $ctrl.helperObjectStages.length $}
   ul(
     uib-pager,
     total-items="$ctrl.helperObjectStages",
