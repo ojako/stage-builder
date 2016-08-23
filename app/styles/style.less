@@ -68,7 +68,6 @@ form {
 .sortable-ghost {
   transition: 0.25s opacity;
   opacity: 0.6;
-  background: white;
   position: relative;
   z-index: @challenge-stage-z-index;
   header {
@@ -254,6 +253,23 @@ form {
   // }
 }
 
+// Challenge Steps Wizard
+.challenge-wizard {
+  ul {
+    width: 100%;
+    text-align: center;
+    li {
+      display: inline-block;
+      margin: 0 0.75em;
+      padding: 0 0.25em;
+      font-size: 1.1em;
+      &.active {
+        border-bottom: 2px solid blue;
+      }
+    }
+  }
+}
+
 /* Generics */
 .site-header {
   z-index: 99999;
@@ -265,10 +281,11 @@ form {
   background: darkgrey;
   color: lightgrey;
   ul {
+    max-width: 1024px;
     display: block;
     width: 100%;
-    margin: 0;
-    padding: 0 15px;
+    margin: 0 auto;
+    padding: 0;
     li {
       display: inline-block;
       text-align: center;
@@ -293,4 +310,7 @@ form {
   padding: 1em 0;
   border-top: 1px solid #ececec;
   margin-top: 1em;
+  a {
+    margin-right: 1.5em;
+  }
 }

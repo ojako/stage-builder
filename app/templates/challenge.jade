@@ -3,12 +3,12 @@
 .row
   section.col-xs-12
     h2.text-center {$ challenge.sectionTitle $}
-    p.text-center Refer to bottom of page for issues list
+    .challenge-wizard
+      ul.list-unstyled
+        li Start
+        li Design
+        li.active Build
+        li Publish
+      
     hr
     stage-builder
-      //- Stage Article
-      
-.row
-  section.col-xs-12
-    hr
-    pre {$ challenge.issues | json $}

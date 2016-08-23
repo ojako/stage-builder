@@ -1,6 +1,7 @@
 /node_modules
 /dist
 /.tmp
+/app/views
 *css.map
 /.sass-cache
 /bower_components

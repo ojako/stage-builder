@@ -17,11 +17,26 @@
     <!-- endbuild-->
   </head>
   <body ng-app="stageBuilderApp">
-    <!--if lte IE 8-->
+    <div class="site-header">
+      <ul>
+        <li><a href="">Home</a></li>
+        <li><a href="">About</a></li>
+        <li><a href="">Discover</a></li>
+        <li><a href="">Settings</a></li>
+      </ul>
+    </div>
     <!-- Add your site or application content here-->
     <div class="container">
       <div ng-view=""></div>
+      <div class="site-footer">
+        <a href="">Link 1</a>
+        <a href="">Link 2</a>
+        <a href="">Link 3</a>
+        <a href="">Link 4</a>
+        <a href="">Link 5</a>
+      </div>
     </div>
+
     <!-- build:js(.) scripts/vendor.js-->
     <!-- bower:js-->
     <script src="bower_components/angular/angular.js"></script>

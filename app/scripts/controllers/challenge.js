@@ -12,21 +12,6 @@ angular.module('stageBuilderApp')
     // ctrl as challenge
     var vm = this;
     vm.sectionTitle = 'Create Challenge';
-    vm.issues = {
-        'Drag and drop': [
-            'Drag handles sometimes act as text selectors and thus break dragging temporarily',
-            'Animations likely will NOT work for IE9. Anims need vendor prefixes',
-            'Dragging to the very last slot doesn\'t always work as you might expect',
-            'Dragging a stage with a dropdown open won\'t close it',
-            {'Completed': 'Reordering the stage list using drag and drop does not update the index. When adding new stages they\'ll insert to the initial index rather than the updated one'},
-        ],
-        'Layout': [
-            'Needs media q\'s and slide out toggles',
-            'Needs fixed widths for stages builder',
-            'Vertical icon stack for the stages when in small screen view and sidebar expanded',
-        ],
-        'Stages': ['First and last stage should be as proper stage data rather than custom elements/models'],
-    };
 })
 
 .component('stageBuilder', {
