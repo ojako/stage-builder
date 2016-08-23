@@ -1,0 +1,33 @@
+
+<article ng-if="$ctrl.helperObjectCurrentStage != 'closed'" ng-switch="$ctrl.helperObjectCurrentStage" class="well well-sm">
+  <div ng-switch-default="">
+    <h3>Default Stage</h3>
+    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumdoloribus quis totam architecto sint id. Sit.</p>
+  </div>
+  <div ng-switch-when="bootstrapChallenge">
+    <h3>Challenge stage builder</h3>
+    <p>We've started you off with a basic stage setup with manual progression. The first stage is always your open stage where you can begin to collect ideas. The last stage is where we end the challenge and measure the outcome.</p>
+    <p>This is all you need in order to create a challenge. Would you like to know more about setting up your challenge?</p>
+  </div>
+  <div ng-switch-when="createStage">
+    <h3>Create Stage</h3>
+    <p>We've started you off with a basic stage setup with manual progression. The first stage is always your open stage where you can begin to collect ideas. The last stage is where we end the challenge and measure the outcome.</p>
+    <p>This is all you need in order to create a challenge. Would you like to know more about setting up your challenge?</p>
+  </div>
+  <div ng-switch-when="removeStage">
+    <h3>Remove Stage</h3>
+    <p>We've started you off with a basic stage setup with manual progression. The first stage is always your open stage where you can begin to collect ideas. The last stage is where we end the challenge and measure the outcome.</p>
+    <p>This is all you need in order to create a challenge. Would you like to know more about setting up your challenge?</p>
+  </div>
+  <div ng-switch-when="editStage">
+    <h3>Edit Stage</h3>
+    <p>We've started you off with a basic stage setup with manual progression. The first stage is always your open stage where you can begin to collect ideas. The last stage is where we end the challenge and measure the outcome.</p>
+    <p>This is all you need in order to create a challenge. Would you like to know more about setting up your challenge?</p>
+  </div>
+  <div ng-switch-when="editTransition">
+    <h3>Challenge stage builder</h3>
+    <p>We've started you off with a basic stage setup with manual progression. The first stage is always your open stage where you can begin to collect ideas. The last stage is where we end the challenge and measure the outcome.</p>
+    <p>This is all you need in order to create a challenge. Would you like to know more about setting up your challenge?</p>
+  </div>
+  <ul uib-pager="uib-pager" total-items="$ctrl.helperObjectStages" ng-model="$ctrl.helperObjectCurrentStage"></ul>
+</article>

@@ -1,0 +1,4 @@
+
+<ul class="list-group stage-builder-menu">
+  <li ng-click="$ctrl.onAddStage({'type':type})" ng-repeat="type in $ctrl.stageTypes track by $index" ng-class="type" class="list-group-item"><span ng-class="type"></span> {$ type $}</li>
+</ul>
