@@ -36,12 +36,11 @@
             last="$last"
             on-delete="$ctrl.deleteStage(stage)"
             stage-types="$ctrl.stageTypes"
-            select-stage="$ctrl.selectedStage(stage)"
-            selected-stage="$ctrl.selected"
             inspector-tab="$ctrl.inspectorTabActive"
             ng-class="{'selected': $ctrl.selectedStage === stage}"
+            add-stage="$ctrl.addStage(type, $index)"
+            stage-index="$index"
           )
-          stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
 
       //- End stage
       .challenge-stages-end(ng-model="endStage", ng-click="$ctrl.inspectorTabActive = 2")

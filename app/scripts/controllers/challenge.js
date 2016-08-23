@@ -129,26 +129,28 @@ angular.module('stageBuilderApp')
             var index = stage.undoIndex;
             // Remove undo index reference
             delete stage.undoIndex;
+            // Add to currentStages
             ctrl.currentStages.splice(index, 0, stage);
+            // Remove undo reference
             ctrl.deletedStages.splice(0, 1);
         };
 
-        // Select a stage to inspect
-        ctrl.selectedStage = function(stage) {
-            ctrl.selected = stage;
-        };
+        // // Select a stage to inspect
+        // ctrl.selectedStage = function(stage) {
+        //     ctrl.selected = stage;
+        // };
 
-        // Set the tab for the inspect (on tab index)
-        ctrl.setInspectorTab = function(index) {
-            ctrl.inspectorTabActive = index;
-        };
+        // // Set the tab for the inspect (on tab index)
+        // ctrl.setInspectorTab = function(index) {
+        //     ctrl.inspectorTabActive = index;
+        // };
 
-        // Grab sticky classes
-        var stickyElements = document.getElementsByClassName('sticky');
-        // Apply sticky stuff
-        for (var i = stickyElements.length - 1; i >= 0; i--) {
-            Stickyfill.add(stickyElements[i]);
-        }
+        // // Grab sticky classes
+        // var stickyElements = document.getElementsByClassName('sticky');
+        // // Apply sticky stuff
+        // for (var i = stickyElements.length - 1; i >= 0; i--) {
+        //     Stickyfill.add(stickyElements[i]);
+        // }
     }
 })
 // Dropdown adding new stages
@@ -197,9 +199,11 @@ angular.module('stageBuilderApp')
         last: '<',
         onDelete: '&',
         stageTypes: '<',
+        addStage: '&',
         selectedStage: '=',
         selectStage: '&',
         inspectorTab: '=',
+        stageIndex: '<',
     },
     controller: function() {
         var ctrl = this;
@@ -213,9 +217,6 @@ angular.module('stageBuilderApp')
             //         'stage': '',
             //     });
             // }
-        };
-        ctrl.heyThere = function() {
-            console.log('hey there');
         };
     }
 })

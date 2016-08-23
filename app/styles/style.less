@@ -23,6 +23,7 @@ body {
 @challenge-stage-z-index: 9999;
 @challenge-border-radius: 2px;
 @challenge-builder-stages-width: 295px;
+@challenge-builder-shadow: 0 2px 2px 0 #cecece;
 
 .stage-colouring() {
   &.Discuss {
@@ -88,7 +89,7 @@ form {
   margin: 0 auto 1em auto;
   position: relative;
   height: 100%;
-  float: left;
+  // float: left;
   border-radius: @challenge-border-radius;
   z-index: @challenge-stage-z-index;
   background: #ececec;
@@ -100,7 +101,6 @@ form {
     padding: 0.5em 1em;
     display: block;
     width: 100%;
-    text-align: center;
     user-select: none;
     // width: ~'calc(100% - 5px)';
     // &:before {
@@ -114,12 +114,12 @@ form {
     //   left: 0;
     // }
     transition: 0.5s background;
-    &.selected {
-      background: #cecece;
-    }
+    // &.selected {
+    //   background: #cecece;
+    // }
     .challenge-stage-inner {
       // border: 1px solid #cccccc;
-      box-shadow: 0 2px 3px 0 #cecece;
+      box-shadow: @challenge-builder-shadow;
       position: relative;
       z-index: @challenge-stage-z-index;
       background: white;
@@ -128,7 +128,7 @@ form {
       max-width: 100%;
       word-wrap: break-word;
       white-space: normal;
-      display: inline-block;
+      display: block;
       width: 100%;
       position: relative;
       cursor: pointer;
@@ -162,11 +162,34 @@ form {
         .label {
           // margin: 0 1em 0 2em;
           .stage-colouring();
+          margin-right: 1em;
         }
         > span {
           display: inline-block;
           text-align: center;
         }
+        &:focus {
+          outline: 0;
+        }
+      }
+    }
+    .challenge-stage-nav {
+      text-align: right;
+      .fa-times {
+        color: red;
+      }
+      .fa-plus {
+        color: green;
+      }
+      > span {
+        position: relative;
+        top: -3px;
+        box-shadow: @challenge-builder-shadow;
+        background: white;
+        display: inline-block;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+        z-index: @challenge-stage-z-index + 1;
       }
     }
     .form-group {
@@ -236,7 +259,7 @@ form {
   position: relative;
   z-index: @challenge-stage-z-index - 10;
   display: inline-block;
-  margin: 0.25em 1em;
+  margin: 0.25em 0;
   background: @challenge-transition-stage-colour;
   color: black;
   padding: 0.5em;

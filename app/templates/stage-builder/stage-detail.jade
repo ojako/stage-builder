@@ -3,14 +3,18 @@
 article.challenge-stage(ng-model="challengeStage", ng-class="{'selected': $ctrl.selectedStage === $ctrl.stage}")
   .challenge-stage-inner
     header.challenge-stage-title.clearfix(ng-click="$ctrl.selectStage(stage); showMore = !showMore")
+      span.label(ng-class="$ctrl.stage.type") {$ $ctrl.stage.type $}
       span
         h3 {$ $ctrl.stage.name ? $ctrl.stage.name : 'New Stage' $}
       span.pull-right.text-center
-        span.label(ng-class="$ctrl.stage.type") {$ $ctrl.stage.type $}
         .challenge-transition-stage.text-center.sortable-ignored(
           ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1"
         ) {$ $ctrl.stage.progression $}
-        button.btn.btn-link(ng-click="$ctrl.delete();")
-          i.fa.fa-times
     .col-xs-12.clearfix(ng-show="showMore")
       stage-builder-options(type="$ctrl.stage.type")
+  
+  nav.challenge-stage-nav.text-right
+    span
+      button.btn.btn-link(ng-click="$ctrl.delete();")
+        | Remove #[i.fa.fa-times]
+      stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
