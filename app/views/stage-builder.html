@@ -2,22 +2,23 @@
 <div class="row">
   <div class="col-xs-12">
     <div class="challenge-stage-helper">
+      <stage-build-helper helper-object-current-stage="$ctrl.helperObjectCurrentStage" helper-object-stages="$ctrl.helperObjectStages"></stage-build-helper>
     </div>
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
     <div class="challenge-stages-container">
-      <div class="challenge-stages-header sticky">
-        <button ng-click="$ctrl.undoDelete()" class="btn btn-link">Undo Remove {$ $ctrl.deletedStages[0].name $} ({$ $ctrl.deletedStages.length $})</button>
-        <button class="btn btn-link pull-right">Validated <i class="fa fa-check"></i></button>
+      <div class="challenge-stages-header sticky clearfix">
+        <button ng-show="$ctrl.deletedStages.length &gt; 0" ng-click="$ctrl.undoDelete()" class="btn btn-warning">Undo Remove {$ $ctrl.deletedStages[0].name $} ({$ $ctrl.deletedStages.length $})</button>
+        <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index"></stage-builder-menu><span class="pull-right">
+          <button class="btn btn-success">Validated <i class="fa fa-check"></i></button>
+          <button class="btn btn-default">Next Step</button></span>
       </div>
       <div ng-model="startStage" ng-click="$ctrl.inspectorTabActive = 1" class="challenge-stages-start"><i class="fa fa-trophy"></i> {$ startStageName ? startStageName : 'Capture' $}</div>
       <div class="text-center">
-        <div class="challenge-transition-stage text-center sortable-ignored"> Manually Closes</div>
       </div>
-      <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index"></stage-builder-menu>
-      <ul id="stageList" ng-sortable="{animation: 150}" class="list-unstyled">
+      <ul ng-sortable="{animation: 150}" class="list-unstyled challenge-stage-list-container">
         <li ng-repeat="stage in $ctrl.currentStages" class="challenge-stage-list-item">
           <stage-detail stage="stage" last="$last" on-delete="$ctrl.deleteStage(stage)" stage-types="$ctrl.stageTypes" inspector-tab="$ctrl.inspectorTabActive" ng-class="{'selected': $ctrl.selectedStage === stage}" add-stage="$ctrl.addStage(type, $index)" stage-index="$index"></stage-detail>
         </li>

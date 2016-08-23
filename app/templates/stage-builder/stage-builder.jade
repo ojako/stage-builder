@@ -4,7 +4,7 @@
 .row
   .col-xs-12
     .challenge-stage-helper
-      //- stage-build-helper(helper-object-current-stage="$ctrl.helperObjectCurrentStage", helper-object-stages="$ctrl.helperObjectStages")
+      stage-build-helper(helper-object-current-stage="$ctrl.helperObjectCurrentStage", helper-object-stages="$ctrl.helperObjectStages")
 .row
   .col-xs-12
     .challenge-stages-container
@@ -14,23 +14,23 @@
       //-   pre {$ $ctrl.deletedStages | json $}
       //- .col-xs-6
       //-   pre {$ $ctrl.currentStages | json $}
-      .challenge-stages-header.sticky
-        //- ng-show="$ctrl.deletedStages.length > 0",
-        button.btn.btn-link(ng-click="$ctrl.undoDelete()") Undo Remove {$ $ctrl.deletedStages[0].name $} ({$ $ctrl.deletedStages.length $})
-        button.btn.btn-link.pull-right Validated #[i.fa.fa-check]
+      .challenge-stages-header.sticky.clearfix
+        button.btn.btn-warning(ng-show="$ctrl.deletedStages.length > 0", ng-click="$ctrl.undoDelete()") Undo Remove {$ $ctrl.deletedStages[0].name $} ({$ $ctrl.deletedStages.length $})
+        //- Start stage add
+        stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
+        span.pull-right
+          button.btn.btn-success Validated #[i.fa.fa-check]
+          button.btn.btn-default Next Step
 
       //- Start stage
       .challenge-stages-start(ng-model="startStage", ng-click="$ctrl.inspectorTabActive = 1") #[i.fa.fa-trophy] {$ startStageName ? startStageName : 'Capture' $}
       .text-center
         //- Transition stage
-        .challenge-transition-stage.text-center.sortable-ignored
-          |  Manually Closes
-
-      //- Start stage add
-      stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
+        //- .challenge-transition-stage.text-center.sortable-ignored
+        //-   |  Manually Closes
 
       //- Challenge list
-      ul.list-unstyled#stageList(ng-sortable="{animation: 150}")
+      ul.list-unstyled.challenge-stage-list-container(ng-sortable="{animation: 150}")
         li.challenge-stage-list-item(ng-repeat="stage in $ctrl.currentStages")
           stage-detail(
             stage="stage"
