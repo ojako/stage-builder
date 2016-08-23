@@ -26,6 +26,7 @@ body {
 @challenge-builder-shadow: 0 2px 2px 0 #cecece;
 
 .stage-colouring() {
+  color: white;
   &.Discuss {
     background: red;
   }
@@ -70,9 +71,20 @@ form {
   // float: left;
   border-radius: @challenge-border-radius;
   z-index: @challenge-stage-z-index;
-  background: #ececec;
   ul {
     margin: 0;
+  }
+  .challenge-stages-header {
+    top: 50px;
+    z-index: @challenge-stage-z-index + 50;
+    box-shadow: @challenge-builder-shadow;
+    background: white;
+    margin: 0 -10px;
+  }
+  .stage-type-label {
+    // margin: 0 1em 0 2em;
+    .stage-colouring();
+    margin-right: 1em;
   }
   .grab-handle {
     margin: 0 auto;
@@ -89,10 +101,6 @@ form {
       position: absolute;
       left: 49%;
       color: white;
-    }
-    .label {
-      border-radius: 0;
-      .stage-colouring();
     }
   }
   .challenge-stage {
@@ -116,8 +124,39 @@ form {
     // &.selected {
     //   background: #cecece;
     // }
+    // .nav-tabs {
+    //   border-bottom: 3px solid grey;
+    //   li {
+    //     &.active a {
+    //       background: grey !important;
+    //       color: white !important;
+    //       &:hover {
+    //         border: none;
+    //       }
+    //     }
+    //     a {
+    //       border-radius: 0;
+    //       border: none;
+    //       &:hover,
+    //       &:focus {
+    //         border: none;
+    //         outline: 0;
+    //         background: none;
+    //       }
+    //     }
+    //   }
+    // }
+    .tab-content {
+      border-top: 0;
+      padding: 1em;
+      border: 0;
+      h3 {
+        margin-top: 0;
+      }
+    }
     .challenge-stage-inner {
       // border: 1px solid #cccccc;
+      border: 1px solid #666;
       box-shadow: @challenge-builder-shadow;
       position: relative;
       z-index: @challenge-stage-z-index;
@@ -140,21 +179,15 @@ form {
         color: #111;
         background: white;
         height: auto;
+        display: table;
+        width: 100%;
         text-align: left;
         input {
-          display: block;
-          width: 100%;
           border: 0;
-          outline: 0;
-          box-shadow: 0;
-        }
-        .fa-times {
-          border-radius: 50%;
-          padding: 0.25em;
-          color: red;
-        }
-        .btn {
-          color: #111;
+          outline: none;
+          box-shadow: none;
+          font-size: 1.7em;
+          width: 100%;
         }
         h3 {
           display: inline-block;
@@ -165,14 +198,12 @@ form {
           position: relative;
           margin: 0.25em 0.15em;
         }
-        .label {
-          // margin: 0 1em 0 2em;
-          .stage-colouring();
-          margin-right: 1em;
-        }
         > span {
-          display: inline-block;
-          text-align: center;
+          display: table-cell;
+          white-space: nowrap;
+          &:first-of-type {
+            width: 100%;
+          }
         }
         &:focus {
           outline: 0;
@@ -233,36 +264,6 @@ form {
   }
   // height: auto !important;
   // width: 100% !important;
-  .nav-tabs {
-    border-bottom: 3px solid grey;
-    li {
-      &.active a {
-        background: grey !important;
-        color: white !important;
-        &:hover {
-          border: none;
-        }
-      }
-      a {
-        border-radius: 0;
-        border: none;
-        &:hover,
-        &:focus {
-          border: none;
-          outline: 0;
-          background: none;
-        }
-      }
-    }
-  }
-  .tab-content {
-    border-top: 0;
-    padding: 15px 10px;
-    border: 2px solid grey;
-    h3 {
-      margin-top: 0;
-    }
-  }
 }
 
 .challenge-transition-stage {

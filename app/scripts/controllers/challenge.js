@@ -56,6 +56,30 @@ angular.module('stageBuilderApp')
             'name': 'Review',
             'type': 'Review',
             'progression': ctrl.progressionTypes[0],
+        }, {
+            'name': 'Rank',
+            'type': 'Rank',
+            'progression': 'Closes when more than 20 comments',
+        }, {
+            'name': 'Gather',
+            'type': 'Gather',
+            'progression': ctrl.progressionTypes[0],
+        }, {
+            'name': 'Review',
+            'type': 'Review',
+            'progression': ctrl.progressionTypes[0],
+        }, {
+            'name': 'Rank',
+            'type': 'Rank',
+            'progression': 'Closes when more than 20 comments',
+        }, {
+            'name': 'Gather',
+            'type': 'Gather',
+            'progression': ctrl.progressionTypes[0],
+        }, {
+            'name': 'Review',
+            'type': 'Review',
+            'progression': ctrl.progressionTypes[0],
         },];
 
         /* Create Helper Object */
@@ -139,18 +163,18 @@ angular.module('stageBuilderApp')
         // ctrl.selectedStage = function(stage) {
         //     ctrl.selected = stage;
         // };
-
+        //
         // // Set the tab for the inspect (on tab index)
         // ctrl.setInspectorTab = function(index) {
         //     ctrl.inspectorTabActive = index;
         // };
 
-        // // Grab sticky classes
-        // var stickyElements = document.getElementsByClassName('sticky');
-        // // Apply sticky stuff
-        // for (var i = stickyElements.length - 1; i >= 0; i--) {
-        //     Stickyfill.add(stickyElements[i]);
-        // }
+        // Grab sticky classes
+        var stickyElements = document.getElementsByClassName('sticky');
+        // Apply sticky stuff
+        for (var i = stickyElements.length - 1; i >= 0; i--) {
+            Stickyfill.add(stickyElements[i]);
+        }
     }
 })
 // Dropdown adding new stages
