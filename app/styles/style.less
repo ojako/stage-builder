@@ -61,28 +61,6 @@ form {
 @import 'components/stage-builder.less';
 @import 'components/stage-builder-menu.less';
 
-.sortable-drag-handle {
-  width: 1em;
-  padding: 0 0.75em 0 0.55em;
-  opacity: 0.5;
-}
-.sortable-ghost {
-  transition: 0.25s opacity;
-  opacity: 0.6;
-  position: relative;
-  z-index: @challenge-stage-z-index;
-  header {
-    background: white;
-    transition: 0.25s background;
-  }
-}
-.sortable-chosen {
-  .challenge-stage-add-new {
-    transition: 0.25s opacity ease;
-    opacity: 0;
-  }
-}
-
 .challenge-stages-container {
   width: 100%;
   // width: @challenge-builder-stages-width;
@@ -96,9 +74,30 @@ form {
   ul {
     margin: 0;
   }
+  .grab-handle {
+    margin: 0 auto;
+    background: white;
+    padding: 0.05em 0;
+    text-align: center;
+    background: #777;
+    overflow: hidden;
+    position: relative;
+    height: 15px;
+    .fa {
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      left: 49%;
+      color: white;
+    }
+    .label {
+      border-radius: 0;
+      .stage-colouring();
+    }
+  }
   .challenge-stage {
     position: relative;
-    padding: 0.5em 1em;
+    padding: 0;
     display: block;
     width: 100%;
     user-select: none;
@@ -142,6 +141,13 @@ form {
         background: white;
         height: auto;
         text-align: left;
+        input {
+          display: block;
+          width: 100%;
+          border: 0;
+          outline: 0;
+          box-shadow: 0;
+        }
         .fa-times {
           border-radius: 50%;
           padding: 0.25em;
@@ -174,23 +180,28 @@ form {
       }
     }
     .challenge-stage-nav {
-      text-align: right;
+      text-align: center;
+      border-top: 1px solid #ececec;
+      padding-top: 0.25em;
       .fa-times {
         color: red;
       }
       .fa-plus {
         color: green;
       }
-      > span {
-        position: relative;
-        top: -3px;
-        box-shadow: @challenge-builder-shadow;
-        background: white;
-        display: inline-block;
-        border-bottom-left-radius: 3px;
-        border-bottom-right-radius: 3px;
-        z-index: @challenge-stage-z-index + 1;
+      .show-more-link {
+        border-top: 1px #ececec;
       }
+      // > span {
+      //   position: relative;
+      //   top: -3px;
+      //   box-shadow: @challenge-builder-shadow;
+      //   background: white;
+      //   display: inline-block;
+      //   border-bottom-left-radius: 3px;
+      //   border-bottom-right-radius: 3px;
+      //   z-index: @challenge-stage-z-index + 1;
+      // }
     }
     .form-group {
       padding: 0.5em 1em;

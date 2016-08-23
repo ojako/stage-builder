@@ -1,14 +1,20 @@
 
 <article ng-model="challengeStage" ng-class="{'selected': $ctrl.selectedStage === $ctrl.stage}" class="challenge-stage">
-  <div class="challenge-stage-inner">
-    <header ng-click="$ctrl.selectStage(stage); showMore = !showMore" class="challenge-stage-title clearfix"><span ng-class="$ctrl.stage.type" class="label">{$ $ctrl.stage.type $}</span><span>
-        <h3>{$ $ctrl.stage.name ? $ctrl.stage.name : 'New Stage' $}</h3></span><span class="pull-right text-center">
-        <div ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1" class="challenge-transition-stage text-center sortable-ignored">{$ $ctrl.stage.progression $}</div></span></header>
+  <div class="challenge-stage-inner clearfix">
+    <div class="grab-handle"><span ng-class="$ctrl.stage.type" class="label pull-left">{$ $ctrl.stage.type $}</span><i class="fa fa-ellipsis-h"></i></div>
+    <header ng-click="$ctrl.selectStage(stage); showMore = !showMore" class="challenge-stage-title clearfix">
+      <input ng-model="$ctrl.stage.name" type="text"/><span class="pull-right text-center">
+        <div ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1" class="challenge-transition-stage text-center sortable-ignored">{$ $ctrl.stage.progression $}</div></span>
+    </header>
     <div ng-show="showMore" class="col-xs-12 clearfix">
       <stage-builder-options type="$ctrl.stage.type"></stage-builder-options>
     </div>
+    <nav class="challenge-stage-nav"><span class="pull-right">
+        <button ng-click="$ctrl.delete();" class="btn btn-link">Remove stage <i class="fa fa-times"></i></button>
+        <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index"></stage-builder-menu></span>
+      <div class="show-more-link pull-left">
+        <button class="btn btn-link">Show More <span ng-class="showMore ? 'fa-chevron-up' : 'fa-chevron-down'" class="fa"></span></button>
+      </div>
+    </nav>
   </div>
-  <nav class="challenge-stage-nav text-right"><span>
-      <button ng-click="$ctrl.delete();" class="btn btn-link">Remove <i class="fa fa-times"></i></button>
-      <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index"></stage-builder-menu></span></nav>
 </article>

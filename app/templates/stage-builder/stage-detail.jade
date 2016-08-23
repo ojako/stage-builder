@@ -1,11 +1,12 @@
 // output:../../views/stage-detail.html
 //- Individual Stages
 article.challenge-stage(ng-model="challengeStage", ng-class="{'selected': $ctrl.selectedStage === $ctrl.stage}")
-  .challenge-stage-inner
+  .challenge-stage-inner.clearfix
+    .grab-handle
+      span.label.pull-left(ng-class="$ctrl.stage.type") {$ $ctrl.stage.type $}
+      i.fa.fa-ellipsis-h
     header.challenge-stage-title.clearfix(ng-click="$ctrl.selectStage(stage); showMore = !showMore")
-      span.label(ng-class="$ctrl.stage.type") {$ $ctrl.stage.type $}
-      span
-        h3 {$ $ctrl.stage.name ? $ctrl.stage.name : 'New Stage' $}
+      input(ng-model="$ctrl.stage.name", type="text")
       span.pull-right.text-center
         .challenge-transition-stage.text-center.sortable-ignored(
           ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1"
@@ -13,8 +14,11 @@ article.challenge-stage(ng-model="challengeStage", ng-class="{'selected': $ctrl.
     .col-xs-12.clearfix(ng-show="showMore")
       stage-builder-options(type="$ctrl.stage.type")
   
-  nav.challenge-stage-nav.text-right
-    span
-      button.btn.btn-link(ng-click="$ctrl.delete();")
-        | Remove #[i.fa.fa-times]
-      stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
+    nav.challenge-stage-nav
+      span.pull-right
+        button.btn.btn-link(ng-click="$ctrl.delete();")
+          | Remove stage #[i.fa.fa-times]
+        stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
+      div.show-more-link.pull-left
+        button.btn.btn-link
+          | Show More #[span.fa(ng-class="showMore ? 'fa-chevron-up' : 'fa-chevron-down'")]
