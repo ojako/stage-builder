@@ -6,7 +6,7 @@ article.challenge-stage(ng-model="challengeStage", ng-class="{'selected': $ctrl.
       i.fa.fa-ellipsis-h
     header.challenge-stage-title.clearfix(ng-click="$ctrl.selectStage(stage)")
       span
-        input(ng-model="$ctrl.stage.name", type="text")
+        h2 #[input(ng-model="$ctrl.stage.name", type="text")]
       span.text-right
         span.btn.stage-type-label(ng-class="$ctrl.stage.type") {$ $ctrl.stage.type $}
         .challenge-transition-stage.text-center.sortable-ignored(

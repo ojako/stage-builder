@@ -20,6 +20,8 @@ angular.module('stageBuilderApp')
     controller: function() {
         var ctrl = this;
 
+        ctrl.timeOut = true;
+
         // Stage Types
         ctrl.stageTypes = [
             'Evaluate',
@@ -175,6 +177,7 @@ angular.module('stageBuilderApp')
         for (var i = stickyElements.length - 1; i >= 0; i--) {
             Stickyfill.add(stickyElements[i]);
         }
+
     }
 })
 // Dropdown adding new stages
@@ -199,6 +202,7 @@ angular.module('stageBuilderApp')
         this.nextHelp = function() {
             console.log('fun times');
         };
+        this.helpOpen = true;
     },
 })
 // Stage options/settings displayed in the inspector
@@ -232,6 +236,7 @@ angular.module('stageBuilderApp')
     controller: function() {
         var ctrl = this;
         ctrl.detailsOpen = false;
+        ctrl.showMore = false;
         ctrl.delete = function() {
             ctrl.onDelete({
                 'stage': ctrl.stage

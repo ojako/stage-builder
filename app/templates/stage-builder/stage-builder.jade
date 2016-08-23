@@ -23,14 +23,16 @@
           button.btn.btn-default Next Step
 
       //- Start stage
-      .challenge-stages-start(ng-model="startStage", ng-click="$ctrl.inspectorTabActive = 1") #[i.fa.fa-trophy] {$ startStageName ? startStageName : 'Capture' $}
+      .challenge-stages-start(ng-click="$ctrl.inspectorTabActive = 1") #[i.fa.fa-trophy] Capture
       .text-center
         //- Transition stage
         //- .challenge-transition-stage.text-center.sortable-ignored
         //-   |  Manually Closes
 
       //- Challenge list
-      ul.list-unstyled.challenge-stage-list-container(ng-sortable="{animation: 150}")
+      ul.list-unstyled.challenge-stage-list-container(
+        ng-if="$ctrl.timeOut", 
+        ng-sortable="{animation: 250}")
         li.challenge-stage-list-item(ng-repeat="stage in $ctrl.currentStages")
           stage-detail(
             stage="stage"
@@ -44,8 +46,8 @@
           )
 
       //- End stage
-      .challenge-stages-end(ng-model="endStage", ng-click="$ctrl.inspectorTabActive = 2")
-        | #[i.fa.fa-flag-checkered] {$ endStageName ? endStageName : 'Finish' $}
+      .challenge-stages-end(ng-click="$ctrl.inspectorTabActive = 2")
+        | #[i.fa.fa-flag-checkered] Measure
   
     //- //- Stage inspector
     //- //- sticky,

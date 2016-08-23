@@ -3,7 +3,9 @@
   <div class="challenge-stage-inner clearfix">
     <div class="grab-handle"><i class="fa fa-ellipsis-h"></i></div>
     <header ng-click="$ctrl.selectStage(stage)" class="challenge-stage-title clearfix"><span>
-        <input ng-model="$ctrl.stage.name" type="text"/></span><span class="text-right"><span ng-class="$ctrl.stage.type" class="btn stage-type-label">{$ $ctrl.stage.type $}</span>
+        <h2>
+          <input ng-model="$ctrl.stage.name" type="text"/>
+        </h2></span><span class="text-right"><span ng-class="$ctrl.stage.type" class="btn stage-type-label">{$ $ctrl.stage.type $}</span>
         <div ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1" class="challenge-transition-stage text-center sortable-ignored">{$ $ctrl.stage.progression $}</div></span></header>
     <div ng-show="showMore" class="col-xs-12 clearfix">
       <div class="row">

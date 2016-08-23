@@ -15,15 +15,15 @@
           <button class="btn btn-success">Validated <i class="fa fa-check"></i></button>
           <button class="btn btn-default">Next Step</button></span>
       </div>
-      <div ng-model="startStage" ng-click="$ctrl.inspectorTabActive = 1" class="challenge-stages-start"><i class="fa fa-trophy"></i> {$ startStageName ? startStageName : 'Capture' $}</div>
+      <div ng-click="$ctrl.inspectorTabActive = 1" class="challenge-stages-start"><i class="fa fa-trophy"></i> Capture</div>
       <div class="text-center">
       </div>
-      <ul ng-sortable="{animation: 150}" class="list-unstyled challenge-stage-list-container">
+      <ul ng-if="$ctrl.timeOut" ng-sortable="{animation: 250}" class="list-unstyled challenge-stage-list-container">
         <li ng-repeat="stage in $ctrl.currentStages" class="challenge-stage-list-item">
           <stage-detail stage="stage" last="$last" on-delete="$ctrl.deleteStage(stage)" stage-types="$ctrl.stageTypes" inspector-tab="$ctrl.inspectorTabActive" ng-class="{'selected': $ctrl.selectedStage === stage}" add-stage="$ctrl.addStage(type, $index)" stage-index="$index"></stage-detail>
         </li>
       </ul>
-      <div ng-model="endStage" ng-click="$ctrl.inspectorTabActive = 2" class="challenge-stages-end"><i class="fa fa-flag-checkered"></i> {$ endStageName ? endStageName : 'Finish' $}</div>
+      <div ng-click="$ctrl.inspectorTabActive = 2" class="challenge-stages-end"><i class="fa fa-flag-checkered"></i> Measure</div>
     </div>
   </div>
 </div>
