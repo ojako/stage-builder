@@ -31,7 +31,6 @@
 
       //- Challenge list
       ul.list-unstyled.challenge-stage-list-container(
-        ng-if="$ctrl.timeOut", 
         ng-sortable="{animation: 250}")
         li.challenge-stage-list-item(ng-repeat="stage in $ctrl.currentStages")
           stage-detail(
