@@ -1,5 +1,26 @@
 
 <div ng-switch="$ctrl.type" class="stage-builder-options">
+  <div ng-switch-default="ng-switch-default">
+    <p>Do you want to send email confirmation when an idea is added?</p>
+    <div class="form-group">
+      <label class="input-radio">
+        <input type="checkbox"/>Yes
+      </label>
+      <label class="input-radio">
+        <input type="checkbox"/>No
+      </label>
+    </div>
+    <p>Are ideas visible to anyone?
+      <div class="form-group">
+        <label class="input-radio">
+          <input type="checkbox"/> Yes - anyone can see ideas
+        </label>
+        <label class="input-radio">
+          <input type="checkbox"/> No - only admins can see ideas
+        </label>
+      </div>
+    </p>
+  </div>
   <div ng-switch-when="Gather">
     <p>Do you want to send email confirmation when an idea is added?</p>
     <div class="form-group">

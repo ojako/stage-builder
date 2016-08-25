@@ -3,8 +3,7 @@
 //- pre {$ $ctrl | json $}
 .row
   .col-xs-12
-    .challenge-stage-helper
-      stage-build-helper(helper-object-current-stage="$ctrl.helperObjectCurrentStage", helper-object-stages="$ctrl.helperObjectStages")
+    
 .row
   .col-xs-12
     .challenge-stages-container
@@ -15,6 +14,10 @@
       //- .col-xs-6
       //-   pre {$ $ctrl.currentStages | json $}
       .challenge-stages-header.sticky.clearfix
+        .challenge-stage-helper
+          stage-build-helper(helper-object-current-stage="$ctrl.helperObjectCurrentStage", helper-object-stages="$ctrl.helperObjectStages", help-open="$ctrl.helpOpen")
+          
+        buton.btn.btn-default(ng-show="!$ctrl.helpOpen", ng-click="$ctrl.helpOpen = !$ctrl.helpOpen") Open Help
         button.btn.btn-warning(ng-show="$ctrl.deletedStages.length > 0", ng-click="$ctrl.undoDelete()") Undo Remove {$ $ctrl.deletedStages[0].name $} ({$ $ctrl.deletedStages.length $})
         //- Start stage add
         stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
@@ -30,19 +33,22 @@
         //-   |  Manually Closes
 
       //- Challenge list
-      ul.list-unstyled.challenge-stage-list-container(
-        ng-sortable="{animation: 250}")
-        li.challenge-stage-list-item(ng-repeat="stage in $ctrl.currentStages")
-          stage-detail(
-            stage="stage"
-            last="$last"
-            on-delete="$ctrl.deleteStage(stage)"
-            stage-types="$ctrl.stageTypes"
-            inspector-tab="$ctrl.inspectorTabActive"
-            ng-class="{'selected': $ctrl.selectedStage === stage}"
-            add-stage="$ctrl.addStage(type, $index)"
-            stage-index="$index"
-          )
+      //- !alwaysTrue hack
+      div(ng-if="!alwaysTrue")
+        ul.list-unstyled.challenge-stage-list-container(ng-sortable="{animation: 350}")
+          li.challenge-stage-list-item(ng-repeat="stage in $ctrl.currentStages")
+            stage-detail(
+              stage="stage"
+              last="$last"
+              on-delete="$ctrl.deleteStage(stage)"
+              stage-types="$ctrl.stageTypes"
+              inspector-tab="$ctrl.inspectorTabActive"
+              ng-class="{'selected': $ctrl.selectedStage === stage}"
+              add-stage="$ctrl.addStage(type, $index)"
+              stage-index="$index"
+            )
+            .challenge-stage-add-new
+              stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
 
       //- End stage
       .challenge-stages-end(ng-click="$ctrl.inspectorTabActive = 2")

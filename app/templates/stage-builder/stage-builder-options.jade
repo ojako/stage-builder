@@ -2,6 +2,22 @@
 //- Various options defined by stage type
 .stage-builder-options(ng-switch="$ctrl.type")
 
+  div(ng-switch-default)
+    p Do you want to send email confirmation when an idea is added?
+    div.form-group
+      label.input-radio
+        input(type="checkbox")
+        | Yes
+      label.input-radio
+        input(type="checkbox")
+        | No
+    p Are ideas visible to anyone?
+      div.form-group
+        label.input-radio
+          | #[input(type="checkbox")] Yes - anyone can see ideas
+        label.input-radio
+          | #[input(type="checkbox")] No - only admins can see ideas
+
   div(ng-switch-when="Gather")
     p Do you want to send email confirmation when an idea is added?
     div.form-group

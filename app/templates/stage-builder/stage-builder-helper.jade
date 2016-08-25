@@ -1,8 +1,7 @@
 // output:../../views/stage-builder-helper.html
-h2 Help:{$ $ctrl.helpOpen $}
-article.alert.alert-info(ng-show="helpOpen", ng-switch="$ctrl.helperObjectCurrentStage")
-  .close(ng-click="helpOpen = !helpOpen") #[i.fa.fa-times]
-  div(ng-switch-default="")
+article.alert.alert-info(ng-show="$ctrl.helpOpen", ng-switch="$ctrl.helperObjectCurrentStage")
+  .close(ng-click="$ctrl.helpOpen = !$ctrl.helpOpen") #[i.fa.fa-times]
+  div(ng-switch-default)
     h3 Default Stage
     p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumdoloribus quis totam architecto sint id. Sit.
   div(ng-switch-when="bootstrapChallenge")

@@ -1,8 +1,7 @@
 
-<h2>Help:{$ $ctrl.helpOpen $}</h2>
-<article ng-show="helpOpen" ng-switch="$ctrl.helperObjectCurrentStage" class="alert alert-info">
-  <div ng-click="helpOpen = !helpOpen" class="close"><i class="fa fa-times"></i></div>
-  <div ng-switch-default="">
+<article ng-show="$ctrl.helpOpen" ng-switch="$ctrl.helperObjectCurrentStage" class="alert alert-info">
+  <div ng-click="$ctrl.helpOpen = !$ctrl.helpOpen" class="close"><i class="fa fa-times"></i></div>
+  <div ng-switch-default="ng-switch-default">
     <h3>Default Stage</h3>
     <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumdoloribus quis totam architecto sint id. Sit.</p>
   </div>

@@ -1,22 +1,47 @@
 
 <article ng-model="challengeStage" ng-class="{'selected': $ctrl.selectedStage === $ctrl.stage}" class="challenge-stage">
   <div class="challenge-stage-inner clearfix">
-    <div class="grab-handle"><i class="fa fa-ellipsis-h"></i></div>
+    <div class="grab-handle"><i class="fa fa-ellipsis-h"></i>
+      <button ng-click="$ctrl.delete();" class="btn-remove-stage"><i class="fa fa-times"></i></button>
+    </div>
     <header ng-click="$ctrl.selectStage(stage)" class="challenge-stage-title clearfix"><span>
         <h2>
           <input ng-model="$ctrl.stage.name" type="text"/>
-        </h2></span><span class="text-right"><span ng-class="$ctrl.stage.type" class="btn stage-type-label">{$ $ctrl.stage.type $}</span>
-        <div ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1" class="challenge-transition-stage text-center sortable-ignored">{$ $ctrl.stage.progression $}</div></span></header>
-    <div ng-show="showMore" class="col-xs-12 clearfix">
+        </h2></span>
+      <div ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1" class="challenge-transition-stage">This stage is closing manually. Ideas are <strong>{$ $ctrl.progress.visible $}</strong> and will progress when they reach at least <strong>{$ $ctrl.progress.votes $}</strong> votes and at least <strong>{$ $ctrl.progress.views $}</strong> views or <strong>{$ $ctrl.progress.days $}</strong> days.
+      </div>
+    </header>
+    <div ng-class="{'anim-dropdown-show': showMore}" class="col-xs-12 anim-dropdown clearfix">
       <div class="row">
-        <stage-builder-options type="$ctrl.stage.type"></stage-builder-options>
+        <div uib-tabset="uib-tabset">
+          <div uib-tab="uib-tab" heading="Stage Settings">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste enim dolorem aliquam a, nostrum iusto quidem odio alias maxime nam ullam, voluptate dignissimos vero commodi doloremque nesciunt magnam, reiciendis facilis.</p>
+          </div>
+          <div uib-tab="uib-tab" heading="Progression Settings">
+            <div class="form-group"><span>Ideas are</span>
+              <select required="required" ng-model="$ctrl.progress.visible">
+                <option value="visible">Visible</option>
+                <option value="hidden">Hidden</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <p>Progress when reach 
+                <input type="number" min="1" required="required" ng-model="$ctrl.progress.votes" placeholder="votes"/>
+              </p>
+              <p>Progress when reach 
+                <input type="number" min="1" required="required" ng-model="$ctrl.progress.views" placeholder="views"/>
+              </p>
+              <p>Progress when reach 
+                <input type="number" min="1" required="required" ng-model="$ctrl.progress.days" placeholder="days"/>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <nav class="challenge-stage-nav clearfix"><span class="pull-right">
-        <button ng-click="$ctrl.delete();" class="btn btn-link">Remove stage <i class="fa fa-times"></i></button>
-        <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index"></stage-builder-menu></span>
-      <div class="show-more-link pull-left">
-        <button ng-click="showMore = !showMore" class="btn btn-link">Show {$ showMore ? 'Less' : 'More' $} <span ng-class="showMore ? 'fa-chevron-up' : 'fa-chevron-down'" class="fa"></span></button>
+    <nav ng-click="showMore = !showMore" class="challenge-stage-nav text-center clearfix">
+      <div class="show-more-link">
+        <button class="btn btn-link">Show {$ showMore ? 'Less' : 'More' $} <span ng-class="showMore ? 'fa-chevron-up' : 'fa-chevron-down'" class="fa"></span></button>
       </div>
     </nav>
   </div>

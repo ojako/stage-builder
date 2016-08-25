@@ -34,55 +34,34 @@ angular.module('stageBuilderApp')
 
         // Types of Progression
         ctrl.progressionTypes = [
-            'Auto',
-            'Manual',
-            'Comments',
-            'Ratings',
-            'Views'
+            '',
+            // 'Manual',
+            // 'Auto',
+            // 'Comments',
+            // 'Ratings',
+            // 'Views'
         ];
 
         // Bootstrap some current stages
-        ctrl.currentStages = [{
-            'name': 'Develop',
-            'type': 'Develop',
-            'progression': 'Closes (3 sep 2016 @ 12:00)',
-        }, {
-            'name': 'Rank',
-            'type': 'Rank',
-            'progression': 'Closes when more than 20 comments',
-        }, {
-            'name': 'Gather',
-            'type': 'Gather',
-            'progression': ctrl.progressionTypes[0],
-        }, {
-            'name': 'Review',
-            'type': 'Review',
-            'progression': ctrl.progressionTypes[0],
-        }, {
-            'name': 'Rank',
-            'type': 'Rank',
-            'progression': 'Closes when more than 20 comments',
-        }, {
-            'name': 'Gather',
-            'type': 'Gather',
-            'progression': ctrl.progressionTypes[0],
-        }, {
-            'name': 'Review',
-            'type': 'Review',
-            'progression': ctrl.progressionTypes[0],
-        }, {
-            'name': 'Rank',
-            'type': 'Rank',
-            'progression': 'Closes when more than 20 comments',
-        }, {
-            'name': 'Gather',
-            'type': 'Gather',
-            'progression': ctrl.progressionTypes[0],
-        }, {
-            'name': 'Review',
-            'type': 'Review',
-            'progression': ctrl.progressionTypes[0],
-        },];
+        ctrl.currentStages = [];
+
+        var randomSelector = function(item) {
+            var i = Math.floor((Math.random() * item.length));
+
+            return item[i];
+        };
+        var bootstrapRandomStages = function() {
+            for(var i=0; i<5; i++) {
+                var name = randomSelector(ctrl.stageTypes);
+                var progression = randomSelector(ctrl.progressionTypes);
+                ctrl.currentStages.push({
+                    'name': name,
+                    'type': name,
+                    'progression': progression,
+                });
+            }
+        };
+        bootstrapRandomStages();
 
         /* Create Helper Object */
         // Current stage represents the name of the currently active stage
@@ -118,6 +97,12 @@ angular.module('stageBuilderApp')
         //     //     }
         //     // }
         // };
+
+        // ctrl.genDescription = function(stage) {
+        //
+        // };
+
+        ctrl.helpOpen = true;
 
         // Add stage to current list
         ctrl.addStage = function(type, stageIndex) {
@@ -189,20 +174,26 @@ angular.module('stageBuilderApp')
         stageIndex: '<',
     },
 })
+.component('stageDetailDesc', {
+    templateUrl: 'views/stage-detail-desc.html',
+    // transclude: true,
+    bindings: {
+
+    },
+})
 // Helper object for advising users
 .component('stageBuildHelper', {
     templateUrl: 'views/stage-builder-helper.html',
-    transclude: true,
+    // transclude: true,
     bindings: {
         helperObjectCurrentStage: '=',
         helperObjectStages: '<',
+        nextHelp: '&',
+        helpOpen: '=',
     },
-    controllerAs: 'ctrl',
-    controller: function() {
-        this.nextHelp = function() {
-            console.log('fun times');
-        };
-        this.helpOpen = true;
+    controller: function () {
+        // var ctrl = this;
+        // ctrl.helpOpen = true;
     },
 })
 // Stage options/settings displayed in the inspector
@@ -246,6 +237,12 @@ angular.module('stageBuilderApp')
             //         'stage': '',
             //     });
             // }
+        };
+        ctrl.progress = {
+            'votes': 10,
+            'views': 10,
+            'days': 10,
+            'visible': 'visible',
         };
     }
 })
