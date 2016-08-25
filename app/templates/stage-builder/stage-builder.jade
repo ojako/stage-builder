@@ -13,12 +13,11 @@
       //-   pre {$ $ctrl.deletedStages | json $}
       //- .col-xs-6
       //-   pre {$ $ctrl.currentStages | json $}
-      .challenge-stages-header.sticky.clearfix
-        .challenge-stage-helper
-          stage-build-helper(helper-object-current-stage="$ctrl.helperObjectCurrentStage", helper-object-stages="$ctrl.helperObjectStages", help-open="$ctrl.helpOpen")
+      .challenge-stages-header.sticky.clearfix  
+        stage-build-helper(helper-object-current-stage="$ctrl.helperObjectCurrentStage", helper-object-stages="$ctrl.helperObjectStages", help-open="$ctrl.helpOpen")
           
         buton.btn.btn-default(ng-show="!$ctrl.helpOpen", ng-click="$ctrl.helpOpen = !$ctrl.helpOpen") Open Help
-        button.btn.btn-warning(ng-show="$ctrl.deletedStages.length > 0", ng-click="$ctrl.undoDelete()") Undo Remove {$ $ctrl.deletedStages[0].name $} ({$ $ctrl.deletedStages.length $})
+        button.btn.btn-warning(ng-show="$ctrl.deletedStages.length > 0", ng-click="$ctrl.undoDelete()") Undo Remove {$ $ctrl.deletedStages[0].name $}
         //- Start stage add
         stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
         span.pull-right
@@ -27,10 +26,8 @@
 
       //- Start stage
       .challenge-stages-start(ng-click="$ctrl.inspectorTabActive = 1") #[i.fa.fa-trophy] Capture
-      .text-center
-        //- Transition stage
-        //- .challenge-transition-stage.text-center.sortable-ignored
-        //-   |  Manually Closes
+      .challenge-stage-add-new
+        stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
 
       //- Challenge list
       //- !alwaysTrue hack

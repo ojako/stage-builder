@@ -5,18 +5,17 @@
 <div class="row">
   <div class="col-xs-12">
     <div class="challenge-stages-container">
-      <div class="challenge-stages-header sticky clearfix">
-        <div class="challenge-stage-helper">
-          <stage-build-helper helper-object-current-stage="$ctrl.helperObjectCurrentStage" helper-object-stages="$ctrl.helperObjectStages" help-open="$ctrl.helpOpen"></stage-build-helper>
-        </div>
+      <div class="challenge-stages-header sticky clearfix"> 
+        <stage-build-helper helper-object-current-stage="$ctrl.helperObjectCurrentStage" helper-object-stages="$ctrl.helperObjectStages" help-open="$ctrl.helpOpen"></stage-build-helper>
         <buton ng-show="!$ctrl.helpOpen" ng-click="$ctrl.helpOpen = !$ctrl.helpOpen" class="btn btn-default">Open Help</buton>
-        <button ng-show="$ctrl.deletedStages.length &gt; 0" ng-click="$ctrl.undoDelete()" class="btn btn-warning">Undo Remove {$ $ctrl.deletedStages[0].name $} ({$ $ctrl.deletedStages.length $})</button>
+        <button ng-show="$ctrl.deletedStages.length &gt; 0" ng-click="$ctrl.undoDelete()" class="btn btn-warning">Undo Remove {$ $ctrl.deletedStages[0].name $}</button>
         <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index"></stage-builder-menu><span class="pull-right">
           <button class="btn btn-success">Validated <i class="fa fa-check"></i></button>
           <button class="btn btn-default">Next Step</button></span>
       </div>
       <div ng-click="$ctrl.inspectorTabActive = 1" class="challenge-stages-start"><i class="fa fa-trophy"></i> Capture</div>
-      <div class="text-center">
+      <div class="challenge-stage-add-new">
+        <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index"></stage-builder-menu>
       </div>
       <div ng-if="!alwaysTrue">
         <ul ng-sortable="{animation: 350}" class="list-unstyled challenge-stage-list-container">

@@ -17,21 +17,20 @@ article.challenge-stage(ng-model="challengeStage", ng-class="{'selected': $ctrl.
         | This stage is closing manually. Ideas are #[strong {$ $ctrl.progress.visible $}] and will progress when they reach at least #[strong {$ $ctrl.progress.votes $}] votes and at least #[strong {$ $ctrl.progress.views $}] views or #[strong {$ $ctrl.progress.days $}] days.
     
     .col-xs-12.anim-dropdown.clearfix(ng-class="{'anim-dropdown-show': showMore}")
-        //- stage-builder-options(type="$ctrl.stage.type")
-        .row
-          div(uib-tabset)
-            div(uib-tab, heading="Stage Settings")
-              p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste enim dolorem aliquam a, nostrum iusto quidem odio alias maxime nam ullam, voluptate dignissimos vero commodi doloremque nesciunt magnam, reiciendis facilis.
-            div(uib-tab, heading="Progression Settings")
-              .form-group
-                span Ideas are
-                select(required, ng-model="$ctrl.progress.visible")
-                  option(value="visible") Visible
-                  option(value="hidden") Hidden
-              .form-group
-                p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.votes", placeholder="votes")]
-                p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.views", placeholder="views")]
-                p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.days", placeholder="days")]
+      //- stage-builder-options(type="$ctrl.stage.type")
+      div(uib-tabset)
+        div(uib-tab, heading="Stage Settings")
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste enim dolorem aliquam a, nostrum iusto quidem odio alias maxime nam ullam, voluptate dignissimos vero commodi doloremque nesciunt magnam, reiciendis facilis.
+        div(uib-tab, heading="Progression Settings")
+          .form-group
+            span Ideas are
+            select(required, ng-model="$ctrl.progress.visible")
+              option(value="visible") Visible
+              option(value="hidden") Hidden
+          .form-group
+            p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.votes", placeholder="votes")]
+            p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.views", placeholder="views")]
+            p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.days", placeholder="days")]
   
     nav.challenge-stage-nav.text-center.clearfix(ng-click="showMore = !showMore")
       div.show-more-link

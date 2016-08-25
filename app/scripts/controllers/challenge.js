@@ -129,7 +129,7 @@ angular.module('stageBuilderApp')
             // Add index to stage
             stage.undoIndex = index;
             // Add to undo block at top
-            ctrl.deletedStages.splice(0, 0, stage);
+            ctrl.deletedStages.splice(0, 1, stage);
         };
 
         // Deleted Stages
@@ -188,12 +188,7 @@ angular.module('stageBuilderApp')
     bindings: {
         helperObjectCurrentStage: '=',
         helperObjectStages: '<',
-        nextHelp: '&',
         helpOpen: '=',
-    },
-    controller: function () {
-        // var ctrl = this;
-        // ctrl.helpOpen = true;
     },
 })
 // Stage options/settings displayed in the inspector
