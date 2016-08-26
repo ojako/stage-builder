@@ -5,12 +5,15 @@
     position: relative;
     left: -5px;
     top: 12px;
-    background: green;
+    background: mix(white, green, 10%);
     color: white;
     border-radius: 50%;
-    &:hover,
     &:active,
     &:focus {
+      color: white;
+      background: inherit;
+    }
+    &:hover {
       color: white;
       background: green;
     }
