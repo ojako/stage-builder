@@ -5,7 +5,7 @@ article.challenge-stage(ng-model="challengeStage", ng-class="{'selected': $ctrl.
     .grab-handle
       i.fa.fa-ellipsis-h
       button.btn-remove-stage(ng-click="$ctrl.delete();")
-        | #[i.fa.fa-times]
+        | #[i.fa.fa-trash]
     
     header.challenge-stage-title.clearfix(ng-click="$ctrl.selectStage(stage)")
       span
@@ -14,7 +14,7 @@ article.challenge-stage(ng-model="challengeStage", ng-class="{'selected': $ctrl.
       //-   span.btn.stage-type-label(ng-class="$ctrl.stage.type") {$ $ctrl.stage.type $}
       .challenge-transition-stage(ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1")
         //- | {$ $ctrl.stage.progression $}
-        | This stage is closing manually. Ideas are #[strong {$ $ctrl.progress.visible $}] and will progress when they reach at least #[strong {$ $ctrl.progress.votes $}] votes and at least #[strong {$ $ctrl.progress.views $}] views or #[strong {$ $ctrl.progress.days $}] days.
+        //- | This stage is closing manually. Ideas are #[strong {$ $ctrl.progress.visible $}] and will progress when they reach at least #[strong {$ $ctrl.progress.votes $}] votes and at least #[strong {$ $ctrl.progress.views $}] views or #[strong {$ $ctrl.progress.days $}] days.
     
     .col-xs-12.anim-dropdown.clearfix(ng-class="{'anim-dropdown-show': showMore}")
       //- stage-builder-options(type="$ctrl.stage.type")

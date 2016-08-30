@@ -78,6 +78,7 @@ form {
 @import 'mixins.less';
 
 .challenge-stages-container {
+  border: 1px dashed blue;
   width: 100%;
   // width: @challenge-builder-stages-width;
   margin: 0 auto;
@@ -99,31 +100,15 @@ form {
     .stage-colouring();
     margin-right: 1em;
   }
-  .btn-remove-stage {
-    background: #cecece;
-    color: white;
-    margin: 0;
-    border: 0;
-    outline: 0;
-    height: 15px;
-    &:hover {
-      background: red;
-    }
-    .fa {
-      margin: 0;
-      padding: 0;
-      position: relative;
-      top: -3px;
-    }
-  }
   .grab-handle {
+    @grab-handle-height: 20px;
     margin: 0 auto;
     background: white;
     padding: 0.05em 0;
     text-align: right;
     // overflow: hidden;
     position: relative;
-    height: 15px;
+    height: @grab-handle-height;
     border-bottom: 1px solid #ececec;
     &:hover {
       background: #ececec;
@@ -132,12 +117,32 @@ form {
       margin: 0;
       padding: 0;
       position: absolute;
+      top: 2px;
       left: 49%;
       color: white;
       color: darkgrey;
     }
+    .btn-remove-stage {
+      background: #cecece;
+      color: white;
+      margin: 0;
+      border: 0;
+      outline: 0;
+      height: @grab-handle-height;
+      &:hover {
+        background: red;
+      }
+      > .fa {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        top: -2px;
+        line-height: @grab-handle-height;
+      }
+    }
   }
   article.challenge-stage {
+    border: 1px solid green;
     position: relative;
     padding: 0;
     display: block;
@@ -152,7 +157,7 @@ form {
       left: 49%;
       color: white;
       text-shadow: 1px 0 1px grey;
-      bottom: -0.95em;
+      bottom: -0.925em;
       width: 1em;
       font-size: 2em;
       height: 1em;
@@ -201,6 +206,7 @@ form {
       border-radius: @challenge-border-radius;
       max-width: 500px;
       width: 100%;
+      margin: 0 auto;
       word-wrap: break-word;
       white-space: normal;
       display: block;
@@ -241,6 +247,7 @@ form {
       }
     }
     .challenge-stage-nav {
+      border-left: 5px solid red;
       text-align: center;
       border-top: 1px solid #ececec;
       padding-top: 0.25em;

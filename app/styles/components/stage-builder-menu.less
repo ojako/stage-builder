@@ -1,21 +1,35 @@
 .challenge-stage-add-new {
   display: block;
-  text-align: center;
+  text-align: left;
+  border-left: 5px solid pink;
   button {
     position: relative;
-    left: -5px;
+    left: 2px;
     top: 12px;
-    background: mix(white, green, 10%);
+    background: mix(white, green, 80%);
     color: white;
-    border-radius: 50%;
-    &:active,
-    &:focus {
-      color: white;
-      background: inherit;
+    border-radius: 15px;
+    text-decoration: none !important;
+    // border-top-left-radius: 0;
+    // border-bottom-left-radius: 0;
+    > span {
+      display: inline-block;
+      vertical-align: top;
+      margin: 0;
+      padding: 0;
     }
-    &:hover {
+    .hover-reveal {
+      max-width: 0;
+      overflow: hidden;
+      transition: 0.5s max-width ease-in;
+    }
+    &:hover, &:focus, &.active {
       color: white;
       background: green;
+      .hover-reveal {
+        max-width: 200px;
+        padding-left: 1em;
+      }
     }
   }
 }

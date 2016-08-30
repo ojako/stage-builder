@@ -2,13 +2,13 @@
 <article ng-model="challengeStage" ng-class="{'selected': $ctrl.selectedStage === $ctrl.stage}" class="challenge-stage">
   <div class="challenge-stage-inner clearfix">
     <div class="grab-handle"><i class="fa fa-ellipsis-h"></i>
-      <button ng-click="$ctrl.delete();" class="btn-remove-stage"><i class="fa fa-times"></i></button>
+      <button ng-click="$ctrl.delete();" class="btn-remove-stage"><i class="fa fa-trash"></i></button>
     </div>
     <header ng-click="$ctrl.selectStage(stage)" class="challenge-stage-title clearfix"><span>
         <h2>
           <input ng-model="$ctrl.stage.name" type="text"/>
         </h2></span>
-      <div ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1" class="challenge-transition-stage">This stage is closing manually. Ideas are <strong>{$ $ctrl.progress.visible $}</strong> and will progress when they reach at least <strong>{$ $ctrl.progress.votes $}</strong> votes and at least <strong>{$ $ctrl.progress.views $}</strong> views or <strong>{$ $ctrl.progress.days $}</strong> days.
+      <div ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1" class="challenge-transition-stage">
       </div>
     </header>
     <div ng-class="{'anim-dropdown-show': showMore}" class="col-xs-12 anim-dropdown clearfix">

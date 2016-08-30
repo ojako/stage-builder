@@ -1,6 +1,6 @@
 
 <div uib-dropdown="uib-dropdown" class="btn-group">
-  <button uib-dropdown-toggle="uib-dropdown-toggle" dropdown-append-to-body="dropdown-append-to-body" class="btn btn-link"><span class="fa fa-plus"></span></button>
+  <button uib-dropdown-toggle="uib-dropdown-toggle" dropdown-append-to-body="dropdown-append-to-body" class="btn btn-link"><span class="fa fa-plus"></span> <span class="hover-reveal">Insert Stage</span></button>
   <ul class="dropdown-menu list-group stage-builder-menu">
     <li ng-click="$ctrl.onAddStage({'type':type})" ng-repeat="type in $ctrl.stageTypes track by $index" ng-class="type" class="list-group-item"><span ng-class="type"></span> {$ type $}</li>
   </ul>
