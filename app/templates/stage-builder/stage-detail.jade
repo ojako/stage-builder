@@ -1,11 +1,17 @@
 // output:../../views/stage-detail.html
 //- Individual Stages
 article.challenge-stage(ng-model="challengeStage", ng-class="{'selected': $ctrl.selectedStage === $ctrl.stage}")
-  .challenge-stage-inner.clearfix
-    .grab-handle
-      i.fa.fa-ellipsis-h
-      button.btn-remove-stage(ng-click="$ctrl.delete();")
+  .challenge-stage-detail-toolbar.text-center
+    .challenge-stage-type(ng-class="::$ctrl.stage.type") {$ $ctrl.stage.type.charAt(0) $}
+    .list-group
+      button.list-group-item.btn-remove-stage(ng-click="$ctrl.delete();")
         | #[i.fa.fa-trash]
+      button.list-group-item.btn-add-stage(ng-click="")
+        | #[i.fa.fa-plus]
+  
+  .challenge-stage-inner.clearfix
+    //- .grab-handle(ng-show="$ctrl.stage.type != 'Open' || $ctrl.stage.type != 'Close'")
+    //-   i.fa.fa-ellipsis-h
     
     header.challenge-stage-title.clearfix(ng-click="$ctrl.selectStage(stage)")
       span

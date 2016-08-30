@@ -1,7 +1,4 @@
 // output:../../views/stage-builder.html
-
-.row
-  .col-xs-12
     
 .row
   .col-xs-12
@@ -18,29 +15,31 @@
           button.btn.btn-default Next Step
 
       //- Start stage
-      .challenge-stages-start(ng-click="$ctrl.inspectorTabActive = 1") #[i.fa.fa-trophy] Capture
-      .challenge-stage-add-new
-        stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
+      //- .challenge-stages-start(ng-click="$ctrl.inspectorTabActive = 1") #[i.fa.fa-trophy] Capture
+      //- .challenge-stage-add-new
+      //-   stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
 
       //- Challenge list
       //- !alwaysTrue hack
       div(ng-if="!alwaysTrue")
-        ul.list-unstyled.challenge-stage-list-container(ng-sortable="{animation: 350}")
-          li.challenge-stage-list-item(ng-repeat="stage in $ctrl.currentStages")
+        ul.list-unstyled.challenge-stage-list-container(ng-sortable="{animation: 350, draggable: '.sortable-item'}")
+          li.challenge-stage-list-item(
+            ng-repeat="stage in $ctrl.currentStages"
+            ng-class="stage.type === 'Open' || stage.type === 'Close' ? stage.type : 'sortable-item'"
+          )
             stage-detail(
               stage="stage"
               last="$last"
               on-delete="$ctrl.deleteStage(stage)"
               stage-types="$ctrl.stageTypes"
               inspector-tab="$ctrl.inspectorTabActive"
-              ng-class="{'selected': $ctrl.selectedStage === stage}"
               add-stage="$ctrl.addStage(type, $index)"
               stage-index="$index"
             )
-            .challenge-stage-add-new
-              stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
+            //- .challenge-stage-add-new
+            //-   stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
 
-      //- End stage
-      .challenge-stages-end(ng-click="$ctrl.inspectorTabActive = 2")
-        | #[i.fa.fa-flag-checkered] Measure
+      //- //- End stage
+      //- .challenge-stages-end(ng-click="$ctrl.inspectorTabActive = 2")
+      //-   | #[i.fa.fa-flag-checkered] Measure
   

@@ -50,18 +50,20 @@ angular.module('stageBuilderApp')
 
             return item[i];
         };
-        var bootstrapRandomStages = function() {
-            for(var i=0; i<5; i++) {
+        var bootstrapStages = function(randomNumber) {
+            ctrl.currentStages.splice(0, 0, {name:'Open', type: 'Open'});
+            ctrl.currentStages.splice(1, 0, {name:'Close', type: 'Close'});
+            for(var i=0; i<randomNumber; i++) {
                 var name = randomSelector(ctrl.stageTypes);
                 var progression = randomSelector(ctrl.progressionTypes);
-                ctrl.currentStages.push({
+                ctrl.currentStages.splice(1, 0, {
                     'name': name,
                     'type': name,
                     'progression': progression,
                 });
             }
         };
-        bootstrapRandomStages();
+        bootstrapStages(2);
 
         /* Create Helper Object */
         // Current stage represents the name of the currently active stage

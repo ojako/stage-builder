@@ -1,8 +1,5 @@
 
 <div class="row">
-  <div class="col-xs-12"></div>
-</div>
-<div class="row">
   <div class="col-xs-12">
     <div class="challenge-stages-container">
       <div class="challenge-stages-header sticky clearfix"> 
@@ -13,21 +10,13 @@
           <button class="btn btn-success">Validated <i class="fa fa-check"></i></button>
           <button class="btn btn-default">Next Step</button></span>
       </div>
-      <div ng-click="$ctrl.inspectorTabActive = 1" class="challenge-stages-start"><i class="fa fa-trophy"></i> Capture</div>
-      <div class="challenge-stage-add-new">
-        <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index"></stage-builder-menu>
-      </div>
       <div ng-if="!alwaysTrue">
-        <ul ng-sortable="{animation: 350}" class="list-unstyled challenge-stage-list-container">
-          <li ng-repeat="stage in $ctrl.currentStages" class="challenge-stage-list-item">
-            <stage-detail stage="stage" last="$last" on-delete="$ctrl.deleteStage(stage)" stage-types="$ctrl.stageTypes" inspector-tab="$ctrl.inspectorTabActive" ng-class="{'selected': $ctrl.selectedStage === stage}" add-stage="$ctrl.addStage(type, $index)" stage-index="$index"></stage-detail>
-            <div class="challenge-stage-add-new">
-              <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index"></stage-builder-menu>
-            </div>
+        <ul ng-sortable="{animation: 350, draggable: '.sortable-item'}" class="list-unstyled challenge-stage-list-container">
+          <li ng-repeat="stage in $ctrl.currentStages" ng-class="stage.type === 'Open' || stage.type === 'Close' ? stage.type : 'sortable-item'" class="challenge-stage-list-item">
+            <stage-detail stage="stage" last="$last" on-delete="$ctrl.deleteStage(stage)" stage-types="$ctrl.stageTypes" inspector-tab="$ctrl.inspectorTabActive" add-stage="$ctrl.addStage(type, $index)" stage-index="$index"></stage-detail>
           </li>
         </ul>
       </div>
-      <div ng-click="$ctrl.inspectorTabActive = 2" class="challenge-stages-end"><i class="fa fa-flag-checkered"></i> Measure</div>
     </div>
   </div>
 </div>
