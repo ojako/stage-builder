@@ -1,44 +1,101 @@
 // output:../../views/stage-detail.html
-//- Individual Stages
-article.challenge-stage(ng-model="challengeStage", ng-class="{'selected': $ctrl.selectedStage === $ctrl.stage}")
-  .challenge-stage-detail-toolbar.text-center
-    .challenge-stage-type(ng-class="::$ctrl.stage.type") {$ $ctrl.stage.type.charAt(0) $}
-    .list-group
-      button.list-group-item.btn-remove-stage(ng-click="$ctrl.delete();")
-        | #[i.fa.fa-trash]
-      button.list-group-item.btn-add-stage(ng-click="")
-        | #[i.fa.fa-plus]
   
-  .challenge-stage-inner.clearfix
-    //- .grab-handle(ng-show="$ctrl.stage.type != 'Open' || $ctrl.stage.type != 'Close'")
-    //-   i.fa.fa-ellipsis-h
+//- Individual Stages
+article.challenge-stage.clearfix(ng-model="challengeStage" ng-class="[{'fixed': $ctrl.stage.fixed}, [$ctrl.stage.type]]")
+  .timeline-bar
+    .timeline-knuckle(ng-class="$ctrl.stage.type")
+  .challenge-stage-detail-toolbar.text-center
+    button(ng-if="$ctrl.stage.sortable")
+      | #[i.fa.fa-arrows]
+    button(ng-click="$ctrl.delete();", ng-if="!$ctrl.stage.fixed")
+      | #[i.fa.fa-trash]
+    //- .sortable-grab
+    //- .challenge-stage-type(ng-class="$ctrl.stage.type") {$ $ctrl.stage.name.charAt(0) $}
+      //- button.list-group-item.btn-add-stage(ng-click="")
+        //- | #[i.fa.fa-plus]
+        
+  //- .challenge-stage-inner.challenge-stage-auto-width.text-center.ng-hide(ng-show="$ctrl.stage.deleted")
+  //-   p Stage removed ({$ $ctrl.stage.name $}). Click #[button.btn.btn-link(ng-click="$ctrl.stage.deleted = false; $ctrl.stage.sortable = true", title="undo") 'here'] to undo
+  //-   //- .close(ng-click="$ctrl.delete();") #[i.fa.fa-times]
+  
+  .challenge-stage-inner.clearfix(ng-class="{'challenge-stage-auto-width': $ctrl.stage.deleted}")
+    div.ng-hide(ng-show="$ctrl.stage.deleted")
+      p Stage removed ({$ $ctrl.stage.name $}). Click #[button.btn.btn-link(ng-click="$ctrl.stage.deleted = false; $ctrl.stage.sortable = true", title="undo") 'here'] to undo
+      //- .close(ng-click="$ctrl.delete();") #[i.fa.fa-times]
     
-    header.challenge-stage-title.clearfix(ng-click="$ctrl.selectStage(stage)")
-      span
-        h2 #[input(ng-model="$ctrl.stage.name", type="text")]
+    div(ng-show="!$ctrl.stage.deleted")
+      .grab-handle(ng-show="!$ctrl.stage.fixed")
+        i.fa.fa-ellipsis-h
+      //- {$ $ctrl.stage $}
+      form.row
+        .col-sm-6
+          .form-group
+            .challenge-stage-title
+              h2 #[input(ng-model="$ctrl.stage.name", type="text" placeholder="give your stage a name" required)]
+              //- Type set
+              .btn-group(uib-dropdown, ng-if="!$ctrl.stage.fixed")
+                button.btn.btn-link(uib-dropdown-toggle, dropdown-append-to-body) {$ $ctrl.stage.type $}
+                ul.dropdown-menu.list-group.stage-builder-menu
+                  li.list-group-item(
+                    ng-click="$ctrl.changeType(stage.name, type)"
+                    ng-repeat="type in $ctrl.stageTypes track by $index"
+                    ng-class="type"
+                  ) #[span(ng-class="type")] {$ type $}
+
+        .col-sm-6
+          .form-group
+            //- Set Visibility
+            .btn-group(uib-dropdown)
+              button.btn.btn-link(uib-dropdown-toggle) #[span.fa.fa-eye] Idea visibility: {$ $ctrl.stage.ideaVisibility $}
+              ul.dropdown-menu.list-group
+                li.list-group-item(
+                  ng-show="!$ctrl.stage.ideaVisibility"
+                  ng-click="$ctrl.stage.ideaVisibility = true"
+                  ng-class="type"
+                ) #[span(ng-class="type")] Visible
+                li.list-group-item(
+                  ng-show="$ctrl.stage.ideaVisibility"
+                  ng-click="$ctrl.stage.ideaVisibility = false"
+                  ng-class="type"
+                ) #[span(ng-class="type")] Hidden
+            button.btn.btn-link Progression: {$ $ctrl.stage.progression.type $}
+
+    //- header.challenge-stage-title.clearfix(ng-click="$ctrl.selectStage(stage)")
+    //-   | {$ $ctrl.stage.deleted $}
+      //- span
+        
       //- span.text-right
       //-   span.btn.stage-type-label(ng-class="$ctrl.stage.type") {$ $ctrl.stage.type $}
-      .challenge-transition-stage(ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1")
+      //- .challenge-transition-stage(ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1")
+        
+        
+      //-
+        fdsfdsf
         //- | {$ $ctrl.stage.progression $}
         //- | This stage is closing manually. Ideas are #[strong {$ $ctrl.progress.visible $}] and will progress when they reach at least #[strong {$ $ctrl.progress.votes $}] votes and at least #[strong {$ $ctrl.progress.views $}] views or #[strong {$ $ctrl.progress.days $}] days.
-    
-    .col-xs-12.anim-dropdown.clearfix(ng-class="{'anim-dropdown-show': showMore}")
-      //- stage-builder-options(type="$ctrl.stage.type")
-      div(uib-tabset)
-        div(uib-tab, heading="Stage Settings")
-          p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste enim dolorem aliquam a, nostrum iusto quidem odio alias maxime nam ullam, voluptate dignissimos vero commodi doloremque nesciunt magnam, reiciendis facilis.
-        div(uib-tab, heading="Progression Settings")
-          .form-group
-            span Ideas are
-            select(required, ng-model="$ctrl.progress.visible")
-              option(value="visible") Visible
-              option(value="hidden") Hidden
-          .form-group
-            p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.votes", placeholder="votes")]
-            p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.views", placeholder="views")]
-            p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.days", placeholder="days")]
-  
-    nav.challenge-stage-nav.text-center.clearfix(ng-click="showMore = !showMore")
-      div.show-more-link
-        button.btn.btn-link
-          | Show {$ showMore ? 'Less' : 'More' $} #[span.fa(ng-class="showMore ? 'fa-chevron-up' : 'fa-chevron-down'")]
+      .row    
+        .col-xs-12
+          //- stage-builder-options(type="$ctrl.stage.type")
+          div(uib-tabset)
+            div(uib-tab, heading="Stage Settings")
+              p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste enim dolorem aliquam a, nostrum iusto quidem odio alias maxime nam ullam, voluptate dignissimos vero commodi doloremque nesciunt magnam, reiciendis facilis.
+              .row
+                .anim-dropdown.clearfix(ng-class="{'anim-dropdown-show': $ctrl.showMore}")
+                  .form-group
+                    p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.votes", placeholder="votes")]
+                    p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.views", placeholder="views")]
+                    p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.days", placeholder="days")]   
+                .show-more-link
+                  button.btn.btn-link(ng-click="$ctrl.showMore = !$ctrl.showMore")
+                    | {$ $ctrl.showMore ? 'Show Less' : 'Customise' $} #[span.fa(ng-class="$ctrl.showMore ? 'fa-chevron-up' : 'fa-chevron-down'")]
+            div(uib-tab, heading="Progression Settings")
+              p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste enim dolorem aliquam a, nostrum iusto quidem odio alias maxime nam ullam, voluptate dignissimos vero commodi doloremque nesciunt magnam, reiciendis facilis.
+              .form-group
+                span Ideas are
+                select(required, ng-model="$ctrl.progress.visible")
+                  option(value="visible") Visible
+                  option(value="hidden") Hidden
+              .form-group
+                p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.votes", placeholder="votes")]
+                p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.views", placeholder="views")]
+                p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.days", placeholder="days")]

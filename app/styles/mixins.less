@@ -1,3 +1,69 @@
+.ng-anim-fade {
+  // opacity: 1;
+  max-height: 100%;
+  overflow: visible;
+  transition: 1s opacity, 1s max-height;
+  &.ng-leave, &.ng-enter {
+    overflow: hidden;
+  }
+  &.ng-enter {
+    max-height: 0px;
+    opacity: 0;
+  }
+  &.ng-leave {
+    max-height: 400px;
+    opacity: 1;
+  }
+  &.ng-leave-active  {
+    opacity: 0;
+    max-height: 0px;
+  }
+  &.ng-enter-active {
+    opacity: 1;
+    max-height: 400px;
+    // transition: 1s opacity, 1s max-height;
+  }
+}
+
+.stage-colouring(@property: background) {
+  color: white;
+  @{property}: grey;
+  &.Open,
+  &.Close {
+    @{property}: white;
+  }
+  &.Discuss {
+    @{property}: red;
+  }
+  &.Rank,
+  &.Review {
+    @{property}: maroon;
+  }
+  &.Evaluate {
+    @{property}: orange;
+  }
+  &.Measure {
+    @{property}: blue;
+  }
+  &.Develop {
+    @{property}: black;
+  }
+  &.Capture,
+  &.Gather {
+    @{property}: teal;
+  }
+}
+.anim-dropdown {
+  display: block;
+  overflow: hidden;
+  max-height: 0;
+  padding: 0;
+  transition: max-height 0.5s, padding 0.5s;
+  &.anim-dropdown-show {
+    max-height: 500px;
+  }
+}
+
 .gradient (@startColor: #eee, @endColor: white) {
 	background-color: @startColor;
 	background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
@@ -5,4 +71,10 @@
 	background: -moz-linear-gradient(top, @startColor, @endColor);
 	background: -ms-linear-gradient(top, @startColor, @endColor);
 	background: -o-linear-gradient(top, @startColor, @endColor);
+}
+
+.striped-gradient(@color: rgba(255,255,255,.15); @angle: 45deg) {
+  background-image: -webkit-linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
+  background-image: linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
 }

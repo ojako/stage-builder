@@ -34,36 +34,15 @@ angular.module('stageBuilderApp')
 
         // Types of Progression
         ctrl.progressionTypes = [
-            '',
-            // 'Manual',
-            // 'Auto',
-            // 'Comments',
-            // 'Ratings',
-            // 'Views'
+            'Manual',
+            'Auto',
+            'Comments',
+            'Ratings',
+            'Views'
         ];
 
         // Bootstrap some current stages
         ctrl.currentStages = [];
-
-        var randomSelector = function(item) {
-            var i = Math.floor((Math.random() * item.length));
-
-            return item[i];
-        };
-        var bootstrapStages = function(randomNumber) {
-            ctrl.currentStages.splice(0, 0, {name:'Open', type: 'Open'});
-            ctrl.currentStages.splice(1, 0, {name:'Close', type: 'Close'});
-            for(var i=0; i<randomNumber; i++) {
-                var name = randomSelector(ctrl.stageTypes);
-                var progression = randomSelector(ctrl.progressionTypes);
-                ctrl.currentStages.splice(1, 0, {
-                    'name': name,
-                    'type': name,
-                    'progression': progression,
-                });
-            }
-        };
-        bootstrapStages(2);
 
         /* Create Helper Object */
         // Current stage represents the name of the currently active stage
@@ -104,34 +83,59 @@ angular.module('stageBuilderApp')
         //
         // };
 
-        ctrl.helpOpen = true;
+        // Start with help open/closed
+        ctrl.helpOpen = false;
 
         // Add stage to current list
         ctrl.addStage = function(type, stageIndex) {
             // Add stage
-            if(type) {
-                ctrl.currentStages.splice(stageIndex + 1, 0, {
-                    'name': type,
-                    'type': type,
-                    'progression': ctrl.progressionTypes[0],
-                });
-            } else {
-                ctrl.currentStages.push({
-                    'name': '',
-                    'type': '',
-                    'progression': ctrl.progressionTypes[0],
-                });
-            }
+            ctrl.currentStages.splice(stageIndex + 1, 0, {
+                'name': type,
+                // stage type e.g. 'Open'
+                'type': type,
+                // are ideas visible?
+                'ideaVisibility': true,
+                // can stage be deleted?
+                'fixed': false,
+                // can stage be sorted?
+                'sortable': true,
+                'id': Math.floor((Math.random() * 1000)),
+                'progression': {
+                    'type': ctrl.progressionTypes[0],
+                },
+            });
+            // if(type) {
+            // } else {
+            //     ctrl.currentStages.push({
+            //         'name': '',
+            //         'type': '',
+            //         'ideaVisibility': true,
+            //         'progression': {
+            //             'type': ctrl.progressionTypes[0],
+            //         },
+            //     });
+            // }
+        };
+
+        // Change stage type
+        ctrl.changeType = function(stage, type) {
+            console.log(stage + type);
         };
 
         // Remove stage as a current stage
         ctrl.deleteStage = function(stage) {
-            var index = ctrl.currentStages.indexOf(stage);
-            ctrl.currentStages.splice(index, 1);
-            // Add index to stage
-            stage.undoIndex = index;
-            // Add to undo block at top
-            ctrl.deletedStages.splice(0, 1, stage);
+            // Check if confirm delete
+            if (stage.deleted) {
+                var index = ctrl.currentStages.indexOf(stage);
+                ctrl.currentStages.splice(index, 1);
+                // Add index to stage
+                stage.undoIndex = index;
+                // Add to undo block at top
+                ctrl.deletedStages.splice(0, 1, stage);
+            // Add deleted flag
+            } else {
+                stage.deleted = true;
+            }
         };
 
         // Deleted Stages
@@ -142,11 +146,46 @@ angular.module('stageBuilderApp')
             var index = stage.undoIndex;
             // Remove undo index reference
             delete stage.undoIndex;
+            stage.sortable = true;
             // Add to currentStages
             ctrl.currentStages.splice(index, 0, stage);
             // Remove undo reference
             ctrl.deletedStages.splice(0, 1);
         };
+
+        // Random num gen from item.length
+        var randomSelector = function(item) {
+            var i = Math.floor((Math.random() * item.length));
+
+            return item[i];
+        };
+        // Generate initial stages
+        var bootstrapStages = function(randomNumber) {
+            // Create special stage Open
+            ctrl.currentStages.splice(0, 0, {
+                name:'Open',
+                type: 'Open',
+                ideaVisibility: true,
+                sortable: false,
+                fixed: true,
+                id: Math.floor((Math.random() * 1000)),
+            });
+            // Randomly populate for testing
+            for(var i=0; i<randomNumber; i++) {
+                var name = randomSelector(ctrl.stageTypes);
+                ctrl.addStage(name, 1);
+            }
+            // Create special stage Close
+            ctrl.currentStages.splice(ctrl.currentStages.length, 0, {
+                name:'Close',
+                type: 'Close',
+                ideaVisibility: true,
+                sortable: false,
+                fixed: true,
+                id: Math.floor((Math.random() * 1000)),
+            });
+        };
+        bootstrapStages(0);
 
         // // Select a stage to inspect
         // ctrl.selectedStage = function(stage) {
@@ -174,6 +213,7 @@ angular.module('stageBuilderApp')
         onAddStage: '&',
         stageTypes: '<',
         stageIndex: '<',
+        numStages: '<',
     },
 })
 .component('stageDetailDesc', {
@@ -216,6 +256,7 @@ angular.module('stageBuilderApp')
         onDelete: '&',
         stageTypes: '<',
         addStage: '&',
+        changeType: '&',
         selectedStage: '=',
         selectStage: '&',
         inspectorTab: '=',

@@ -13,7 +13,9 @@
     "angular-touch": "^1.4.0",
     "angular-bootstrap": "^2.0.2",
     "Stickyfill": "^1.1.4",
-    "jquery": "^3.1.0"
+    "jquery": "^3.1.0",
+    "font-awesome": "^4.6.3",
+    "animate.css": "^3.5.2"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

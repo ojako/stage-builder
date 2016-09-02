@@ -1,6 +1,6 @@
 // output:../../views/stage-builder-menu.html
 .btn-group(uib-dropdown)
-  button.btn.btn-link(uib-dropdown-toggle, dropdown-append-to-body) #[span.fa.fa-plus] #[span.hover-reveal Insert Stage]
+  button.btn.btn-link(uib-dropdown-toggle, dropdown-append-to-body, ng-class="{'active': $ctrl.numStages === 2}") #[span.fa.fa-plus] #[span.hover-reveal Insert Stage] 
   ul.dropdown-menu.list-group.stage-builder-menu
     li.list-group-item(
       ng-click="$ctrl.onAddStage({'type':type})"

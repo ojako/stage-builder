@@ -1,31 +1,62 @@
 // output:../../views/stage-builder.html
-    
+
+//- pre {$ $ctrl.currentStages | json $}
+
 .row
   .col-xs-12
     .challenge-stages-container
-      .challenge-stages-header.sticky.clearfix  
+      .disco-filter-top.challenge-stages-header.sticky.clearfix  
         stage-build-helper(helper-object-current-stage="$ctrl.helperObjectCurrentStage", helper-object-stages="$ctrl.helperObjectStages", help-open="$ctrl.helpOpen")
-          
-        buton.btn.btn-default(ng-show="!$ctrl.helpOpen", ng-click="$ctrl.helpOpen = !$ctrl.helpOpen") Open Help
+        button.btn.btn-success Validated #[i.fa.fa-check]
+        buton.btn.btn-link(ng-show="!$ctrl.helpOpen", ng-click="$ctrl.helpOpen = !$ctrl.helpOpen") Open Help #[i.fa.fa-question]
         button.btn.btn-warning(ng-show="$ctrl.deletedStages.length > 0", ng-click="$ctrl.undoDelete()") Undo Remove {$ $ctrl.deletedStages[0].name $}
         //- Start stage add
-        stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
+        //- stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
         span.pull-right
-          button.btn.btn-success Validated #[i.fa.fa-check]
-          button.btn.btn-default Next Step
+          button.btn.btn-link #[fa.fa.fa-chevron-left] Previous
+          button.btn.btn-link Next #[fa.fa.fa-chevron-right]
 
-      //- Start stage
-      //- .challenge-stages-start(ng-click="$ctrl.inspectorTabActive = 1") #[i.fa.fa-trophy] Capture
+      //- //- Start stage
+      //- .challenge-stages-start.clearfix
+      //-   .col-xs-12
+      //-     h2 #[i.fa.fa-trophy] Capture
+      //-     form.row
+      //-       .col-sm-6
+      //-         .form-group
+      //-           label Do you want to send email confirmation when an idea is added?
+      //-           .input-checkbox
+      //-               input(type="checkbox")
+      //-               label Select 1
+      //-           .input-checkbox
+      //-             input(type="checkbox")
+      //-             label Select 2
+      //-       .col-sm-6
+      //-         .form-group
+      //-           label Are ideas visible to anyone?
+      //-           .input-radio
+      //-             input(type="radio")
+      //-             label Yes
+      //-           .input-radio
+      //-             input(type="radio")
+      //-             label No          
+
       //- .challenge-stage-add-new
+      //-   stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
+
+      .alert.alert-warning(ng-show="$ctrl.currentStages.length === 0")
+        | Start by adding a new stage
+        stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
+        
+      //- .challenge-stage-add-new.first-add-new(ng-if="!stage.deleted")
       //-   stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
 
       //- Challenge list
       //- !alwaysTrue hack
       div(ng-if="!alwaysTrue")
-        ul.list-unstyled.challenge-stage-list-container(ng-sortable="{animation: 350, draggable: '.sortable-item'}")
-          li.challenge-stage-list-item(
-            ng-repeat="stage in $ctrl.currentStages"
-            ng-class="stage.type === 'Open' || stage.type === 'Close' ? stage.type : 'sortable-item'"
+        ul.list-unstyled.challenge-stage-list-container.clearfix(ng-sortable="{animation: 350, draggable: '.sortable-item', chosenClass: 'sortable-chosen', grabHandle: 'sortable-grab', forceFallback: true}")
+          li.challenge-stage-list-item.ng-anim-fade(
+            ng-repeat="stage in $ctrl.currentStages track by stage.id"
+            ng-class="!stage.sortable ? 'fixed-item' : 'sortable-item'"
           )
             stage-detail(
               stage="stage"
@@ -35,11 +66,32 @@
               inspector-tab="$ctrl.inspectorTabActive"
               add-stage="$ctrl.addStage(type, $index)"
               stage-index="$index"
+              change-type="$ctrl.changeType()"
             )
-            //- .challenge-stage-add-new
-            //-   stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
+            .challenge-stage-add-new(ng-if="!stage.deleted && stage.type !== 'Close'")
+              stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index", num-stages="$ctrl.currentStages.length")
+                
 
-      //- //- End stage
-      //- .challenge-stages-end(ng-click="$ctrl.inspectorTabActive = 2")
-      //-   | #[i.fa.fa-flag-checkered] Measure
-  
+      //- //- //- End stage
+      //- .challenge-stages-end.clearfix
+      //-   .col-xs-12
+      //-     h2 #[i.fa.fa-flag-checkered] Measure
+      //-     form.row
+      //-       .col-sm-6
+      //-         .form-group
+      //-           label Do you want to send email confirmation when an idea is added?
+      //-           .input-checkbox
+      //-               input(type="checkbox")
+      //-               label Select 1
+      //-           .input-checkbox
+      //-             input(type="checkbox")
+      //-             label Select 2
+      //-       .col-sm-6
+      //-         .form-group
+      //-           label Are ideas visible to anyone?
+      //-           .input-radio
+      //-             input(type="radio")
+      //-             label Yes
+      //-           .input-radio
+      //-             input(type="radio")
+      //-             label No     

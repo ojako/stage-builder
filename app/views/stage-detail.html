@@ -1,50 +1,49 @@
 
-<article ng-model="challengeStage" ng-class="{'selected': $ctrl.selectedStage === $ctrl.stage}" class="challenge-stage">
-  <div class="challenge-stage-detail-toolbar text-center">
-    <div ng-class="::$ctrl.stage.type" class="challenge-stage-type">{$ $ctrl.stage.type.charAt(0) $}</div>
-    <div class="list-group">
-      <button ng-click="$ctrl.delete();" class="list-group-item btn-remove-stage"><i class="fa fa-trash"></i></button>
-      <button ng-click="" class="list-group-item btn-add-stage"><i class="fa fa-plus"></i></button>
-    </div>
+<article ng-model="challengeStage" ng-class="[{'fixed': $ctrl.stage.fixed}, [$ctrl.stage.type]]" class="challenge-stage clearfix">
+  <div class="timeline-bar">
+    <div ng-class="$ctrl.stage.type" class="timeline-knuckle"></div>
   </div>
-  <div class="challenge-stage-inner clearfix">
-    <header ng-click="$ctrl.selectStage(stage)" class="challenge-stage-title clearfix"><span>
-        <h2>
-          <input ng-model="$ctrl.stage.name" type="text"/>
-        </h2></span>
-      <div ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1" class="challenge-transition-stage">
-      </div>
-    </header>
-    <div ng-class="{'anim-dropdown-show': showMore}" class="col-xs-12 anim-dropdown clearfix">
-      <div uib-tabset="uib-tabset">
-        <div uib-tab="uib-tab" heading="Stage Settings">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste enim dolorem aliquam a, nostrum iusto quidem odio alias maxime nam ullam, voluptate dignissimos vero commodi doloremque nesciunt magnam, reiciendis facilis.</p>
-        </div>
-        <div uib-tab="uib-tab" heading="Progression Settings">
-          <div class="form-group"><span>Ideas are</span>
-            <select required="required" ng-model="$ctrl.progress.visible">
-              <option value="visible">Visible</option>
-              <option value="hidden">Hidden</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <p>Progress when reach 
-              <input type="number" min="1" required="required" ng-model="$ctrl.progress.votes" placeholder="votes"/>
-            </p>
-            <p>Progress when reach 
-              <input type="number" min="1" required="required" ng-model="$ctrl.progress.views" placeholder="views"/>
-            </p>
-            <p>Progress when reach 
-              <input type="number" min="1" required="required" ng-model="$ctrl.progress.days" placeholder="days"/>
-            </p>
-          </div>
-        </div>
-      </div>
+  <div class="challenge-stage-detail-toolbar text-center">
+    <button ng-if="$ctrl.stage.sortable"><i class="fa fa-arrows"></i></button>
+    <button ng-click="$ctrl.delete();" ng-if="!$ctrl.stage.fixed"><i class="fa fa-trash"></i></button>
+  </div>
+  <div ng-class="{'challenge-stage-auto-width': $ctrl.stage.deleted}" class="challenge-stage-inner clearfix">
+    <div ng-show="$ctrl.stage.deleted" class="ng-hide">
+      <p>Stage removed ({$ $ctrl.stage.name $}). Click 
+        <button ng-click="$ctrl.stage.deleted = false; $ctrl.stage.sortable = true" title="undo" class="btn btn-link">'here'</button> to undo
+      </p>
     </div>
-    <nav ng-click="showMore = !showMore" class="challenge-stage-nav text-center clearfix">
-      <div class="show-more-link">
-        <button class="btn btn-link">Show {$ showMore ? 'Less' : 'More' $} <span ng-class="showMore ? 'fa-chevron-up' : 'fa-chevron-down'" class="fa"></span></button>
-      </div>
-    </nav>
+    <div ng-show="!$ctrl.stage.deleted">
+      <div ng-show="!$ctrl.stage.fixed" class="grab-handle"><i class="fa fa-ellipsis-h"></i></div>
+      <form class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="challenge-stage-title">
+              <h2>
+                <input ng-model="$ctrl.stage.name" type="text" placeholder="give your stage a name" required="required"/>
+              </h2>
+              <div uib-dropdown="uib-dropdown" ng-if="!$ctrl.stage.fixed" class="btn-group">
+                <button uib-dropdown-toggle="uib-dropdown-toggle" dropdown-append-to-body="dropdown-append-to-body" class="btn btn-link">{$ $ctrl.stage.type $}</button>
+                <ul class="dropdown-menu list-group stage-builder-menu">
+                  <li ng-click="$ctrl.changeType(stage.name, type)" ng-repeat="type in $ctrl.stageTypes track by $index" ng-class="type" class="list-group-item"><span ng-class="type"></span> {$ type $}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div uib-dropdown="uib-dropdown" class="btn-group">
+              <button uib-dropdown-toggle="uib-dropdown-toggle" class="btn btn-link"><span class="fa fa-eye"></span> Idea visibility: {$ $ctrl.stage.ideaVisibility $}</button>
+              <ul class="dropdown-menu list-group">
+                <li ng-show="!$ctrl.stage.ideaVisibility" ng-click="$ctrl.stage.ideaVisibility = true" ng-class="type" class="list-group-item"><span ng-class="type"></span> Visible</li>
+                <li ng-show="$ctrl.stage.ideaVisibility" ng-click="$ctrl.stage.ideaVisibility = false" ng-class="type" class="list-group-item"><span ng-class="type"></span> Hidden</li>
+              </ul>
+            </div>
+            <button class="btn btn-link">Progression: {$ $ctrl.stage.progression.type $}</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </article>
