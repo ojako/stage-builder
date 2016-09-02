@@ -102,10 +102,16 @@ angular.module('stageBuilderApp')
             });
         };
 
-        // Change stage type
-        ctrl.changeType = function(stage, type) {
-            console.log(stage + type);
-        };
+        // // Change stage type
+        // ctrl.changeType = function(stage, type) {
+        //     console.log(stage + type);
+        //     if(stage.type === stage.name) {
+        //         stage.type = type;
+        //         stage.name = type;
+        //     } else {
+        //         stage.type = type;
+        //     }
+        // };
 
         // Remove stage as a current stage
         ctrl.deleteStage = function(stage) {
@@ -162,7 +168,7 @@ angular.module('stageBuilderApp')
             }
             // Create special stage Close
             ctrl.currentStages.splice(ctrl.currentStages.length, 0, {
-                name:'Close',
+                name: 'Close' ,
                 type: 'Close',
                 ideaVisibility: true,
                 sortable: false,
@@ -170,7 +176,7 @@ angular.module('stageBuilderApp')
                 id: Math.floor((Math.random() * 1000)),
             });
         };
-        bootstrapStages(0);
+        bootstrapStages(3);
 
         // Grab sticky classes
         var stickyElements = document.getElementsByClassName('sticky');
@@ -245,11 +251,17 @@ angular.module('stageBuilderApp')
             ctrl.onDelete({
                 'stage': ctrl.stage
             });
-            // if(ctrl.selectedStage === ctrl.stage) {
-            //     ctrl.selectStage({
-            //         'stage': '',
-            //     });
-            // }
+        };
+
+        // Change stage type and preserve name if needs be
+        ctrl.changeType = function(type) {
+            console.log(type);
+            if(ctrl.stage.type === ctrl.stage.name) {
+                ctrl.stage.type = type;
+                ctrl.stage.name = type;
+            } else {
+                ctrl.stage.type = type;
+            }
         };
         ctrl.progress = {
             'votes': 10,

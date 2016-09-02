@@ -9,7 +9,7 @@
         stage-build-helper(helper-object-current-stage="$ctrl.helperObjectCurrentStage", helper-object-stages="$ctrl.helperObjectStages", help-open="$ctrl.helpOpen")
         button.btn.btn-success Validated #[i.fa.fa-check]
         buton.btn.btn-link(ng-show="!$ctrl.helpOpen", ng-click="$ctrl.helpOpen = !$ctrl.helpOpen") Open Help #[i.fa.fa-question]
-        button.btn.btn-warning(ng-show="$ctrl.deletedStages.length > 0", ng-click="$ctrl.undoDelete()") Undo Remove {$ $ctrl.deletedStages[0].name $}
+        //- button.btn.btn-warning(ng-show="$ctrl.deletedStages.length > 0", ng-click="$ctrl.undoDelete()") Undo Remove {$ $ctrl.deletedStages[0].name $}
         //- Start stage add
         span.pull-right
           button.btn.btn-link #[fa.fa.fa-chevron-left] Previous
@@ -33,9 +33,7 @@
               on-delete="$ctrl.deleteStage(stage)"
               stage-types="$ctrl.stageTypes"
               inspector-tab="$ctrl.inspectorTabActive"
-              add-stage="$ctrl.addStage(type, $index)"
               stage-index="$index"
-              change-type="$ctrl.changeType()"
             )
             .challenge-stage-add-new(ng-if="!stage.deleted && stage.type !== 'Close'")
               stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index", num-stages="$ctrl.currentStages.length")

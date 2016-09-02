@@ -5,8 +5,7 @@
       <div class="disco-filter-top challenge-stages-header sticky clearfix"> 
         <stage-build-helper helper-object-current-stage="$ctrl.helperObjectCurrentStage" helper-object-stages="$ctrl.helperObjectStages" help-open="$ctrl.helpOpen"></stage-build-helper>
         <button class="btn btn-success">Validated <i class="fa fa-check"></i></button>
-        <buton ng-show="!$ctrl.helpOpen" ng-click="$ctrl.helpOpen = !$ctrl.helpOpen" class="btn btn-link">Open Help <i class="fa fa-question"></i></buton>
-        <button ng-show="$ctrl.deletedStages.length &gt; 0" ng-click="$ctrl.undoDelete()" class="btn btn-warning">Undo Remove {$ $ctrl.deletedStages[0].name $}</button><span class="pull-right">
+        <buton ng-show="!$ctrl.helpOpen" ng-click="$ctrl.helpOpen = !$ctrl.helpOpen" class="btn btn-link">Open Help <i class="fa fa-question"></i></buton><span class="pull-right">
           <button class="btn btn-link">
             <fa class="fa fa-chevron-left"></fa> Previous
           </button>
@@ -20,7 +19,7 @@
       <div ng-if="!alwaysTrue">
         <ul ng-sortable="{animation: 350, draggable: '.sortable-item', chosenClass: 'sortable-chosen', grabHandle: 'sortable-grab', forceFallback: true}" class="list-unstyled challenge-stage-list-container clearfix">
           <li ng-repeat="stage in $ctrl.currentStages track by stage.id" ng-class="!stage.sortable ? 'fixed-item' : 'sortable-item'" class="challenge-stage-list-item ng-anim-fade">
-            <stage-detail stage="stage" last="$last" on-delete="$ctrl.deleteStage(stage)" stage-types="$ctrl.stageTypes" inspector-tab="$ctrl.inspectorTabActive" add-stage="$ctrl.addStage(type, $index)" stage-index="$index" change-type="$ctrl.changeType()"></stage-detail>
+            <stage-detail stage="stage" last="$last" on-delete="$ctrl.deleteStage(stage)" stage-types="$ctrl.stageTypes" inspector-tab="$ctrl.inspectorTabActive" stage-index="$index"></stage-detail>
             <div ng-if="!stage.deleted &amp;&amp; stage.type !== 'Close'" class="challenge-stage-add-new">
               <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index" num-stages="$ctrl.currentStages.length"></stage-builder-menu>
             </div>

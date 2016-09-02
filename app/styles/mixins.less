@@ -1,3 +1,23 @@
+.btn.btn-select {
+  // select button
+  padding-right: 1em;
+  &:after {
+    .fa();
+    color: black;
+    position: relative;
+    left: 6px;
+    content: @fa-var-caret-down;
+  }
+  &[aria-expanded="true"]:after {
+    content: @fa-var-caret-up;
+  }
+  &:hover,
+  &:active,
+  &:focus {
+    color: black;
+  }
+}
+
 .ng-anim-fade {
   max-height: 100%;
   overflow: visible;
