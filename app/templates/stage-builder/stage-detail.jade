@@ -9,24 +9,14 @@ article.challenge-stage.clearfix(ng-model="challengeStage" ng-class="[{'fixed': 
       | #[i.fa.fa-arrows]
     button(ng-click="$ctrl.delete();", ng-if="!$ctrl.stage.fixed")
       | #[i.fa.fa-trash]
-    //- .sortable-grab
-    //- .challenge-stage-type(ng-class="$ctrl.stage.type") {$ $ctrl.stage.name.charAt(0) $}
-      //- button.list-group-item.btn-add-stage(ng-click="")
-        //- | #[i.fa.fa-plus]
-        
-  //- .challenge-stage-inner.challenge-stage-auto-width.text-center.ng-hide(ng-show="$ctrl.stage.deleted")
-  //-   p Stage removed ({$ $ctrl.stage.name $}). Click #[button.btn.btn-link(ng-click="$ctrl.stage.deleted = false; $ctrl.stage.sortable = true", title="undo") 'here'] to undo
-  //-   //- .close(ng-click="$ctrl.delete();") #[i.fa.fa-times]
   
   .challenge-stage-inner.clearfix(ng-class="{'challenge-stage-auto-width': $ctrl.stage.deleted}")
     div.ng-hide(ng-show="$ctrl.stage.deleted")
       p Stage removed ({$ $ctrl.stage.name $}). Click #[button.btn.btn-link(ng-click="$ctrl.stage.deleted = false; $ctrl.stage.sortable = true", title="undo") 'here'] to undo
-      //- .close(ng-click="$ctrl.delete();") #[i.fa.fa-times]
     
     div(ng-show="!$ctrl.stage.deleted")
       .grab-handle(ng-show="!$ctrl.stage.fixed")
         i.fa.fa-ellipsis-h
-      //- {$ $ctrl.stage $}
       form.row
         .col-sm-6
           .form-group
@@ -60,22 +50,8 @@ article.challenge-stage.clearfix(ng-model="challengeStage" ng-class="[{'fixed': 
                 ) #[span(ng-class="type")] Hidden
             button.btn.btn-link Progression: {$ $ctrl.stage.progression.type $}
 
-    //- header.challenge-stage-title.clearfix(ng-click="$ctrl.selectStage(stage)")
-    //-   | {$ $ctrl.stage.deleted $}
-      //- span
-        
-      //- span.text-right
-      //-   span.btn.stage-type-label(ng-class="$ctrl.stage.type") {$ $ctrl.stage.type $}
-      //- .challenge-transition-stage(ng-click="$ctrl.selectStage(stage); $ctrl.inspectorTab = 1")
-        
-        
-      //-
-        fdsfdsf
-        //- | {$ $ctrl.stage.progression $}
-        //- | This stage is closing manually. Ideas are #[strong {$ $ctrl.progress.visible $}] and will progress when they reach at least #[strong {$ $ctrl.progress.votes $}] votes and at least #[strong {$ $ctrl.progress.views $}] views or #[strong {$ $ctrl.progress.days $}] days.
       .row    
         .col-xs-12
-          //- stage-builder-options(type="$ctrl.stage.type")
           div(uib-tabset)
             div(uib-tab, heading="Stage Settings")
               p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste enim dolorem aliquam a, nostrum iusto quidem odio alias maxime nam ullam, voluptate dignissimos vero commodi doloremque nesciunt magnam, reiciendis facilis.

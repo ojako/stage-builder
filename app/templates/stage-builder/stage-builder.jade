@@ -11,45 +11,14 @@
         buton.btn.btn-link(ng-show="!$ctrl.helpOpen", ng-click="$ctrl.helpOpen = !$ctrl.helpOpen") Open Help #[i.fa.fa-question]
         button.btn.btn-warning(ng-show="$ctrl.deletedStages.length > 0", ng-click="$ctrl.undoDelete()") Undo Remove {$ $ctrl.deletedStages[0].name $}
         //- Start stage add
-        //- stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
         span.pull-right
           button.btn.btn-link #[fa.fa.fa-chevron-left] Previous
           button.btn.btn-link Next #[fa.fa.fa-chevron-right]
-
-      //- //- Start stage
-      //- .challenge-stages-start.clearfix
-      //-   .col-xs-12
-      //-     h2 #[i.fa.fa-trophy] Capture
-      //-     form.row
-      //-       .col-sm-6
-      //-         .form-group
-      //-           label Do you want to send email confirmation when an idea is added?
-      //-           .input-checkbox
-      //-               input(type="checkbox")
-      //-               label Select 1
-      //-           .input-checkbox
-      //-             input(type="checkbox")
-      //-             label Select 2
-      //-       .col-sm-6
-      //-         .form-group
-      //-           label Are ideas visible to anyone?
-      //-           .input-radio
-      //-             input(type="radio")
-      //-             label Yes
-      //-           .input-radio
-      //-             input(type="radio")
-      //-             label No          
-
-      //- .challenge-stage-add-new
-      //-   stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
 
       .alert.alert-warning(ng-show="$ctrl.currentStages.length === 0")
         | Start by adding a new stage
         stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
         
-      //- .challenge-stage-add-new.first-add-new(ng-if="!stage.deleted")
-      //-   stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
-
       //- Challenge list
       //- !alwaysTrue hack
       div(ng-if="!alwaysTrue")
@@ -70,28 +39,3 @@
             )
             .challenge-stage-add-new(ng-if="!stage.deleted && stage.type !== 'Close'")
               stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index", num-stages="$ctrl.currentStages.length")
-                
-
-      //- //- //- End stage
-      //- .challenge-stages-end.clearfix
-      //-   .col-xs-12
-      //-     h2 #[i.fa.fa-flag-checkered] Measure
-      //-     form.row
-      //-       .col-sm-6
-      //-         .form-group
-      //-           label Do you want to send email confirmation when an idea is added?
-      //-           .input-checkbox
-      //-               input(type="checkbox")
-      //-               label Select 1
-      //-           .input-checkbox
-      //-             input(type="checkbox")
-      //-             label Select 2
-      //-       .col-sm-6
-      //-         .form-group
-      //-           label Are ideas visible to anyone?
-      //-           .input-radio
-      //-             input(type="radio")
-      //-             label Yes
-      //-           .input-radio
-      //-             input(type="radio")
-      //-             label No     

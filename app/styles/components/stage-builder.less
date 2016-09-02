@@ -4,44 +4,16 @@
 }
 .challenge-stage-list-item {
   background: white;
-  // width: ~'calc(100% - 3em)';
   width: 100%;
   position: relative;
   transition: 1s opacity, 1s max-height, 1s border;
-  // &.selected header {
-  //   background: green;
-  // }
-  // border: 5px dashed transparent;
   border-left: none;
   border-right: none;
   transition: 0.25s background, 0.5s border-color;
-  // .sortable-grab {
-  //   cursor: move;
-  //   height: 2em;
-  //   width: 2em;
-  //   background: red;
-  // }
-  &.sortable-chosen {
-    // opacity: 0.5;
-    // background: #cecece;
-  }
   &.sortable-ghost {
-    // border-color: #f3f3f3;
     transition: 0.25s background, 0.5s border-color;
     background: #ececec;
     border-radius: 15px;
-    // border-color: #cecece;
-    // opacity: 0.6;
-    // position: relative;
-    // z-index: @challenge-stage-z-index;
-    // .challenge-stage-inner,
-    // .challenge-stage-detail-toolbar {
-    //   opacity: 0.25;
-    // }
-    // header {
-    //   background: white;
-    //   transition: 0.25s background;
-    // }
   }
 }
 
@@ -68,23 +40,6 @@
       background: #ececec;
     }
   }
-  // border-right: 1px solid #ececec;
-  // .list-group {
-  //   .list-group-item {
-  //     border: 0;
-  //     &.btn-remove-stage {
-  //       color: red !important;
-  //       // margin: 0;
-  //       // background: none;
-  //       // border: 0;
-  //       outline: 0;
-  //     }
-  //     &.btn-add-stage {
-  //       color: green !important;
-  //       outline: 0;
-  //     }
-  //   }
-  // }
 }
 
 // Left aligned challenge stage type indicator

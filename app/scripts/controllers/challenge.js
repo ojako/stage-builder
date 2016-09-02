@@ -79,10 +79,6 @@ angular.module('stageBuilderApp')
         //     // }
         // };
 
-        // ctrl.genDescription = function(stage) {
-        //
-        // };
-
         // Start with help open/closed
         ctrl.helpOpen = false;
 
@@ -104,17 +100,6 @@ angular.module('stageBuilderApp')
                     'type': ctrl.progressionTypes[0],
                 },
             });
-            // if(type) {
-            // } else {
-            //     ctrl.currentStages.push({
-            //         'name': '',
-            //         'type': '',
-            //         'ideaVisibility': true,
-            //         'progression': {
-            //             'type': ctrl.progressionTypes[0],
-            //         },
-            //     });
-            // }
         };
 
         // Change stage type
@@ -186,16 +171,6 @@ angular.module('stageBuilderApp')
             });
         };
         bootstrapStages(0);
-
-        // // Select a stage to inspect
-        // ctrl.selectedStage = function(stage) {
-        //     ctrl.selected = stage;
-        // };
-        //
-        // // Set the tab for the inspect (on tab index)
-        // ctrl.setInspectorTab = function(index) {
-        //     ctrl.inspectorTabActive = index;
-        // };
 
         // Grab sticky classes
         var stickyElements = document.getElementsByClassName('sticky');
