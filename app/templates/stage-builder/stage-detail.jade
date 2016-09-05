@@ -22,7 +22,7 @@ article.challenge-stage.clearfix(ng-model="challengeStage" ng-class="[{'fixed': 
           .form-group
             .challenge-stage-title
               h2 #[input(ng-model="$ctrl.stage.name", type="text" placeholder="give your stage a name" required)]
-              //- Type set
+              //- //- Type set
               //- .btn-group(uib-dropdown, ng-if="!$ctrl.stage.fixed")
               //-   button.btn.btn-select(uib-dropdown-toggle, dropdown-append-to-body) {$ $ctrl.stage.type $}
               //-   ul.dropdown-menu.list-group.stage-builder-menu
@@ -32,29 +32,45 @@ article.challenge-stage.clearfix(ng-model="challengeStage" ng-class="[{'fixed': 
               //-       ng-class="type"
               //-     ) #[span(ng-class="type")] {$ type $}
 
-        //- .col-sm-6
-        //-   .form-group
-        //-     //- Set Visibility
-        //-     .btn-group(uib-dropdown)
-        //-       button.btn.btn-select(uib-dropdown-toggle) Idea visibility: {$ $ctrl.stage.ideaVisibility $}
-        //-       ul.dropdown-menu.list-group
-        //-         li.list-group-item(
-        //-           ng-show="!$ctrl.stage.ideaVisibility"
-        //-           ng-click="$ctrl.stage.ideaVisibility = true"
-        //-           ng-class="type"
-        //-         ) #[span(ng-class="type")] Visible
-        //-         li.list-group-item(
-        //-           ng-show="$ctrl.stage.ideaVisibility"
-        //-           ng-click="$ctrl.stage.ideaVisibility = false"
-        //-           ng-class="type"
-        //-         ) #[span(ng-class="type")] Hidden
-        //-         
-        //-     p.input-group
-        //-       input(type="text", class="form-control", uib-datepicker-popup, ng-model="whatever", ng-required="true", close-text="Close")
-        //-       span.input-group-btn
-        //-         button.btn.btn-default(type="button") #[i.glyphicon.glyphicon-calendar]
-        //-         
-        //-     button.btn.btn-link Progression: {$ $ctrl.stage.progression.type $}
+        .col-sm-6.stage-detail-hud
+          .row
+            .col-xs-12
+              .form-group
+                //- Set Visibility
+                .btn.btn-icon-info
+                  | #[.fa.fa-eye] {$ $ctrl.stage.ideaVisibility ? 'Ideas Visible' : 'Ideas Hidden' $}
+                .btn.btn-icon-info
+                  | #[.fa.fa-calendar] 7 Days Left to Complete
+                //- .btn.btn-icon-info
+                //-   | #[.fa.fa-eye] {$ $ctrl.stage.ideaVisibility ? 'Ideas Visible' : 'Ideas Hidden' $}
+          .row
+            .col-sm-12
+              .form-group
+                .btn.btn-icon-info
+                  | #[.fa.fa-line-chart] 7 Votes or 5 Comments
+                | or
+                .btn.btn-icon-info
+                  | #[.fa.fa-clock-o] 5 days
+                //- .btn-group(uib-dropdown)
+                //-   button.btn.btn-select(uib-dropdown-toggle) Idea visibility: {$ $ctrl.stage.ideaVisibility $}
+                //-   ul.dropdown-menu.list-group
+                //-     li.list-group-item(
+                //-       ng-show="!$ctrl.stage.ideaVisibility"
+                //-       ng-click="$ctrl.stage.ideaVisibility = true"
+                //-       ng-class="type"
+                //-     ) #[span(ng-class="type")] Visible
+                //-     li.list-group-item(
+                //-       ng-show="$ctrl.stage.ideaVisibility"
+                //-       ng-click="$ctrl.stage.ideaVisibility = false"
+                //-       ng-class="type"
+                //-     ) #[span(ng-class="type")] Hidden
+                //-     
+                //- p.input-group
+                //-   input(type="text", class="form-control", uib-datepicker-popup, ng-model="whatever", ng-required="true", close-text="Close")
+                //-   span.input-group-btn
+                //-     button.btn.btn-default(type="button") #[i.glyphicon.glyphicon-calendar]
+                    
+                //- button.btn.btn-link Progression: {$ $ctrl.stage.progression.type $}
 
       .row    
         .col-xs-12
