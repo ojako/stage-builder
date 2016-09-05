@@ -30,10 +30,12 @@
             stage-detail(
               stage="stage"
               last="$last"
+              first="$first"
+              users="$ctrl.users"
               on-delete="$ctrl.deleteStage(stage)"
               stage-types="$ctrl.stageTypes"
               inspector-tab="$ctrl.inspectorTabActive"
               stage-index="$index"
             )
-            .challenge-stage-add-new(ng-if="!stage.deleted && stage.type !== 'Close'")
+            .challenge-stage-add-new(ng-if="!stage.deleted && !$last")
               stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index", num-stages="$ctrl.currentStages.length")

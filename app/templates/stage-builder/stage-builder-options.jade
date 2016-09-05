@@ -3,40 +3,45 @@
 .stage-builder-options(ng-switch="$ctrl.type")
 
   div(ng-switch-default)
-    p Do you want to send email confirmation when an idea is added?
-    div.form-group
-      label.input-radio
-        input(type="checkbox")
-        | Yes
-      label.input-radio
-        input(type="checkbox")
-        | No
-    p Are ideas visible to anyone?
-      div.form-group
-        label.input-radio
-          | #[input(type="checkbox")] Yes - anyone can see ideas
-        label.input-radio
-          | #[input(type="checkbox")] No - only admins can see ideas
+    //- p Do you want to send email confirmation when an idea is added?
+    //- div.form-group
+    //-   label.input-radio
+    //-     input(type="checkbox")
+    //-     | Yes
+    //-   label.input-radio
+    //-     input(type="checkbox")
+    //-     | No
+    //- p Are ideas visible to anyone?
+    //-   div.form-group
+    //-     label.input-radio
+    //-       | #[input(type="checkbox")] Yes - anyone can see ideas
+    //-     label.input-radio
+    //-       | #[input(type="checkbox")] No - only admins can see ideas
+    .alert.alert-warning Can't find correct options for type
 
   div(ng-switch-when="Gather")
-    p Do you want to send email confirmation when an idea is added?
-    div.form-group
+    .form-group
+      img.img-responsive(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/318382/Screen_Shot_2016-08-08_at_11.30.55.png", alt="drag and dropper")
+    .form-group
+      p Do you want to send email confirmation when an idea is added?
       label.input-radio
         input(type="checkbox")
         | Yes
       label.input-radio
         input(type="checkbox")
         | No
-    p Are ideas visible to anyone?
-      div.form-group
-        label.input-radio
-          | #[input(type="checkbox")] Yes - anyone can see ideas
-        label.input-radio
-          | #[input(type="checkbox")] No - only admins can see ideas
+      textarea.btn-block(placeholder="Thanks for adding your idea...")
+      
+    .form-group
+      p Are ideas visible to anyone?
+      label.input-radio
+        | #[input(type="checkbox")] Yes - anyone can see ideas
+      label.input-radio
+        | #[input(type="checkbox")] No - only admins can see ideas
           
   div(ng-switch-when="Rank")
     uib-tabset
-      uib-tab(heading="Criteria") 
+      uib-tab(heading="Criteria")
         .form-group
           label.input-radio
             |  #[input(type="radio")] Categories
@@ -68,7 +73,16 @@
     div
       label.input-radio
         | #[input(type="radio")] No - only Admins can see ideas
-        
+  
+  div(ng-switch-when="Evaluate")
+    .form-group
+      input.form-control(type="text", ng-model="selected", uib-typeahead="name for name in $ctrl.users | filter:$viewValue | limitTo:8")
+      pre {$ selected | json $}
+      label Send evaluators this message:
+      textarea.btn-block(placeholder="You have a new idea to evaluate")
+      label.input-radio
+        Evaluators can invite additional people on specific ideas #[input(type="checkbox")]
+      
   div(ng-switch-when="Develop")
     .form-group
       img.img-responsive(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/318382/Screen_Shot_2016-08-08_at_11.30.55.png", alt="drag and dropper")

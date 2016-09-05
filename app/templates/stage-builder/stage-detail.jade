@@ -1,7 +1,7 @@
 // output:../../views/stage-detail.html
   
 //- Individual Stages
-article.challenge-stage.clearfix(ng-model="challengeStage" ng-class="[{'fixed': $ctrl.stage.fixed}, [$ctrl.stage.type]]")
+article.challenge-stage.clearfix(ng-model="challengeStage" ng-class="[{'fixed': $ctrl.stage.fixed}, {'first-stage': $ctrl.first}, {'last-stage': $ctrl.last}, [$ctrl.stage.type]]")
   .timeline-bar
     .timeline-knuckle(ng-class="$ctrl.stage.type")
   .challenge-stage-detail-toolbar.text-center(ng-show="!$ctrl.stage.deleted && !$ctrl.stage.fixed")
@@ -60,7 +60,7 @@ article.challenge-stage.clearfix(ng-model="challengeStage" ng-class="[{'fixed': 
         .col-xs-12
           div(uib-tabset)
             div(uib-tab, heading="Stage Settings")
-              stage-builder-options(type="$ctrl.stage.type")
+              stage-builder-options(type="$ctrl.stage.type", users="$ctrl.users")
               //- .row
               //-   .anim-dropdown.clearfix(ng-class="{'anim-dropdown-show': $ctrl.showMore}")
               //-     .form-group

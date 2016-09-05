@@ -1,5 +1,5 @@
 
-<article ng-model="challengeStage" ng-class="[{'fixed': $ctrl.stage.fixed}, [$ctrl.stage.type]]" class="challenge-stage clearfix">
+<article ng-model="challengeStage" ng-class="[{'fixed': $ctrl.stage.fixed}, {'first-stage': $ctrl.first}, {'last-stage': $ctrl.last}, [$ctrl.stage.type]]" class="challenge-stage clearfix">
   <div class="timeline-bar">
     <div ng-class="$ctrl.stage.type" class="timeline-knuckle"></div>
   </div>
@@ -51,7 +51,7 @@
         <div class="col-xs-12">
           <div uib-tabset="uib-tabset">
             <div uib-tab="uib-tab" heading="Stage Settings">
-              <stage-builder-options type="$ctrl.stage.type"></stage-builder-options>
+              <stage-builder-options type="$ctrl.stage.type" users="$ctrl.users"></stage-builder-options>
             </div>
             <div uib-tab="uib-tab" heading="Progression Settings">
               <stage-progression-options type="$ctrl.stage.progression.type"></stage-progression-options>

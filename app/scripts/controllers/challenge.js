@@ -8,15 +8,18 @@
 * Controller of the stageBuilderApp
 */
 angular.module('stageBuilderApp')
-.controller('ChallengeCtrl', function () {
+.controller('ChallengeCtrl', ['users', function ChallengeCtrl(users) {
     // ctrl as challenge
     var vm = this;
     vm.sectionTitle = 'Create Challenge';
-})
+    vm.users = users;
+}])
 
 .component('stageBuilder', {
     templateUrl: 'views/stage-builder.html',
-    bindings: {},
+    bindings: {
+        users: '<',
+    },
     controller: function() {
         var ctrl = this;
 
@@ -28,7 +31,7 @@ angular.module('stageBuilderApp')
             'Rank',
             'Discuss',
             'Develop',
-            'Capture',
+            'Gather',
             'Measure',
         ];
 
@@ -154,8 +157,8 @@ angular.module('stageBuilderApp')
         var bootstrapStages = function(randomNumber) {
             // Create special stage Open
             ctrl.currentStages.splice(0, 0, {
-                name:'Open',
-                type: 'Open',
+                name: 'Gather Ideas',
+                type: 'Gather',
                 ideaVisibility: true,
                 sortable: false,
                 fixed: true,
@@ -168,15 +171,16 @@ angular.module('stageBuilderApp')
             }
             // Create special stage Close
             ctrl.currentStages.splice(ctrl.currentStages.length, 0, {
-                name: 'Close' ,
-                type: 'Close',
+                name: 'Measure Outcome' ,
+                type: 'Measure',
                 ideaVisibility: true,
                 sortable: false,
                 fixed: true,
                 id: Math.floor((Math.random() * 1000)),
             });
         };
-        bootstrapStages(3);
+        // 0 = default (just open/close stages)
+        bootstrapStages(6);
 
         // Grab sticky classes
         var stickyElements = document.getElementsByClassName('sticky');
@@ -217,6 +221,7 @@ angular.module('stageBuilderApp')
     templateUrl: 'views/stage-builder-options.html',
     bindings: {
         type: '<',
+        users: '<',
     },
 })
 // Stage progression options/settings displayed in progression tab of the inspector
@@ -232,6 +237,7 @@ angular.module('stageBuilderApp')
     bindings: {
         stage: '<',
         last: '<',
+        first: '<',
         onDelete: '&',
         stageTypes: '<',
         addStage: '&',
@@ -240,6 +246,7 @@ angular.module('stageBuilderApp')
         selectStage: '&',
         inspectorTab: '=',
         stageIndex: '<',
+        users: '<',
     },
     controller: function() {
         var ctrl = this;

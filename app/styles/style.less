@@ -124,14 +124,14 @@ form {
         }
       }
     }
-    &.fixed.Open,
-    &.fixed.Close {
+    &.first-stage,
+    &.last-stage {
       .challenge-stage-inner {
         box-shadow: none;
         border: 3px solid @timeline-bar-colour;
       }
     }
-    &.fixed.Open {
+    &.first-stage {
       .timeline-bar {
         background: @timeline-start-colour;
         top: 50%;
@@ -147,7 +147,7 @@ form {
         border-color: @timeline-start-colour;
       }
     }
-    &.fixed.Close {
+    &.last-stage {
       .timeline-bar {
         background: @timeline-end-colour;
         top: 0;
@@ -283,6 +283,9 @@ form {
 
 // Challenge Steps Wizard
 .challenge-wizard {
+  img {
+    margin: 1em auto 2em auto;
+  }
   ul {
     width: 100%;
     text-align: center;

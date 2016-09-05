@@ -1,50 +1,33 @@
 
 <div ng-switch="$ctrl.type" class="stage-builder-options">
   <div ng-switch-default="ng-switch-default">
-    <p>Do you want to send email confirmation when an idea is added?</p>
-    <div class="form-group">
-      <label class="input-radio">
-        <input type="checkbox"/>Yes
-      </label>
-      <label class="input-radio">
-        <input type="checkbox"/>No
-      </label>
-    </div>
-    <p>Are ideas visible to anyone?
-      <div class="form-group">
-        <label class="input-radio">
-          <input type="checkbox"/> Yes - anyone can see ideas
-        </label>
-        <label class="input-radio">
-          <input type="checkbox"/> No - only admins can see ideas
-        </label>
-      </div>
-    </p>
+    <div class="alert alert-warning">Can't find correct options for type</div>
   </div>
   <div ng-switch-when="Gather">
-    <p>Do you want to send email confirmation when an idea is added?</p>
+    <div class="form-group"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/318382/Screen_Shot_2016-08-08_at_11.30.55.png" alt="drag and dropper" class="img-responsive"/></div>
     <div class="form-group">
+      <p>Do you want to send email confirmation when an idea is added?</p>
       <label class="input-radio">
         <input type="checkbox"/>Yes
       </label>
       <label class="input-radio">
         <input type="checkbox"/>No
       </label>
+      <textarea placeholder="Thanks for adding your idea..." class="btn-block"></textarea>
     </div>
-    <p>Are ideas visible to anyone?
-      <div class="form-group">
-        <label class="input-radio">
-          <input type="checkbox"/> Yes - anyone can see ideas
-        </label>
-        <label class="input-radio">
-          <input type="checkbox"/> No - only admins can see ideas
-        </label>
-      </div>
-    </p>
+    <div class="form-group">
+      <p>Are ideas visible to anyone?</p>
+      <label class="input-radio">
+        <input type="checkbox"/> Yes - anyone can see ideas
+      </label>
+      <label class="input-radio">
+        <input type="checkbox"/> No - only admins can see ideas
+      </label>
+    </div>
   </div>
   <div ng-switch-when="Rank">
     <uib-tabset>
-      <uib-tab heading="Criteria"> 
+      <uib-tab heading="Criteria">
         <div class="form-group">
           <label class="input-radio"> 
             <input type="radio"/> Categories
@@ -88,6 +71,19 @@
     <div>
       <label class="input-radio">
         <input type="radio"/> No - only Admins can see ideas
+      </label>
+    </div>
+  </div>
+  <div ng-switch-when="Evaluate">
+    <div class="form-group">
+      <input type="text" ng-model="selected" uib-typeahead="name for name in $ctrl.users | filter:$viewValue | limitTo:8" class="form-control"/>
+      <pre>{$ selected | json $}</pre>
+      <label>Send evaluators this message:</label>
+      <textarea placeholder="You have a new idea to evaluate" class="btn-block"></textarea>
+      <label class="input-radio">
+        <Evaluators>can invite additional people on specific ideas 
+          <input type="checkbox"/>
+        </Evaluators>
       </label>
     </div>
   </div>

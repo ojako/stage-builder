@@ -2,12 +2,12 @@
 
 .row
   section.col-xs-12
-    h2.text-center {$ challenge.sectionTitle $}
+    //- h2.text-center {$ challenge.sectionTitle $}
     .challenge-wizard
-      ul.list-unstyled
-        li Start
-        li Design
-        li.active Build
-        li Publish
-      
-    stage-builder
+      img.img-responsive(src="images/wizard.png", alt="wizard")
+      //- ul.list-unstyled
+      //-   li Start
+      //-   li Design
+      //-   li.active Build
+      //-   li Publish
+    stage-builder(users="challenge.users")
