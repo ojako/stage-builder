@@ -21,41 +21,35 @@
               <h2>
                 <input ng-model="$ctrl.stage.name" type="text" placeholder="give your stage a name" required="required"/>
               </h2>
-              <div uib-dropdown="uib-dropdown" ng-if="!$ctrl.stage.fixed" class="btn-group">
-                <button uib-dropdown-toggle="uib-dropdown-toggle" dropdown-append-to-body="dropdown-append-to-body" class="btn btn-select">{$ $ctrl.stage.type $}</button>
-                <ul class="dropdown-menu list-group stage-builder-menu">
-                  <li ng-click="$ctrl.changeType(type)" ng-repeat="type in $ctrl.stageTypes track by $index" ng-class="type" class="list-group-item"><span ng-class="type"></span> {$ type $}</li>
-                </ul>
-              </div>
             </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <div uib-dropdown="uib-dropdown" class="btn-group">
-              <button uib-dropdown-toggle="uib-dropdown-toggle" class="btn btn-select">Idea visibility: {$ $ctrl.stage.ideaVisibility $}</button>
-              <ul class="dropdown-menu list-group">
-                <li ng-show="!$ctrl.stage.ideaVisibility" ng-click="$ctrl.stage.ideaVisibility = true" ng-class="type" class="list-group-item"><span ng-class="type"></span> Visible</li>
-                <li ng-show="$ctrl.stage.ideaVisibility" ng-click="$ctrl.stage.ideaVisibility = false" ng-class="type" class="list-group-item"><span ng-class="type"></span> Hidden</li>
-              </ul>
-            </div>
-            <p class="input-group">
-              <input type="text" uib-datepicker-popup="uib-datepicker-popup" ng-model="whatever" ng-required="true" close-text="Close" class="form-control"/><span class="input-group-btn">
-                <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button></span>
-            </p>
-            <button class="btn btn-link">Progression: {$ $ctrl.stage.progression.type $}</button>
           </div>
         </div>
       </form>
       <div class="row">   
         <div class="col-xs-12">
-          <div uib-tabset="uib-tabset">
-            <div uib-tab="uib-tab" heading="Stage Settings">
-              <stage-builder-options type="$ctrl.stage.type" users="$ctrl.users"></stage-builder-options>
+          <div ng-class="{'anim-dropdown-show': $ctrl.showMore}" class="anim-dropdown clearfix">
+            <div uib-tabset="uib-tabset">
+              <div uib-tab="uib-tab" heading="Stage Settings">
+                <stage-builder-options type="$ctrl.stage.type" users="$ctrl.users"></stage-builder-options>
+              </div>
+              <div uib-tab="uib-tab" heading="Evaluators" ng-if="$ctrl.stage.type === 'Evaluate'">
+                <div class="form-group">
+                  <input type="text" ng-model="selected" uib-typeahead="name for name in $ctrl.users | filter:$viewValue | limitTo:8" class="form-control"/>
+                  <pre>{$ selected | json $}</pre>
+                  <label>Send evaluators this message:</label>
+                  <textarea placeholder="You have a new idea to evaluate" class="btn-block"></textarea>
+                  <label class="input-radio"> Evaluators can invite additional people on specific ideas 
+                    <input type="checkbox"/>
+                  </label>
+                </div>
+              </div>
+              <div uib-tab="uib-tab" heading="Progression Settings">
+                <stage-progression-options type="$ctrl.stage.progression.type"></stage-progression-options>
+              </div>
             </div>
-            <div uib-tab="uib-tab" heading="Progression Settings">
-              <stage-progression-options type="$ctrl.stage.progression.type"></stage-progression-options>
-            </div>
+          </div>
+          <div class="show-more-link">
+            <button ng-click="$ctrl.showMore = !$ctrl.showMore" class="btn btn-link">{$ $ctrl.showMore ? 'Show Less' : 'Customise' $} <i ng-class="$ctrl.showMore ? 'fa-chevron-up' : 'fa-chevron-down'" class="fa"></i></button>
           </div>
         </div>
       </div>

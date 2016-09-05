@@ -76,12 +76,10 @@
   
   div(ng-switch-when="Evaluate")
     .form-group
-      input.form-control(type="text", ng-model="selected", uib-typeahead="name for name in $ctrl.users | filter:$viewValue | limitTo:8")
-      pre {$ selected | json $}
-      label Send evaluators this message:
-      textarea.btn-block(placeholder="You have a new idea to evaluate")
-      label.input-radio
-        Evaluators can invite additional people on specific ideas #[input(type="checkbox")]
+      p Ideas are evaluated by
+      label
+        .input-radio #[input(type="radio")] Categories
+        .input-radio #[input(type="radio")] Challenge
       
   div(ng-switch-when="Develop")
     .form-group
@@ -98,9 +96,6 @@
         | #[input(type="checkbox")] Yes - anyone can see ideas
       label.input-checkbox
         | #[input(type="checkbox")] No - only Admins can see ideas
-    .btn-wrapper
-      button.btn.btn-default Save
-      button.btn.btn-cancel Cancel
       
   div(ng-switch-when="Measure")
     p Select an idea form:

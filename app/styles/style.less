@@ -223,17 +223,17 @@ form {
         border-top: 1px #ececec;
       }
     }
-    .form-group {
-      padding: 0.5em 1em;
-      input {
-        outline: none;
-        border: none;
-        background: #ececec;
-        box-shadow: none;
-        border-bottom: 2px solid grey;
-        border-radius: 0;
-      }
-    }
+    // .form-group {
+    //   padding: 0.5em 1em;
+    //   input {
+    //     outline: none;
+    //     border: none;
+    //     background: #ececec;
+    //     box-shadow: none;
+    //     border-bottom: 2px solid grey;
+    //     border-radius: 0;
+    //   }
+    // }
     .challenge-stage-title {
       word-wrap: break-word;
       padding: 0.2em 0.5em;
@@ -244,16 +244,16 @@ form {
       text-align: left;
       position: relative;
       h2 {
-        margin: 0;
+        margin: 0.5em 0 0 0;
         font-size: 1em;
         input {
           border: 0;
           outline: none;
           box-shadow: none;
           background: #ececec;
+          box-sizing: border-box;
           font-size: 1.5em;
           width: 100%;
-          box-sizing: content-box;
           padding: 0.05em 0.35em;
           border-radius: 0;
           &:focus {
@@ -264,8 +264,8 @@ form {
           .fa();
           content: @fa-var-pencil;
           position: absolute;
-          right: 0.5em;
-          top: 1.15em;
+          right: 1em;
+          top: 1.65em;
           color: darkgrey;
         }
       }

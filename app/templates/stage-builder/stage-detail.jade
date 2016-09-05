@@ -23,62 +23,75 @@ article.challenge-stage.clearfix(ng-model="challengeStage" ng-class="[{'fixed': 
             .challenge-stage-title
               h2 #[input(ng-model="$ctrl.stage.name", type="text" placeholder="give your stage a name" required)]
               //- Type set
-              .btn-group(uib-dropdown, ng-if="!$ctrl.stage.fixed")
-                button.btn.btn-select(uib-dropdown-toggle, dropdown-append-to-body) {$ $ctrl.stage.type $}
-                ul.dropdown-menu.list-group.stage-builder-menu
-                  li.list-group-item(
-                    ng-click="$ctrl.changeType(type)"
-                    ng-repeat="type in $ctrl.stageTypes track by $index"
-                    ng-class="type"
-                  ) #[span(ng-class="type")] {$ type $}
+              //- .btn-group(uib-dropdown, ng-if="!$ctrl.stage.fixed")
+              //-   button.btn.btn-select(uib-dropdown-toggle, dropdown-append-to-body) {$ $ctrl.stage.type $}
+              //-   ul.dropdown-menu.list-group.stage-builder-menu
+              //-     li.list-group-item(
+              //-       ng-click="$ctrl.changeType(type)"
+              //-       ng-repeat="type in $ctrl.stageTypes track by $index"
+              //-       ng-class="type"
+              //-     ) #[span(ng-class="type")] {$ type $}
 
-        .col-sm-6
-          .form-group
-            //- Set Visibility
-            .btn-group(uib-dropdown)
-              button.btn.btn-select(uib-dropdown-toggle) Idea visibility: {$ $ctrl.stage.ideaVisibility $}
-              ul.dropdown-menu.list-group
-                li.list-group-item(
-                  ng-show="!$ctrl.stage.ideaVisibility"
-                  ng-click="$ctrl.stage.ideaVisibility = true"
-                  ng-class="type"
-                ) #[span(ng-class="type")] Visible
-                li.list-group-item(
-                  ng-show="$ctrl.stage.ideaVisibility"
-                  ng-click="$ctrl.stage.ideaVisibility = false"
-                  ng-class="type"
-                ) #[span(ng-class="type")] Hidden
-                
-            p.input-group
-              input(type="text", class="form-control", uib-datepicker-popup, ng-model="whatever", ng-required="true", close-text="Close")
-              span.input-group-btn
-                button.btn.btn-default(type="button") #[i.glyphicon.glyphicon-calendar]
-                
-            button.btn.btn-link Progression: {$ $ctrl.stage.progression.type $}
+        //- .col-sm-6
+        //-   .form-group
+        //-     //- Set Visibility
+        //-     .btn-group(uib-dropdown)
+        //-       button.btn.btn-select(uib-dropdown-toggle) Idea visibility: {$ $ctrl.stage.ideaVisibility $}
+        //-       ul.dropdown-menu.list-group
+        //-         li.list-group-item(
+        //-           ng-show="!$ctrl.stage.ideaVisibility"
+        //-           ng-click="$ctrl.stage.ideaVisibility = true"
+        //-           ng-class="type"
+        //-         ) #[span(ng-class="type")] Visible
+        //-         li.list-group-item(
+        //-           ng-show="$ctrl.stage.ideaVisibility"
+        //-           ng-click="$ctrl.stage.ideaVisibility = false"
+        //-           ng-class="type"
+        //-         ) #[span(ng-class="type")] Hidden
+        //-         
+        //-     p.input-group
+        //-       input(type="text", class="form-control", uib-datepicker-popup, ng-model="whatever", ng-required="true", close-text="Close")
+        //-       span.input-group-btn
+        //-         button.btn.btn-default(type="button") #[i.glyphicon.glyphicon-calendar]
+        //-         
+        //-     button.btn.btn-link Progression: {$ $ctrl.stage.progression.type $}
 
       .row    
         .col-xs-12
-          div(uib-tabset)
-            div(uib-tab, heading="Stage Settings")
-              stage-builder-options(type="$ctrl.stage.type", users="$ctrl.users")
-              //- .row
-              //-   .anim-dropdown.clearfix(ng-class="{'anim-dropdown-show': $ctrl.showMore}")
-              //-     .form-group
-              //-       p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.votes", placeholder="votes")]
-              //-       p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.views", placeholder="views")]
-              //-       p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.days", placeholder="days")]   
-              //-   .show-more-link
-              //-     button.btn.btn-link(ng-click="$ctrl.showMore = !$ctrl.showMore")
-              //-       | {$ $ctrl.showMore ? 'Show Less' : 'Customise' $} #[span.fa(ng-class="$ctrl.showMore ? 'fa-chevron-up' : 'fa-chevron-down'")]
-            div(uib-tab, heading="Progression Settings")
-              stage-progression-options(type="$ctrl.stage.progression.type")
-              //- p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste enim dolorem aliquam a, nostrum iusto quidem odio alias maxime nam ullam, voluptate dignissimos vero commodi doloremque nesciunt magnam, reiciendis facilis.
-              //- .form-group
-              //-   span Ideas are
-              //-   select(required, ng-model="$ctrl.progress.visible")
-              //-     option(value="visible") Visible
-              //-     option(value="hidden") Hidden
-              //- .form-group
-              //-   p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.votes", placeholder="votes")]
-              //-   p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.views", placeholder="views")]
-              //-   p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.days", placeholder="days")]
+          .anim-dropdown.clearfix(ng-class="{'anim-dropdown-show': $ctrl.showMore}")
+            div(uib-tabset)
+              div(uib-tab, heading="Stage Settings")
+                stage-builder-options(type="$ctrl.stage.type", users="$ctrl.users")
+                //- .row
+                //-   .anim-dropdown.clearfix(ng-class="{'anim-dropdown-show': $ctrl.showMore}")
+                //-     .form-group
+                //-       p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.votes", placeholder="votes")]
+                //-       p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.views", placeholder="views")]
+                //-       p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.days", placeholder="days")]   
+                //-   .show-more-link
+                //-     button.btn.btn-link(ng-click="$ctrl.showMore = !$ctrl.showMore")
+                //-       | {$ $ctrl.showMore ? 'Show Less' : 'Customise' $} #[span.fa(ng-class="$ctrl.showMore ? 'fa-chevron-up' : 'fa-chevron-down'")]
+              div(uib-tab, heading="Evaluators", ng-if="$ctrl.stage.type === 'Evaluate'")
+                .form-group
+                  input.form-control(type="text", ng-model="selected", uib-typeahead="name for name in $ctrl.users | filter:$viewValue | limitTo:8")
+                  pre {$ selected | json $}
+                  label Send evaluators this message:
+                  textarea.btn-block(placeholder="You have a new idea to evaluate")
+                  label.input-radio 
+                    | Evaluators can invite additional people on specific ideas #[input(type="checkbox")]
+                    
+              div(uib-tab, heading="Progression Settings")
+                stage-progression-options(type="$ctrl.stage.progression.type")
+                //- p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste enim dolorem aliquam a, nostrum iusto quidem odio alias maxime nam ullam, voluptate dignissimos vero commodi doloremque nesciunt magnam, reiciendis facilis.
+                //- .form-group
+                //-   span Ideas are
+                //-   select(required, ng-model="$ctrl.progress.visible")
+                //-     option(value="visible") Visible
+                //-     option(value="hidden") Hidden
+                //- .form-group
+                //-   p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.votes", placeholder="votes")]
+                //-   p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.views", placeholder="views")]
+                //-   p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.days", placeholder="days")]
+          .show-more-link
+            button.btn.btn-link(ng-click="$ctrl.showMore = !$ctrl.showMore")
+              | {$ $ctrl.showMore ? 'Show Less' : 'Customise' $} #[i.fa(ng-class="$ctrl.showMore ? 'fa-chevron-up' : 'fa-chevron-down'")]

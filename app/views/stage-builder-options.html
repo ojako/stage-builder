@@ -76,14 +76,14 @@
   </div>
   <div ng-switch-when="Evaluate">
     <div class="form-group">
-      <input type="text" ng-model="selected" uib-typeahead="name for name in $ctrl.users | filter:$viewValue | limitTo:8" class="form-control"/>
-      <pre>{$ selected | json $}</pre>
-      <label>Send evaluators this message:</label>
-      <textarea placeholder="You have a new idea to evaluate" class="btn-block"></textarea>
-      <label class="input-radio">
-        <Evaluators>can invite additional people on specific ideas 
-          <input type="checkbox"/>
-        </Evaluators>
+      <p>Ideas are evaluated by</p>
+      <label>
+        <div class="input-radio">
+          <input type="radio"/> Categories
+        </div>
+        <div class="input-radio">
+          <input type="radio"/> Challenge
+        </div>
       </label>
     </div>
   </div>
@@ -106,10 +106,6 @@
       <label class="input-checkbox">
         <input type="checkbox"/> No - only Admins can see ideas
       </label>
-    </div>
-    <div class="btn-wrapper">
-      <button class="btn btn-default">Save</button>
-      <button class="btn btn-cancel">Cancel</button>
     </div>
   </div>
   <div ng-switch-when="Measure">
