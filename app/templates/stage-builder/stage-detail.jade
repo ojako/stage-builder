@@ -48,6 +48,12 @@ article.challenge-stage.clearfix(ng-model="challengeStage" ng-class="[{'fixed': 
                   ng-click="$ctrl.stage.ideaVisibility = false"
                   ng-class="type"
                 ) #[span(ng-class="type")] Hidden
+                
+            p.input-group
+              input(type="text", class="form-control", uib-datepicker-popup, ng-model="whatever", ng-required="true", close-text="Close")
+              span.input-group-btn
+                button.btn.btn-default(type="button") #[i.glyphicon.glyphicon-calendar]
+                
             button.btn.btn-link Progression: {$ $ctrl.stage.progression.type $}
 
       .row    

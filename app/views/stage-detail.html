@@ -39,6 +39,10 @@
                 <li ng-show="$ctrl.stage.ideaVisibility" ng-click="$ctrl.stage.ideaVisibility = false" ng-class="type" class="list-group-item"><span ng-class="type"></span> Hidden</li>
               </ul>
             </div>
+            <p class="input-group">
+              <input type="text" uib-datepicker-popup="uib-datepicker-popup" ng-model="whatever" ng-required="true" close-text="Close" class="form-control"/><span class="input-group-btn">
+                <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button></span>
+            </p>
             <button class="btn btn-link">Progression: {$ $ctrl.stage.progression.type $}</button>
           </div>
         </div>

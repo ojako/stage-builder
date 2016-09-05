@@ -199,7 +199,6 @@ angular.module('stageBuilderApp')
 })
 .component('stageDetailDesc', {
     templateUrl: 'views/stage-detail-desc.html',
-    // transclude: true,
     bindings: {
 
     },
@@ -207,7 +206,6 @@ angular.module('stageBuilderApp')
 // Helper object for advising users
 .component('stageBuildHelper', {
     templateUrl: 'views/stage-builder-helper.html',
-    // transclude: true,
     bindings: {
         helperObjectCurrentStage: '=',
         helperObjectStages: '<',
@@ -255,10 +253,11 @@ angular.module('stageBuilderApp')
 
         // Change stage type and preserve name if needs be
         ctrl.changeType = function(type) {
-            console.log(type);
+            // if name === type then change name
             if(ctrl.stage.type === ctrl.stage.name) {
                 ctrl.stage.type = type;
                 ctrl.stage.name = type;
+            // just change type
             } else {
                 ctrl.stage.type = type;
             }
