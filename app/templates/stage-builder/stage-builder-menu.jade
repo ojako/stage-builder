@@ -2,8 +2,9 @@
 .btn-group(uib-dropdown)
   button.btn.btn-link(uib-dropdown-toggle, dropdown-append-to-body, ng-class="{'active': $ctrl.numStages === 2}") #[span.fa.fa-plus] #[span.hover-reveal Insert {$ $ctrl.numStages <= 2 ? 'First' : '' $} Stage] 
   ul.dropdown-menu.list-group.stage-builder-menu
-    li.list-group-item(
-      ng-click="$ctrl.onAddStage({'type':type})"
+    li.list-group-item.text-center(
+      ng-click="$ctrl.onAddStage({'type':type.type})"
       ng-repeat="type in $ctrl.stageTypes track by $index"
       ng-class="type"
-    ) #[span(ng-class="type")] {$ type $}
+    ) {$ type.type $}
+      em.btn-block {$ type.desc $}

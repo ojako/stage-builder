@@ -1,10 +1,13 @@
 // output:../../views/stage-detail.html
   
 //- Individual Stages
-article.challenge-stage.clearfix(ng-model="challengeStage" ng-class="[{'fixed': $ctrl.stage.fixed}, {'first-stage': $ctrl.first}, {'last-stage': $ctrl.last}, [$ctrl.stage.type]]")
+article.challenge-stage.clearfix(
+  ng-model="challengeStage"
+  ng-class="[{'fixed': $ctrl.stage.editSettings.fixed}, {'first-stage': $ctrl.first}, {'last-stage': $ctrl.last}, [$ctrl.stage.type]]"
+  ng-cloak)
   .timeline-bar
     .timeline-knuckle(ng-class="$ctrl.stage.type")
-  .challenge-stage-detail-toolbar.text-center(ng-show="!$ctrl.stage.deleted && !$ctrl.stage.fixed")
+  .challenge-stage-detail-toolbar.text-center(ng-show="!$ctrl.stage.deleted && !$ctrl.stage.editSettings.fixed")
     //- button(ng-if="$ctrl.stage.sortable")
     //-   | #[i.fa.fa-arrows]
     button(ng-click="$ctrl.delete();")
@@ -12,16 +15,17 @@ article.challenge-stage.clearfix(ng-model="challengeStage" ng-class="[{'fixed': 
   
   .challenge-stage-inner.clearfix(ng-class="{'challenge-stage-auto-width': $ctrl.stage.deleted}")
     div.ng-hide(ng-show="$ctrl.stage.deleted")
-      p Stage removed ({$ $ctrl.stage.name $}). Click #[button.btn.btn-link(ng-click="$ctrl.stage.deleted = false; $ctrl.stage.sortable = true", title="undo") 'here'] to undo #[span(ng-click="$ctrl.delete()") #[i.fa.fa-times]]
+      p Stage removed ({$ $ctrl.stage.name $}). Click #[button.btn.btn-link(ng-click="$ctrl.stage.deleted = false; $ctrl.stage.editSettings.sortable = true", title="undo") 'here'] to undo #[span(ng-click="$ctrl.delete()") #[i.fa.fa-times]]
     
     div(ng-show="!$ctrl.stage.deleted")
-      .grab-handle(ng-show="!$ctrl.stage.fixed")
+      .grab-handle(ng-show="!$ctrl.stage.editSettings.fixed")
         i.fa.fa-ellipsis-h
       form.row
         .col-sm-6
           .form-group
-            .challenge-stage-title
-              h2 #[input(ng-model="$ctrl.stage.name", type="text" placeholder="give your stage a name" required)]
+            h2.col-xs-12.input-fancy #[input(ng-model="$ctrl.stage.name", type="text" placeholder="give your stage a name" required)]
+              .well.well-sm.clearfix
+                em.col-xs-12 {$ $ctrl.getStageTypeDesc($ctrl.stage.type) $}
               //- //- Type set
               //- .btn-group(uib-dropdown, ng-if="!$ctrl.stage.fixed")
               //-   button.btn.btn-select(uib-dropdown-toggle, dropdown-append-to-body) {$ $ctrl.stage.type $}
@@ -77,7 +81,7 @@ article.challenge-stage.clearfix(ng-model="challengeStage" ng-class="[{'fixed': 
           .anim-dropdown.clearfix(ng-class="{'anim-dropdown-show': $ctrl.showMore}")
             div(uib-tabset)
               div(uib-tab, heading="Stage Settings")
-                stage-builder-options(type="$ctrl.stage.type", users="$ctrl.users")
+                stage-builder-options(stage="$ctrl.stage", users="$ctrl.users")
                 //- .row
                 //-   .anim-dropdown.clearfix(ng-class="{'anim-dropdown-show': $ctrl.showMore}")
                 //-     .form-group
@@ -97,7 +101,10 @@ article.challenge-stage.clearfix(ng-model="challengeStage" ng-class="[{'fixed': 
                     | Evaluators can invite additional people on specific ideas #[input(type="checkbox")]
                     
               div(uib-tab, heading="Progression Settings")
-                stage-progression-options(type="$ctrl.stage.progression.type")
+                stage-progression-options(progression="$ctrl.stage.progression")
+                
+              div.pull-right(uib-tab, heading="</>")
+                pre {$ $ctrl.stage | json $}
                 //- p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste enim dolorem aliquam a, nostrum iusto quidem odio alias maxime nam ullam, voluptate dignissimos vero commodi doloremque nesciunt magnam, reiciendis facilis.
                 //- .form-group
                 //-   span Ideas are

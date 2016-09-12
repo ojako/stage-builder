@@ -2,26 +2,27 @@
 <div class="row">
   <div class="col-xs-12">
     <div class="challenge-stages-container">
-      <div class="disco-filter-top challenge-stages-header sticky clearfix"> 
-        <stage-build-helper helper-object-current-stage="$ctrl.helperObjectCurrentStage" helper-object-stages="$ctrl.helperObjectStages" help-open="$ctrl.helpOpen"></stage-build-helper>
-        <button class="btn btn-success">Validated <i class="fa fa-check"></i></button>
-        <buton ng-show="!$ctrl.helpOpen" ng-click="$ctrl.helpOpen = !$ctrl.helpOpen" class="btn btn-link">Open Help <i class="fa fa-question"></i></buton><span class="pull-right">
-          <button class="btn btn-link">
-            <fa class="fa fa-chevron-left"></fa> Previous
-          </button>
-          <button class="btn btn-link">Next 
-            <fa class="fa fa-chevron-right"></fa>
-          </button></span>
-      </div>
-      <div ng-show="$ctrl.currentStages.length === 0" class="alert alert-warning">Start by adding a new stage
-        <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index"></stage-builder-menu>
-      </div>
       <div ng-if="!alwaysTrue">
+        <div class="panel panel-sm panel-success select-top text-center">
+          <div class="panel-heading">
+            <h4>Set Phased or Parallel</h4>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <label class="btn">
+                <input type="radio" ng-model="$ctrl.challenge.type" value="phased"/> Phased
+              </label>
+              <label class="btn">
+                <input type="radio" ng-model="$ctrl.challenge.type" value="parallel"/> Parallel
+              </label><em class="btn-block">{$ $ctrl.challenge.type === 'phased' ? 'Ideas enter your challenge and progress through the stages togther' : 'Ideas enter your challenge and progress through the stages independent of other ideas' $}</em>
+            </div>
+          </div>
+        </div>
         <ul ng-sortable="{animation: 350, draggable: '.sortable-item', chosenClass: 'sortable-chosen', grabHandle: 'sortable-grab', forceFallback: true}" class="list-unstyled challenge-stage-list-container clearfix">
-          <li ng-repeat="stage in $ctrl.currentStages track by stage.id" ng-class="!stage.sortable ? 'fixed-item' : 'sortable-item'" class="challenge-stage-list-item ng-anim-fade">
+          <li ng-repeat="stage in $ctrl.challenge.stages track by stage.id" ng-class="!stage.editSettings.sortable ? 'fixed-item' : 'sortable-item'" class="challenge-stage-list-item ng-anim-fade">
             <stage-detail stage="stage" last="$last" first="$first" users="$ctrl.users" on-delete="$ctrl.deleteStage(stage)" stage-types="$ctrl.stageTypes" inspector-tab="$ctrl.inspectorTabActive" stage-index="$index"></stage-detail>
             <div ng-if="!stage.deleted &amp;&amp; !$last" class="challenge-stage-add-new">
-              <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index" num-stages="$ctrl.currentStages.length"></stage-builder-menu>
+              <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index" num-stages="$ctrl.challenge.stages.length"></stage-builder-menu>
             </div>
           </li>
         </ul>

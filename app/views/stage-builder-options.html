@@ -1,5 +1,5 @@
 
-<div ng-switch="$ctrl.type" class="stage-builder-options">
+<form name="stageOptions" ng-model="$ctrl.stage" ng-switch="$ctrl.stage.type" class="stage-builder-options">
   <div ng-switch-default="ng-switch-default">
     <div class="alert alert-warning">Can't find correct options for type</div>
   </div>
@@ -121,4 +121,4 @@
       </label>
     </div>
   </div>
-</div>
+</form>

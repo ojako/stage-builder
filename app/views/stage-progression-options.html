@@ -1,5 +1,5 @@
 
-<div ng-switch="$ctrl.type">
+<form name="progressionSettings" ng-model="$ctrl.progression" ng-switch="$ctrl.progression.type">
   <div ng-switch-when="Auto">
     <p>Do you want to send email confirmation when an idea is added?</p>
     <div class="form-group">
@@ -112,4 +112,4 @@
       </label>
     </div>
   </div>
-</div>
+</form>

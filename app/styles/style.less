@@ -43,6 +43,13 @@ form {
 @import 'components/stage-builder-menu.less';
 @import 'mixins.less';
 
+.challenge-sticky-header {
+  top: 50px;
+  padding: 0.5em 0.25em;
+  z-index: @challenge-stage-z-index + 50;
+  margin: 0;
+}
+
 .challenge-stages-container {
   width: 100%;
   margin: 0 auto;
@@ -50,12 +57,6 @@ form {
   height: 100%;
   border-radius: @challenge-border-radius;
   z-index: @challenge-stage-z-index;
-  .challenge-stages-header {
-    top: 50px;
-    padding: 0.5em 0.25em;
-    z-index: @challenge-stage-z-index + 50;
-    margin: 0 -10px;
-  }
   .stage-type-label {
     .stage-colouring();
     margin-right: 1em;
@@ -64,6 +65,7 @@ form {
     @grab-handle-height: 20px;
     margin: -1px;
     padding: 0.05em 0;
+    cursor: pointer;
     text-align: right;
     position: relative;
     height: @grab-handle-height;
@@ -203,7 +205,6 @@ form {
       white-space: normal;
       display: block;
       position: relative;
-      cursor: pointer;
       transition: 0.25s box-shadow linear;
     }
     .challenge-stage-nav {
@@ -234,42 +235,6 @@ form {
     //     border-radius: 0;
     //   }
     // }
-    .challenge-stage-title {
-      word-wrap: break-word;
-      padding: 0.2em 0.5em;
-      color: #111;
-      background: white;
-      height: auto;
-      width: 100%;
-      text-align: left;
-      position: relative;
-      h2 {
-        margin: 0.5em 0 0 0;
-        font-size: 1em;
-        input {
-          border: 0;
-          outline: none;
-          box-shadow: none;
-          background: #ececec;
-          box-sizing: border-box;
-          font-size: 1.5em;
-          width: 100%;
-          padding: 0.05em 0.35em;
-          border-radius: 0;
-          &:focus {
-            outline: 0;
-          }
-        }
-        &:after {
-          .fa();
-          content: @fa-var-pencil;
-          position: absolute;
-          right: 1em;
-          top: 1.65em;
-          color: darkgrey;
-        }
-      }
-    }
     .stage-detail-hud {
       margin-top: 1em;
       padding: 0 1.5em;
@@ -277,18 +242,63 @@ form {
   }
 }
 
+.select-top {
+  margin-top: 1em;
+  // width: calc(100% - 6em);
+  width: 100%;
+  max-width: 400px;
+  margin: 1em auto 0 auto;
+  // margin: 1em auto 0 auto;
+}
+
 .btn {
   &.btn-icon-info {
     border: 1px solid grey;
     background: white;
     color: black;
+    .fa {
+      margin-right: 0.5em;
+    }
   }
-  .fa {
-    margin-right: 0.5em;
+}
+
+.input-fancy {
+  word-wrap: break-word;
+  padding: 0.2em 0.5em;
+  color: #111;
+  background: white;
+  height: auto;
+  width: 100%;
+  text-align: left;
+  position: relative;
+  margin: 0.5em 0 0 0;
+  font-size: 1em;
+  input {
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    // background: #ececec;
+    box-sizing: border-box;
+    font-size: 1.5em;
+    width: 100%;
+    padding: 0.05em 0.35em;
+    border-radius: 0;
+    &:focus {
+      outline: 0;
+    }
+  }
+  &:after {
+    .fa();
+    content: @fa-var-pencil;
+    position: absolute;
+    right: 1em;
+    top: 1.15em;
+    color: darkgrey;
   }
 }
 
 .challenge-stage-helper {
+  text-align: left;
   .well {
     .close {
       color: black;
@@ -358,5 +368,67 @@ form {
   margin-top: 1em;
   a {
     margin-right: 1.5em;
+  }
+}
+
+
+.article-viewer {
+  background: #ececec;
+  border: 1px solid #cecece;
+  border-radius: 5px;
+  margin-bottom: 1em;
+  overflow: hidden;
+  .article-viewer-menu,
+  .article-viewer-body,
+  .article-viewer-collapse {
+    display: table-cell;
+    overflow: scroll;
+    padding: 5px;
+    position: relative;
+  }
+  .article-viewer-menu {
+    border-right: 1px solid #cecece;
+    padding: 3px 5px;
+    width: 15em;
+    > ul {
+      margin: 0;
+      list-style: none;
+      padding: 0;
+      > li {
+        > ol {
+          display: block;
+          border-left: 2px solid darkgrey;
+          padding-left: 1.5em;
+        }
+      }
+    }
+  }
+  .article-viewer-body {
+    background: white;
+    padding: 1em 1.5em;
+  }
+  .article-viewer-collapse {
+    background: white;
+    width: 5px;
+    color: grey;
+    border-right: 1px solid #ececec;
+    &:hover {
+      background: #cecece;
+      color: white;
+    }
+    &:after {
+      .fa();
+      content: @fa-var-angle-double-right;
+      position: absolute;
+      top: 49%;
+      left: 1px;
+      margin: 0;
+      padding: 0;
+    }
+    &.collapsed {
+      &:after {
+        content: @fa-var-angle-double-left;
+      }
+    }
   }
 }

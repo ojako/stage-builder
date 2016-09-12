@@ -34,7 +34,7 @@ angular
   .when('/challenge', {
     templateUrl: 'views/challenge.html',
     controller: 'ChallengeCtrl',
-    controllerAs: 'challenge'
+    controllerAs: 'vm'
   })
   .when('/about', {
     templateUrl: 'views/about.html',

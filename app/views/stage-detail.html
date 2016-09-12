@@ -1,27 +1,26 @@
 
-<article ng-model="challengeStage" ng-class="[{'fixed': $ctrl.stage.fixed}, {'first-stage': $ctrl.first}, {'last-stage': $ctrl.last}, [$ctrl.stage.type]]" class="challenge-stage clearfix">
+<article ng-model="challengeStage" ng-class="[{'fixed': $ctrl.stage.editSettings.fixed}, {'first-stage': $ctrl.first}, {'last-stage': $ctrl.last}, [$ctrl.stage.type]]" ng-cloak="ng-cloak" class="challenge-stage clearfix">
   <div class="timeline-bar">
     <div ng-class="$ctrl.stage.type" class="timeline-knuckle"></div>
   </div>
-  <div ng-show="!$ctrl.stage.deleted &amp;&amp; !$ctrl.stage.fixed" class="challenge-stage-detail-toolbar text-center">
+  <div ng-show="!$ctrl.stage.deleted &amp;&amp; !$ctrl.stage.editSettings.fixed" class="challenge-stage-detail-toolbar text-center">
     <button ng-click="$ctrl.delete();"><i class="fa fa-trash"></i></button>
   </div>
   <div ng-class="{'challenge-stage-auto-width': $ctrl.stage.deleted}" class="challenge-stage-inner clearfix">
     <div ng-show="$ctrl.stage.deleted" class="ng-hide">
       <p>Stage removed ({$ $ctrl.stage.name $}). Click 
-        <button ng-click="$ctrl.stage.deleted = false; $ctrl.stage.sortable = true" title="undo" class="btn btn-link">'here'</button> to undo <span ng-click="$ctrl.delete()"><i class="fa fa-times"></i></span>
+        <button ng-click="$ctrl.stage.deleted = false; $ctrl.stage.editSettings.sortable = true" title="undo" class="btn btn-link">'here'</button> to undo <span ng-click="$ctrl.delete()"><i class="fa fa-times"></i></span>
       </p>
     </div>
     <div ng-show="!$ctrl.stage.deleted">
-      <div ng-show="!$ctrl.stage.fixed" class="grab-handle"><i class="fa fa-ellipsis-h"></i></div>
+      <div ng-show="!$ctrl.stage.editSettings.fixed" class="grab-handle"><i class="fa fa-ellipsis-h"></i></div>
       <form class="row">
         <div class="col-sm-6">
           <div class="form-group">
-            <div class="challenge-stage-title">
-              <h2>
-                <input ng-model="$ctrl.stage.name" type="text" placeholder="give your stage a name" required="required"/>
-              </h2>
-            </div>
+            <h2 class="col-xs-12 input-fancy">
+              <input ng-model="$ctrl.stage.name" type="text" placeholder="give your stage a name" required="required"/>
+              <div class="well well-sm clearfix"><em class="col-xs-12">{$ $ctrl.getStageTypeDesc($ctrl.stage.type) $}</em></div>
+            </h2>
           </div>
         </div>
         <div class="col-sm-6 stage-detail-hud">
@@ -56,7 +55,7 @@
           <div ng-class="{'anim-dropdown-show': $ctrl.showMore}" class="anim-dropdown clearfix">
             <div uib-tabset="uib-tabset">
               <div uib-tab="uib-tab" heading="Stage Settings">
-                <stage-builder-options type="$ctrl.stage.type" users="$ctrl.users"></stage-builder-options>
+                <stage-builder-options stage="$ctrl.stage" users="$ctrl.users"></stage-builder-options>
               </div>
               <div uib-tab="uib-tab" heading="Evaluators" ng-if="$ctrl.stage.type === 'Evaluate'">
                 <div class="form-group">
@@ -70,7 +69,10 @@
                 </div>
               </div>
               <div uib-tab="uib-tab" heading="Progression Settings">
-                <stage-progression-options type="$ctrl.stage.progression.type"></stage-progression-options>
+                <stage-progression-options progression="$ctrl.stage.progression"></stage-progression-options>
+              </div>
+              <div uib-tab="uib-tab" heading="&lt;/&gt;" class="pull-right">
+                <pre>{$ $ctrl.stage | json $}</pre>
               </div>
             </div>
           </div>

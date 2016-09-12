@@ -11,68 +11,122 @@ angular.module('stageBuilderApp')
 .controller('ChallengeCtrl', ['users', function ChallengeCtrl(users) {
     // ctrl as challenge
     var vm = this;
-    vm.sectionTitle = 'Create Challenge';
+
+    // Set of fake users
     vm.users = users;
+
+    // All the challenge data
+    vm.challenge = {
+        title: 'New Challenge',
+        type: 'parallel',
+        stages: [],
+    };
+
+    // Types of Progression
+    vm.progressionTypes = [
+        'Manual',
+        'Auto',
+        'Comments',
+        'Ratings',
+        'Views'
+    ];
+
+    // Stage Types
+    // short desc = desc, long desc = description
+    vm.stageTypes = [
+        {
+            type: 'Evaluate',
+            desc: 'Rate and rank ideas',
+            description: 'This stage allows a defined group of evaluators assess the ideas against specific criteria. Evaluators can also privately comment on the idea. Lead Evaluators can then decide whether the ideas are progressed or not',
+        },
+        {
+            type: 'Rank',
+            desc: 'rate and rank ideas',
+            description: 'When dealing with a large volume of comparable ideas, you can rank ideas. You have to options: simple ranking or pairwise voting',
+        },
+        {
+            type: 'Discuss',
+            desc: 'short description of stage type',
+            description: 'Get the conversation started. People give feedback on ideas by voting, commenting and sharing ideas',
+        },
+        {
+            type: 'Develop',
+            desc: 'short description of stage type',
+            description: 'Build upon the initial idea, consolidate teams or articulate a more in-depth business case. You can attach additional idea forms. People can still vote, comment or share ideas',
+        },
+        {
+            type: 'Gather',
+            desc: 'short description of stage type',
+            description: 'Collect ideas from your community. Choose which custom form has to be filled when creating an idea. People can then vote, comment, and share ideas.',
+        },
+        {
+            type: 'Measure',
+            desc: 'short description of stage type',
+            description: 'Measure the outcome and track the implementation of selected ideas',
+        },
+    ];
+
+    vm.helpOpen = true;
+    /* Helper Object */
+    vm.helperObject = {
+        // Is open?
+        open: true,
+        // Current represents the name of the currently active stage
+        current: 'bootstrapChallenge',
+        // Collection of all help docs
+        documents: {
+            // The various pages
+            pages: {
+                // Topics within Pags
+                challengeBuilder: {
+                    // Title of topic
+                    name: 'Challenge Builder',
+                    // Main body of topic
+                    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                    // Optional image
+                    img: '',
+                    // Keywords
+                    keywords: ['this', 'that', 'something else'],
+                    // Articles within page topic
+                    articles: [
+                        {
+                            name: 'Getting Started',
+                            content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                            img: '',
+                            keywords: '',
+                        },
+                        {
+                            name: 'Flow Type',
+                            content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                            img: '',
+                            keywords: '',
+                        },
+                        {
+                            name: 'Adding Stages',
+                            content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                            img: '',
+                            keywords: '',
+                        }
+                    ],
+                },
+            }
+        }
+    };
+
 }])
 
 .component('stageBuilder', {
     templateUrl: 'views/stage-builder.html',
     bindings: {
         users: '<',
+        challenge: '=',
+        stageTypes: '<',
+        progressionTypes: '<',
     },
     controller: function() {
         var ctrl = this;
 
         ctrl.timeOut = true;
-
-        // Stage Types
-        ctrl.stageTypes = [
-            'Evaluate',
-            'Rank',
-            'Discuss',
-            'Develop',
-            'Gather',
-            'Measure',
-        ];
-
-        // Types of Progression
-        ctrl.progressionTypes = [
-            'Manual',
-            'Auto',
-            'Comments',
-            'Ratings',
-            'Views'
-        ];
-
-        // Bootstrap some current stages
-        ctrl.currentStages = [];
-
-        /* Create Helper Object */
-        // Current stage represents the name of the currently active stage
-        ctrl.helperObjectCurrentStage = 'bootstrapChallenge';
-        // Collection of helper stages with name and status
-        ctrl.helperObjectStages = [
-            {
-                name: 'bootstrapChallenge',
-                status: 'incomplete',
-            },
-            {
-                name: 'createStage',
-                status: 'incomplete',
-            },
-            {
-                name: 'removeStage',
-                status: 'incomplete',
-            },
-            {
-                name: 'editStage',
-                status: 'incomplete',
-            },
-            {
-                name: 'editTransition',
-                status: 'incomplete',
-            },
-        ];
 
         // ctrl.helperObjectProgress = function(stage) {
         //     // if(!ctrl.helperObjectCompleted.indexOf('completed')) {
@@ -82,25 +136,24 @@ angular.module('stageBuilderApp')
         //     // }
         // };
 
-        // Start with help open/closed
-        ctrl.helpOpen = false;
-
         // Add stage to current list
         ctrl.addStage = function(type, stageIndex) {
             // Add stage
-            ctrl.currentStages.splice(stageIndex + 1, 0, {
-                'name': type,
+            ctrl.challenge.stages.splice(stageIndex + 1, 0, {
+                name: type,
                 // stage type e.g. 'Open'
-                'type': type,
+                type: type,
                 // are ideas visible?
-                'ideaVisibility': true,
+                ideaVisibility: true,
                 // can stage be deleted?
-                'fixed': false,
-                // can stage be sorted?
-                'sortable': true,
-                'id': Math.floor((Math.random() * 1000)),
-                'progression': {
-                    'type': ctrl.progressionTypes[0],
+                editSettings: {
+                    fixed: false,
+                    // can stage be sorted?
+                    sortable: true,
+                },
+                id: Math.floor((Math.random() * 1000)),
+                progression: {
+                    type: ctrl.progressionTypes[0],
                 },
             });
         };
@@ -120,8 +173,8 @@ angular.module('stageBuilderApp')
         ctrl.deleteStage = function(stage) {
             // Check if confirm delete
             if (stage.deleted) {
-                var index = ctrl.currentStages.indexOf(stage);
-                ctrl.currentStages.splice(index, 1);
+                var index = ctrl.challenge.stages.indexOf(stage);
+                ctrl.challenge.stages.splice(index, 1);
                 // Add index to stage
                 stage.undoIndex = index;
                 // Add to undo block at top
@@ -141,8 +194,9 @@ angular.module('stageBuilderApp')
             // Remove undo index reference
             delete stage.undoIndex;
             stage.sortable = true;
-            // Add to currentStages
-            ctrl.currentStages.splice(index, 0, stage);
+            delete stage.deleted;
+            // Add to challenge.stages
+            ctrl.challenge.stages.splice(index, 0, stage);
             // Remove undo reference
             ctrl.deletedStages.splice(0, 1);
         };
@@ -156,13 +210,18 @@ angular.module('stageBuilderApp')
         // Generate initial stages
         var bootstrapStages = function(randomNumber) {
             // Create special stage Open
-            ctrl.currentStages.splice(0, 0, {
+            ctrl.challenge.stages.splice(0, 0, {
                 name: 'Gather Ideas',
                 type: 'Gather',
                 ideaVisibility: true,
-                sortable: false,
-                fixed: true,
+                editSettings: {
+                    sortable: false,
+                    fixed: true,
+                },
                 id: Math.floor((Math.random() * 1000)),
+                progression: {
+                    type: 'Auto'
+                },
             });
             // Randomly populate for testing
             for(var i=0; i<randomNumber; i++) {
@@ -170,17 +229,22 @@ angular.module('stageBuilderApp')
                 ctrl.addStage(name, 1);
             }
             // Create special stage Close
-            ctrl.currentStages.splice(ctrl.currentStages.length, 0, {
+            ctrl.challenge.stages.splice(ctrl.challenge.stages.length, 0, {
                 name: 'Measure Outcome' ,
                 type: 'Measure',
                 ideaVisibility: true,
-                sortable: false,
-                fixed: true,
+                editSettings: {
+                    sortable: false,
+                    fixed: true,
+                },
                 id: Math.floor((Math.random() * 1000)),
+                progression: {
+                    type: 'Auto'
+                },
             });
         };
         // 0 = default (just open/close stages)
-        bootstrapStages(6);
+        bootstrapStages(0);
 
         // Grab sticky classes
         var stickyElements = document.getElementsByClassName('sticky');
@@ -188,7 +252,6 @@ angular.module('stageBuilderApp')
         for (var i = stickyElements.length - 1; i >= 0; i--) {
             Stickyfill.add(stickyElements[i]);
         }
-
     }
 })
 // Dropdown adding new stages
@@ -214,13 +277,27 @@ angular.module('stageBuilderApp')
         helperObjectCurrentStage: '=',
         helperObjectStages: '<',
         helpOpen: '=',
+        helpObject: '<',
     },
+    controller: function() {
+        var ctrl = this;
+        ctrl.currentArticle = null;
+        ctrl.showContents = true;
+
+        ctrl.selectArticle = function(article) {
+            ctrl.currentArticle = article;
+            ctrl.showContents = false;
+        };
+        ctrl.showContents = function() {
+            ctrl.showContents = true;
+        };
+    }
 })
 // Stage options/settings displayed in the inspector
 .component('stageBuilderOptions', {
     templateUrl: 'views/stage-builder-options.html',
     bindings: {
-        type: '<',
+        stage: '=',
         users: '<',
     },
 })
@@ -228,7 +305,7 @@ angular.module('stageBuilderApp')
 .component('stageProgressionOptions', {
     templateUrl: 'views/stage-progression-options.html',
     bindings: {
-        type: '<',
+        progression: '=',
     },
 })
 // The detail of individual stages in the stage timeline
@@ -241,9 +318,6 @@ angular.module('stageBuilderApp')
         onDelete: '&',
         stageTypes: '<',
         addStage: '&',
-        changeType: '&',
-        selectedStage: '=',
-        selectStage: '&',
         inspectorTab: '=',
         stageIndex: '<',
         users: '<',
@@ -256,6 +330,15 @@ angular.module('stageBuilderApp')
             ctrl.onDelete({
                 'stage': ctrl.stage
             });
+        };
+
+        // Grab the longtail form of the stage type description
+        ctrl.getStageTypeDesc = function(type) {
+            var y = ctrl.stageTypes.find(function(x) {
+                return x.type === type;
+            });
+
+            return y.description;
         };
 
         // Change stage type and preserve name if needs be

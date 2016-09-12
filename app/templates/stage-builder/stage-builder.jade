@@ -1,31 +1,36 @@
 // output:../../views/stage-builder.html
 
-//- pre {$ $ctrl.currentStages | json $}
-
 .row
   .col-xs-12
     .challenge-stages-container
-      .disco-filter-top.challenge-stages-header.sticky.clearfix  
-        stage-build-helper(helper-object-current-stage="$ctrl.helperObjectCurrentStage", helper-object-stages="$ctrl.helperObjectStages", help-open="$ctrl.helpOpen")
-        button.btn.btn-success Validated #[i.fa.fa-check]
-        buton.btn.btn-link(ng-show="!$ctrl.helpOpen", ng-click="$ctrl.helpOpen = !$ctrl.helpOpen") Open Help #[i.fa.fa-question]
-        //- button.btn.btn-warning(ng-show="$ctrl.deletedStages.length > 0", ng-click="$ctrl.undoDelete()") Undo Remove {$ $ctrl.deletedStages[0].name $}
-        //- Start stage add
-        span.pull-right
-          button.btn.btn-link #[fa.fa.fa-chevron-left] Previous
-          button.btn.btn-link Next #[fa.fa.fa-chevron-right]
-
-      .alert.alert-warning(ng-show="$ctrl.currentStages.length === 0")
-        | Start by adding a new stage
-        stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index")
         
+      //- span.pull-right
+      //-   button.btn.btn-link #[fa.fa.fa-chevron-left] Previous
+      //-   button.btn.btn-link Next #[fa.fa.fa-chevron-right]
+
       //- Challenge list
       //- !alwaysTrue hack
       div(ng-if="!alwaysTrue")
+        //- Phased or Parallel
+        .panel.panel-sm.panel-success.select-top.text-center
+          //- form(name="parallelOrPhased")
+          .panel-heading
+            h4 Set Phased or Parallel
+          .panel-body
+            .form-group
+              label.btn
+                | #[input(type="radio", ng-model="$ctrl.challenge.type", value="phased")] Phased
+                
+              label.btn
+                | #[input(type="radio", ng-model="$ctrl.challenge.type", value="parallel")] Parallel
+            
+              em.btn-block {$ $ctrl.challenge.type === 'phased' ? 'Ideas enter your challenge and progress through the stages togther' : 'Ideas enter your challenge and progress through the stages independent of other ideas' $}
+          //- pre.text-left {$ $ctrl.challenge | json $}
+              
         ul.list-unstyled.challenge-stage-list-container.clearfix(ng-sortable="{animation: 350, draggable: '.sortable-item', chosenClass: 'sortable-chosen', grabHandle: 'sortable-grab', forceFallback: true}")
           li.challenge-stage-list-item.ng-anim-fade(
-            ng-repeat="stage in $ctrl.currentStages track by stage.id"
-            ng-class="!stage.sortable ? 'fixed-item' : 'sortable-item'"
+            ng-repeat="stage in $ctrl.challenge.stages track by stage.id"
+            ng-class="!stage.editSettings.sortable ? 'fixed-item' : 'sortable-item'"
           )
             stage-detail(
               stage="stage"
@@ -38,4 +43,5 @@
               stage-index="$index"
             )
             .challenge-stage-add-new(ng-if="!stage.deleted && !$last")
-              stage-builder-menu(on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index", num-stages="$ctrl.currentStages.length")
+              stage-builder-menu(
+                on-add-stage="$ctrl.addStage(type, $index)", stage-types="$ctrl.stageTypes", stage-index="$index", num-stages="$ctrl.challenge.stages.length")
