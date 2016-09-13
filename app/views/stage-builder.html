@@ -18,8 +18,10 @@
             </div>
           </div>
         </div>
-        <ul ng-sortable="{animation: 350, draggable: '.sortable-item', chosenClass: 'sortable-chosen', grabHandle: 'sortable-grab', forceFallback: true}" class="list-unstyled challenge-stage-list-container clearfix">
-          <li ng-repeat="stage in $ctrl.challenge.stages track by stage.id" ng-class="!stage.editSettings.sortable ? 'fixed-item' : 'sortable-item'" class="challenge-stage-list-item ng-anim-fade">
+        <ul ng-sortable="$ctrl.sortableConf" class="list-unstyled challenge-stage-list-container clearfix">
+          <li ng-repeat="stage in $ctrl.challenge.stages track by stage.id"
+              ng-class="!stage.editSettings.sortable ? 'fixed-item' : 'sortable-item'"
+              class="challenge-stage-list-item ng-anim-fade" draggable="false">
             <stage-detail stage="stage" last="$last" first="$first" users="$ctrl.users" on-delete="$ctrl.deleteStage(stage)" stage-types="$ctrl.stageTypes" inspector-tab="$ctrl.inspectorTabActive" stage-index="$index"></stage-detail>
             <div ng-if="!stage.deleted &amp;&amp; !$last" class="challenge-stage-add-new">
               <stage-builder-menu on-add-stage="$ctrl.addStage(type, $index)" stage-types="$ctrl.stageTypes" stage-index="$index" num-stages="$ctrl.challenge.stages.length"></stage-builder-menu>

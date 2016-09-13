@@ -27,7 +27,7 @@
               em.btn-block {$ $ctrl.challenge.type === 'phased' ? 'Ideas enter your challenge and progress through the stages togther' : 'Ideas enter your challenge and progress through the stages independent of other ideas' $}
           //- pre.text-left {$ $ctrl.challenge | json $}
               
-        ul.list-unstyled.challenge-stage-list-container.clearfix(ng-sortable="{animation: 350, draggable: '.sortable-item', chosenClass: 'sortable-chosen', grabHandle: 'sortable-grab', forceFallback: true}")
+        ul.list-unstyled.challenge-stage-list-container.clearfix(ng-sortable="$ctrl.sortableConf" draggable="false")
           li.challenge-stage-list-item.ng-anim-fade(
             ng-repeat="stage in $ctrl.challenge.stages track by stage.id"
             ng-class="!stage.editSettings.sortable ? 'fixed-item' : 'sortable-item'"

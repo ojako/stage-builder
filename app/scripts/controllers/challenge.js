@@ -126,6 +126,13 @@ angular.module('stageBuilderApp')
     controller: function() {
         var ctrl = this;
 
+        ctrl.sortableConf = {
+            animation: 350,
+            chosenClass: 'sortable-chosen',
+            handle: '.grab-handle',
+            forceFallback: true,
+        };
+
         ctrl.timeOut = true;
 
         // ctrl.helperObjectProgress = function(stage) {
