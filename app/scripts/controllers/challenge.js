@@ -303,6 +303,7 @@ angular.module('stageBuilderApp')
         helperObjectStages: '<',
         helpOpen: '=',
         helpObject: '<',
+        currentPage: '<',
     },
     controller: function() {
         var ctrl = this;
@@ -325,6 +326,10 @@ angular.module('stageBuilderApp')
         };
         ctrl.showContents = function() {
             ctrl.showContents = true;
+        };
+
+        ctrl.$onInit = function() {
+            ctrl.currentArticle = ctrl.helpObject.documents.pages[ctrl.currentPage].articles[0];
         };
         // ctrl.selectArticle(ctrl.helpObject.documents.pages[Object.keys(obj)[0]]);
     }
