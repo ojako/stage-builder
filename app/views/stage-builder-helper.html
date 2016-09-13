@@ -14,9 +14,11 @@
           </ul>
         </div>
         <div ng-class="{'collapsed': $ctrl.showContents}" ng-click="$ctrl.showContents = !$ctrl.showContents" class="article-viewer-collapse"></div>
-        <div class="article-viewer-body">       
-          <h4>{$ $ctrl.currentArticle.name $}</h4>
-          <p>{$ $ctrl.currentArticle.content $}</p>
+        <div class="article-viewer-body">
+          <div class="article-viewer-body-inner">
+            <h4>{$ $ctrl.currentArticle.name ? $ctrl.currentArticle.name : 'Help' $}</h4>
+            <p>{$ $ctrl.currentArticle.content ? $ctrl.currentArticle.content : 'Select a help article on the left to learn more.' $}</p>
+          </div>
         </div>
       </article>
     </div>

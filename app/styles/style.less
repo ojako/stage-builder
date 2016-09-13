@@ -45,7 +45,7 @@ form {
 
 .challenge-sticky-header {
   top: 50px;
-  padding: 0.5em 0.25em;
+  padding: 0.5em 0;
   z-index: @challenge-stage-z-index + 50;
   margin: 0;
 }
@@ -266,7 +266,6 @@ form {
   word-wrap: break-word;
   padding: 0.2em 0.5em;
   color: #111;
-  background: white;
   height: auto;
   width: 100%;
   text-align: left;
@@ -282,9 +281,14 @@ form {
     font-size: 1.5em;
     width: 100%;
     padding: 0.05em 0.35em;
-    border-radius: 0;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
     &:focus {
       outline: 0;
+    }
+    &+.well {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
     }
   }
   &:after {
@@ -371,11 +375,10 @@ form {
   }
 }
 
-
 .article-viewer {
-  background: #ececec;
   border: 1px solid #cecece;
-  border-radius: 5px;
+  border-right: 0;
+  border-left: 0;
   margin-bottom: 1em;
   overflow: hidden;
   .article-viewer-menu,
@@ -390,15 +393,31 @@ form {
     border-right: 1px solid #cecece;
     padding: 3px 5px;
     width: 15em;
+    position: relative;
     > ul {
       margin: 0;
       list-style: none;
-      padding: 0;
+      padding: 3px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      overflow: scroll;
       > li {
         > ol {
           display: block;
-          border-left: 2px solid darkgrey;
           padding-left: 1.5em;
+          padding: 0;
+          list-style: decimal inside;
+          > li {
+            outline: none;
+            padding: 2px 5px;
+            border-radius: 5px;
+            &.active {
+              background: #ececec;
+            }
+          }
         }
       }
     }
@@ -406,22 +425,27 @@ form {
   .article-viewer-body {
     background: white;
     padding: 1em 1.5em;
+    &.acticle-viewer-body-inner {
+      display: block;
+      max-height: 10em;
+      min-height: 5em;
+    }
   }
   .article-viewer-collapse {
     background: white;
-    width: 5px;
+    width: 15px;
     color: grey;
-    border-right: 1px solid #ececec;
+    outline: none;
     &:hover {
-      background: #cecece;
-      color: white;
+      background: #ececec;
     }
     &:after {
       .fa();
+      color: inherit;
       content: @fa-var-angle-double-right;
       position: absolute;
-      top: 49%;
-      left: 1px;
+      top: 47%;
+      left: 3px;
       margin: 0;
       padding: 0;
     }

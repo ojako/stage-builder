@@ -106,6 +106,24 @@ angular.module('stageBuilderApp')
                             content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                             img: '',
                             keywords: '',
+                        },
+                        {
+                            name: 'Deleting Stages',
+                            content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                            img: '',
+                            keywords: '',
+                        },
+                        {
+                            name: 'Moving Stages',
+                            content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                            img: '',
+                            keywords: '',
+                        },
+                        {
+                            name: 'Progression Settings',
+                            content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                            img: '',
+                            keywords: '',
                         }
                     ],
                 },
@@ -288,8 +306,18 @@ angular.module('stageBuilderApp')
     },
     controller: function() {
         var ctrl = this;
-        ctrl.currentArticle = null;
+        ctrl.currentArticle = ctrl.helpObject.pages;
         ctrl.showContents = true;
+
+        // // Get the proper doc
+        // ctrl.getPage = function(page) {
+        //     var y = ctrl.helpObject.documents.pages.find(function(x) {
+        //         return x.type === type;
+        //     });
+        //
+        //     return y.description;
+        // };
+        // ctrl.getPage(ctrl.helpPage);
 
         ctrl.selectArticle = function(article) {
             ctrl.currentArticle = article;
@@ -298,6 +326,7 @@ angular.module('stageBuilderApp')
         ctrl.showContents = function() {
             ctrl.showContents = true;
         };
+        // ctrl.selectArticle(ctrl.helpObject.documents.pages[Object.keys(obj)[0]]);
     }
 })
 // Stage options/settings displayed in the inspector

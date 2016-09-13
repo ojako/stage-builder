@@ -18,12 +18,10 @@
           ng-class="{'collapsed': $ctrl.showContents}"
           ng-click="$ctrl.showContents = !$ctrl.showContents")
                 
-        .article-viewer-body        
-          h4 {$ $ctrl.currentArticle.name $}
-          p {$ $ctrl.currentArticle.content $}
-        
-            
-        
+        .article-viewer-body
+          .article-viewer-body-inner
+            h4 {$ $ctrl.currentArticle.name ? $ctrl.currentArticle.name : 'Help' $}
+            p {$ $ctrl.currentArticle.content ? $ctrl.currentArticle.content : 'Select a help article on the left to learn more.' $}
         
     //- div(ng-switch-default)
     //-   h3 Default Stage
