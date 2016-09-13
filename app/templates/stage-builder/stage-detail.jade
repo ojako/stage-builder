@@ -22,10 +22,9 @@ article.challenge-stage.clearfix(
         i.fa.fa-ellipsis-h
       form.row
         .col-sm-6
-          .form-group
-            h2.col-xs-12.input-fancy #[input(ng-model="$ctrl.stage.name", type="text" placeholder="give your stage a name" required)]
-              .well.well-sm.clearfix
-                em.col-xs-12 {$ $ctrl.getStageTypeDesc($ctrl.stage.type) $}
+          h2.col-xs-12.input-fancy.clearfix #[input(ng-model="$ctrl.stage.name", type="text" placeholder="give your stage a name" required)]
+            .well.well-sm.clearfix
+              em {$ $ctrl.getStageTypeDesc($ctrl.stage.type) $}
               //- //- Type set
               //- .btn-group(uib-dropdown, ng-if="!$ctrl.stage.fixed")
               //-   button.btn.btn-select(uib-dropdown-toggle, dropdown-append-to-body) {$ $ctrl.stage.type $}
@@ -36,7 +35,7 @@ article.challenge-stage.clearfix(
               //-       ng-class="type"
               //-     ) #[span(ng-class="type")] {$ type $}
 
-        .col-sm-6.stage-detail-hud
+        .col-sm-6.stage-detail-hud.clearfix
           .row
             .col-xs-12
               .form-group
@@ -93,12 +92,19 @@ article.challenge-stage.clearfix(
                 //-       | {$ $ctrl.showMore ? 'Show Less' : 'Customise' $} #[span.fa(ng-class="$ctrl.showMore ? 'fa-chevron-up' : 'fa-chevron-down'")]
               div(uib-tab, heading="Evaluators", ng-if="$ctrl.stage.type === 'Evaluate'")
                 .form-group
+                  p Evaluators are appointed by:
+                  label.radio #[input(type="radio")] by category
+                  label.radio #[input(type="radio")] by challenge
+                .form-group
                   input.form-control(type="text", ng-model="selected", uib-typeahead="name for name in $ctrl.users | filter:$viewValue | limitTo:8")
                   pre {$ selected | json $}
                   label Send evaluators this message:
                   textarea.btn-block(placeholder="You have a new idea to evaluate")
                   label.input-radio 
                     | Evaluators can invite additional people on specific ideas #[input(type="checkbox")]
+                .form-group
+                  p Evaluators receive this message when tey have an idea to evaluate:
+                  textarea(name="", cols="30", rows="10")
                     
               div(uib-tab, heading="Progression Settings")
                 stage-progression-options(progression="$ctrl.stage.progression")

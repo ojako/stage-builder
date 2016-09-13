@@ -289,6 +289,14 @@ form {
     &+.well {
       border-top-left-radius: 0;
       border-top-right-radius: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      @media screen and (max-width: 769px) {
+        white-space: nowrap;
+      }
+      &:hover {
+        white-space: normal;
+      }
     }
   }
   &:after {
@@ -380,6 +388,7 @@ form {
   border-right: 0;
   border-left: 0;
   margin-bottom: 1em;
+  background: white;
   overflow: hidden;
   .article-viewer-menu,
   .article-viewer-body,
@@ -423,11 +432,9 @@ form {
     }
   }
   .article-viewer-body {
-    background: white;
-    padding: 1em 1.5em;
-    &.acticle-viewer-body-inner {
+    &.article-viewer-body-inner {
       display: block;
-      max-height: 10em;
+      max-height: 15em;
       min-height: 5em;
     }
   }

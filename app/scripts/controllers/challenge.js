@@ -251,7 +251,7 @@ angular.module('stageBuilderApp')
             // Randomly populate for testing
             for(var i=0; i<randomNumber; i++) {
                 var name = randomSelector(ctrl.stageTypes);
-                ctrl.addStage(name, 1);
+                ctrl.addStage(name.type, 1);
             }
             // Create special stage Close
             ctrl.challenge.stages.splice(ctrl.challenge.stages.length, 0, {
@@ -269,7 +269,7 @@ angular.module('stageBuilderApp')
             });
         };
         // 0 = default (just open/close stages)
-        bootstrapStages(0);
+        bootstrapStages(5);
 
         // Grab sticky classes
         var stickyElements = document.getElementsByClassName('sticky');

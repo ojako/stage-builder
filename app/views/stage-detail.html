@@ -16,14 +16,13 @@
       <div ng-show="!$ctrl.stage.editSettings.fixed" class="grab-handle"><i class="fa fa-ellipsis-h"></i></div>
       <form class="row">
         <div class="col-sm-6">
-          <div class="form-group">
-            <h2 class="col-xs-12 input-fancy">
-              <input ng-model="$ctrl.stage.name" type="text" placeholder="give your stage a name" required="required"/>
-              <div class="well well-sm clearfix"><em class="col-xs-12">{$ $ctrl.getStageTypeDesc($ctrl.stage.type) $}</em></div>
-            </h2>
-          </div>
+          <h2 class="col-xs-12 input-fancy clearfix">
+            <input ng-model="$ctrl.stage.name" type="text" placeholder="give your stage a name" required="required"/>
+            <div class="well well-sm clearfix"><em>{$ $ctrl.getStageTypeDesc($ctrl.stage.type) $}</em>
+            </div>
+          </h2>
         </div>
-        <div class="col-sm-6 stage-detail-hud">
+        <div class="col-sm-6 stage-detail-hud clearfix">
           <div class="row">
             <div class="col-xs-12">
               <div class="form-group">
@@ -59,6 +58,15 @@
               </div>
               <div uib-tab="uib-tab" heading="Evaluators" ng-if="$ctrl.stage.type === 'Evaluate'">
                 <div class="form-group">
+                  <p>Evaluators are appointed by:</p>
+                  <label class="radio">
+                    <input type="radio"/> by category
+                  </label>
+                  <label class="radio">
+                    <input type="radio"/> by challenge
+                  </label>
+                </div>
+                <div class="form-group">
                   <input type="text" ng-model="selected" uib-typeahead="name for name in $ctrl.users | filter:$viewValue | limitTo:8" class="form-control"/>
                   <pre>{$ selected | json $}</pre>
                   <label>Send evaluators this message:</label>
@@ -66,6 +74,10 @@
                   <label class="input-radio"> Evaluators can invite additional people on specific ideas 
                     <input type="checkbox"/>
                   </label>
+                </div>
+                <div class="form-group">
+                  <p>Evaluators receive this message when tey have an idea to evaluate:</p>
+                  <textarea name="" cols="30" rows="10"></textarea>
                 </div>
               </div>
               <div uib-tab="uib-tab" heading="Progression Settings">
