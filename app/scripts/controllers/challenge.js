@@ -66,7 +66,7 @@ angular.module('stageBuilderApp')
         },
     ];
 
-    vm.helpOpen = true;
+    vm.helpOpen = false;
     /* Helper Object */
     vm.helperObject = {
         // Is open?

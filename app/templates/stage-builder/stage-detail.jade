@@ -22,8 +22,8 @@ article.challenge-stage.clearfix(
         i.fa.fa-ellipsis-h
       form.row
         .col-sm-6
-          h2.col-xs-12.input-fancy.clearfix #[input(ng-model="$ctrl.stage.name", type="text" placeholder="give your stage a name" required)]
-            .well.well-sm.clearfix
+          h2.col-xs-12.input-fancy #[input(ng-model="$ctrl.stage.name", type="text" placeholder="give your stage a name" required)]
+            .well.well-sm
               em {$ $ctrl.getStageTypeDesc($ctrl.stage.type) $}
               //- //- Type set
               //- .btn-group(uib-dropdown, ng-if="!$ctrl.stage.fixed")
@@ -35,7 +35,7 @@ article.challenge-stage.clearfix(
               //-       ng-class="type"
               //-     ) #[span(ng-class="type")] {$ type $}
 
-        .col-sm-6.stage-detail-hud.clearfix
+        .col-sm-6.stage-detail-hud
           .row
             .col-xs-12
               .form-group
