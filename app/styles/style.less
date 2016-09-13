@@ -236,9 +236,13 @@ form {
     //   }
     // }
     .stage-detail-hud {
-      clear: both;
+      clear: right;
       margin-top: 1em;
       padding: 0 1.5em;
+      // bit of margin for connector wording
+      .form-group > span {
+        margin: 0 0.5em;
+      }
     }
   }
 }
@@ -269,6 +273,7 @@ form {
   color: #111;
   height: auto;
   width: 100%;
+  clear: both;
   text-align: left;
   position: relative;
   margin: 0.5em 0 0 0;
@@ -290,7 +295,9 @@ form {
     &+.well {
       border-top-left-radius: 0;
       border-top-right-radius: 0;
+      clear: both;
       overflow: hidden;
+      margin-bottom: 0;
       text-overflow: ellipsis;
       @media screen and (max-width: 769px) {
         white-space: nowrap;

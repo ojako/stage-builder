@@ -15,7 +15,7 @@
     <div ng-show="!$ctrl.stage.deleted">
       <div ng-show="!$ctrl.stage.editSettings.fixed" class="grab-handle"><i class="fa fa-ellipsis-h"></i></div>
       <form class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6 clearfix">
           <h2 class="col-xs-12 input-fancy">
             <input ng-model="$ctrl.stage.name" type="text" placeholder="give your stage a name" required="required"/>
             <div class="well well-sm"><em>{$ $ctrl.getStageTypeDesc($ctrl.stage.type) $}</em>
@@ -23,28 +23,20 @@
           </h2>
         </div>
         <div class="col-sm-6 stage-detail-hud">
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="form-group">
-                <div class="btn btn-icon-info">
-                  <div class="fa fa-eye"></div> {$ $ctrl.stage.ideaVisibility ? 'Ideas Visible' : 'Ideas Hidden' $}
-                </div>
-                <div class="btn btn-icon-info">
-                  <div class="fa fa-calendar"></div> 7 Days Left to Complete
-                </div>
-              </div>
+          <div class="form-group">
+            <div class="btn btn-icon-info">
+              <div class="fa fa-eye"></div> {$ $ctrl.stage.ideaVisibility ? 'Ideas Visible' : 'Ideas Hidden' $}
+            </div>
+            <div class="btn btn-icon-info">
+              <div class="fa fa-calendar"></div> 7 Days Left to Complete
             </div>
           </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="form-group">
-                <div class="btn btn-icon-info">
-                  <div class="fa fa-line-chart"></div> 7 Votes or 5 Comments
-                </div>or
-                <div class="btn btn-icon-info">
-                  <div class="fa fa-clock-o"></div> 5 days
-                </div>
-              </div>
+          <div class="form-group">
+            <div class="btn btn-icon-info">
+              <div class="fa fa-line-chart"></div> 7 Votes or 5 Comments
+            </div>or
+            <div class="btn btn-icon-info">
+              <div class="fa fa-clock-o"></div> 5 days
             </div>
           </div>
         </div>
@@ -57,28 +49,30 @@
                 <stage-builder-options stage="$ctrl.stage" users="$ctrl.users"></stage-builder-options>
               </div>
               <div uib-tab="uib-tab" heading="Evaluators" ng-if="$ctrl.stage.type === 'Evaluate'">
-                <div class="form-group">
-                  <p>Evaluators are appointed by:</p>
-                  <label class="radio">
-                    <input type="radio"/> by category
-                  </label>
-                  <label class="radio">
-                    <input type="radio"/> by challenge
-                  </label>
-                </div>
-                <div class="form-group">
-                  <input type="text" ng-model="selected" uib-typeahead="name for name in $ctrl.users | filter:$viewValue | limitTo:8" class="form-control"/>
-                  <pre>{$ selected | json $}</pre>
-                  <label>Send evaluators this message:</label>
-                  <textarea placeholder="You have a new idea to evaluate" class="btn-block"></textarea>
-                  <label class="input-radio"> Evaluators can invite additional people on specific ideas 
-                    <input type="checkbox"/>
-                  </label>
-                </div>
-                <div class="form-group">
-                  <p>Evaluators receive this message when tey have an idea to evaluate:</p>
-                  <textarea name="" cols="30" rows="10"></textarea>
-                </div>
+                <form>
+                  <div class="form-group">
+                    <p>Evaluators are appointed by:</p>
+                    <label class="radio">
+                      <input type="radio"/> by category
+                    </label>
+                    <label class="radio">
+                      <input type="radio"/> by challenge
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" ng-model="selected" uib-typeahead="name for name in $ctrl.users | filter:$viewValue | limitTo:8" class="form-control"/>
+                    <pre>{$ selected | json $}</pre>
+                    <label>Send evaluators this message:</label>
+                    <textarea placeholder="You have a new idea to evaluate" class="btn-block"></textarea>
+                    <label class="input-radio"> Evaluators can invite additional people on specific ideas 
+                      <input type="checkbox"/>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <p>Evaluators receive this message when tey have an idea to evaluate:</p>
+                    <textarea name="" cols="30" rows="10"></textarea>
+                  </div>
+                </form>
               </div>
               <div uib-tab="uib-tab" heading="Progression Settings">
                 <stage-progression-options progression="$ctrl.stage.progression"></stage-progression-options>
