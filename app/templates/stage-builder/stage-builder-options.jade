@@ -1,4 +1,5 @@
 // output:../../views/stage-builder-options.html
+
 //- Various options defined by stage type
 form.stage-builder-options(name="stageOptions", ng-model="$ctrl.stage" ng-switch="$ctrl.stage.type")
 
@@ -17,14 +18,14 @@ form.stage-builder-options(name="stageOptions", ng-model="$ctrl.stage" ng-switch
         input(type="checkbox")
         | No
       textarea.btn-block(placeholder="Thanks for adding your idea...")
-      
+
     .form-group
       p Are ideas visible to anyone?
       label.input-radio
         | #[input(type="checkbox")] Yes - anyone can see ideas
       label.input-radio
         | #[input(type="checkbox")] No - only admins can see ideas
-          
+
   div(ng-switch-when="Rank")
     uib-tabset
       uib-tab(heading="Criteria")
@@ -45,13 +46,12 @@ form.stage-builder-options(name="stageOptions", ng-model="$ctrl.stage" ng-switch
         .form-group
           label.input-checkbox
             | Evaluators can invite additional people on specific ideas #[input(type="checkbox")]
-          
-    
+
   div(ng-switch-when="Review")
     div
       label.input-checkbox
         | #[input(type="checkbox")] Do something?
-        
+
   div(ng-switch-when="Discuss")
     div
       label.input-radio
@@ -59,14 +59,14 @@ form.stage-builder-options(name="stageOptions", ng-model="$ctrl.stage" ng-switch
     div
       label.input-radio
         | #[input(type="radio")] No - only Admins can see ideas
-  
+
   div(ng-switch-when="Evaluate")
     .form-group
       p Ideas are evaluated by
       label
         .input-radio #[input(type="radio")] Categories
         .input-radio #[input(type="radio")] Challenge
-      
+
   div(ng-switch-when="Develop")
     .form-group
       img.img-responsive(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/318382/Screen_Shot_2016-08-08_at_11.30.55.png", alt="drag and dropper")
@@ -82,7 +82,7 @@ form.stage-builder-options(name="stageOptions", ng-model="$ctrl.stage" ng-switch
         | #[input(type="checkbox")] Yes - anyone can see ideas
       label.input-checkbox
         | #[input(type="checkbox")] No - only Admins can see ideas
-      
+
   div(ng-switch-when="Measure")
     p Select an idea form:
     .form-group
@@ -93,5 +93,3 @@ form.stage-builder-options(name="stageOptions", ng-model="$ctrl.stage" ng-switch
         | #[input(type="radio")] Yes - anyone can see ideas
       label.input-radio
         | #[input(type="radio")] No - only admins can see ideas
-      
-  

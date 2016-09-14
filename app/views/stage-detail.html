@@ -8,8 +8,10 @@
   </div>
   <div ng-class="{'challenge-stage-auto-width': $ctrl.stage.deleted}" class="challenge-stage-inner clearfix">
     <div ng-show="$ctrl.stage.deleted" class="ng-hide">
-      <p>Stage removed ({$ $ctrl.stage.name $}). Click 
-        <button ng-click="$ctrl.stage.deleted = false; $ctrl.stage.editSettings.sortable = true" title="undo" class="btn btn-link">'here'</button> to undo <span ng-click="$ctrl.delete()"><i class="fa fa-times"></i></span>
+      <p>Stage removed ({$ $ctrl.stage.name $})</p>
+      <p>
+        <button ng-click="$ctrl.stage.deleted = false; $ctrl.stage.editSettings.sortable = true" title="undo" class="btn btn-success btn-xs">Undo <i class="fa fa-undo"></i></button> 
+        <button ng-click="$ctrl.delete()" class="btn btn-warning btn-xs">Remove <i class="fa fa-times"></i></button>
       </p>
     </div>
     <div ng-show="!$ctrl.stage.deleted">
@@ -18,33 +20,28 @@
         <div class="col-sm-6 clearfix">
           <h2 class="col-xs-12 input-fancy">
             <input ng-model="$ctrl.stage.name" type="text" placeholder="give your stage a name" required="required"/>
-            <div class="well well-sm"><em>{$ $ctrl.getStageTypeDesc($ctrl.stage.type) $}</em>
-            </div>
+            <div class="well well-sm"><em>{$ $ctrl.getStageTypeDesc($ctrl.stage.type) $}</em></div>
           </h2>
         </div>
         <div class="col-sm-6 stage-detail-hud">
-          <div class="form-group">
-            <div class="btn btn-icon-info">
-              <div class="fa fa-eye"></div> {$ $ctrl.stage.ideaVisibility ? 'Ideas Visible' : 'Ideas Hidden' $}
-            </div>
-            <div class="btn btn-icon-info">
-              <div class="fa fa-calendar"></div> 7 Days Left to Complete
-            </div>
+          <div class="btn btn-icon-info">
+            <div class="fa fa-eye"></div> {$ $ctrl.stage.ideaVisibility ? 'Ideas Visible' : 'Ideas Hidden' $}
           </div>
-          <div class="form-group">
-            <div class="btn btn-icon-info">
-              <div class="fa fa-line-chart"></div> 7 Votes or 5 Comments
-            </div>or
-            <div class="btn btn-icon-info">
-              <div class="fa fa-clock-o"></div> 5 days
-            </div>
+          <div class="btn btn-icon-info">
+            <div class="fa fa-calendar"></div> 7 Days Left to Complete
+          </div>
+          <div class="btn btn-icon-info">
+            <div class="fa fa-line-chart"></div> 7 Votes or 5 Comments
+          </div><span>or</span>
+          <div class="btn btn-icon-info">
+            <div class="fa fa-clock-o"></div> 5 days
           </div>
         </div>
       </form>
       <div class="row">   
         <div class="col-xs-12">
           <div ng-class="{'anim-dropdown-show': $ctrl.showMore}" class="anim-dropdown clearfix">
-            <div uib-tabset="uib-tabset">
+            <div uib-tabset="uib-tabset" class="challenge-stage-expanded-options">
               <div uib-tab="uib-tab" heading="Stage Settings">
                 <stage-builder-options stage="$ctrl.stage" users="$ctrl.users"></stage-builder-options>
               </div>

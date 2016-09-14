@@ -3,19 +3,17 @@
   <div class="col-xs-12">
     <div class="challenge-stages-container">
       <div ng-if="!alwaysTrue">
-        <div class="panel panel-sm panel-success select-top text-center">
-          <div class="panel-heading">
+        <div class="callout callout-sm callout-top select-top text-center">
+          <div class="callout-heading">
             <h4>Set Phased or Parallel</h4>
           </div>
-          <div class="panel-body">
-            <div class="form-group">
-              <label class="btn btn-label">
-                <input type="radio" ng-model="$ctrl.challenge.type" value="phased"/> Phased
-              </label>
-              <label class="btn btn-label">
-                <input type="radio" ng-model="$ctrl.challenge.type" value="parallel"/> Parallel
-              </label><em class="btn-block">{$ $ctrl.challenge.type === 'phased' ? 'Ideas enter your challenge and progress through the stages togther' : 'Ideas enter your challenge and progress through the stages independent of other ideas' $}</em>
-            </div>
+          <div class="form-group">
+            <label class="btn btn-label">
+              <input type="radio" ng-model="$ctrl.challenge.type" value="phased"/> Phased
+            </label>
+            <label class="btn btn-label">
+              <input type="radio" ng-model="$ctrl.challenge.type" value="parallel"/> Parallel
+            </label><em class="btn-block">{$ $ctrl.challenge.type === 'phased' ? 'Ideas enter your challenge and progress through the stages togther' : 'Ideas enter your challenge and progress through the stages independent of other ideas' $}</em>
           </div>
         </div>
         <ul ng-sortable="$ctrl.sortableConf" draggable="false" class="list-unstyled challenge-stage-list-container clearfix">

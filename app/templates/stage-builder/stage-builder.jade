@@ -3,30 +3,24 @@
 .row
   .col-xs-12
     .challenge-stages-container
-        
-      //- span.pull-right
-      //-   button.btn.btn-link #[fa.fa.fa-chevron-left] Previous
-      //-   button.btn.btn-link Next #[fa.fa.fa-chevron-right]
 
       //- Challenge list
       //- !alwaysTrue hack
       div(ng-if="!alwaysTrue")
+      
         //- Phased or Parallel
-        .panel.panel-sm.panel-success.select-top.text-center
-          //- form(name="parallelOrPhased")
-          .panel-heading
+        .callout.callout-sm.callout-top.select-top.text-center
+          .callout-heading
             h4 Set Phased or Parallel
-          .panel-body
-            .form-group
-              label.btn.btn-label
-                | #[input(type="radio", ng-model="$ctrl.challenge.type", value="phased")] Phased
-                
-              label.btn.btn-label
-                | #[input(type="radio", ng-model="$ctrl.challenge.type", value="parallel")] Parallel
-            
-              em.btn-block {$ $ctrl.challenge.type === 'phased' ? 'Ideas enter your challenge and progress through the stages togther' : 'Ideas enter your challenge and progress through the stages independent of other ideas' $}
-          //- pre.text-left {$ $ctrl.challenge | json $}
+          .form-group
+            label.btn.btn-label
+              | #[input(type="radio", ng-model="$ctrl.challenge.type", value="phased")] Phased
               
+            label.btn.btn-label
+              | #[input(type="radio", ng-model="$ctrl.challenge.type", value="parallel")] Parallel
+
+            em.btn-block {$ $ctrl.challenge.type === 'phased' ? 'Ideas enter your challenge and progress through the stages togther' : 'Ideas enter your challenge and progress through the stages independent of other ideas' $}
+
         ul.list-unstyled.challenge-stage-list-container.clearfix(ng-sortable="$ctrl.sortableConf" draggable="false")
           li.challenge-stage-list-item.ng-anim-fade(
             ng-repeat="stage in $ctrl.challenge.stages track by stage.id"

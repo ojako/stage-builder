@@ -8,10 +8,7 @@
 .row
   .disco-filter-top.challenge-sticky-header.sticky.clearfix.text-center
     stage-build-helper(helper-object-current-stage="$ctrl.helperObjectCurrentStage", helper-object-stages="$ctrl.helperObjectStages", help-open="vm.helpOpen", help-object="vm.helperObject" current-page="'challengeBuilder'")
-    //- button.btn.btn-success Validated #[i.fa.fa-check]
     buton.btn.btn-link.pull-left(ng-click="vm.helpOpen = !vm.helpOpen") {$ vm.helpOpen ? 'Close' : 'Open' $} Help #[i.fa.fa-question]
-    //- button.btn.btn-warning(ng-show="$ctrl.deletedStages.length > 0", ng-click="$ctrl.undoDelete()") Undo Remove {$ $ctrl.deletedStages[0].name $}
-    //- Start stage add
     span
       ul.pagination
         li #[a #[i.fa.fa-chevron-left]]
@@ -19,15 +16,7 @@
         li.active #[a Flow]
         li #[a Publish]
         li #[a #[i.fa.fa-chevron-right]]
-        //- h2.text-center {$ challenge.title $}
-      //- p.lead.text-center {$ vm.challenge.lead $}
-    //- .challenge-wizard
-    //-   img.img-responsive(src="images/wizard.png", alt="wizard")
-      //- ul.list-unstyled
-      //-   li Start
-      //-   li Design
-      //-   li.active Build
-      //-   li Publish
+
 .row
   .col-xs-12
     stage-builder(users="vm.users", challenge="vm.challenge", stage-types="vm.stageTypes", progression-types="vm.progressionTypes")

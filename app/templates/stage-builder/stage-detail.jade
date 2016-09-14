@@ -1,22 +1,27 @@
 // output:../../views/stage-detail.html
-  
+
 //- Individual Stages
 article.challenge-stage.clearfix(
   ng-model="challengeStage"
   ng-class="[{'fixed': $ctrl.stage.editSettings.fixed}, {'first-stage': $ctrl.first}, {'last-stage': $ctrl.last}, [$ctrl.stage.type]]"
   ng-cloak)
+
+  //- Timeline bar running down left side
   .timeline-bar
     .timeline-knuckle(ng-class="$ctrl.stage.type")
+
+  //- Remove/delete stage
   .challenge-stage-detail-toolbar.text-center(ng-show="!$ctrl.stage.deleted && !$ctrl.stage.editSettings.fixed")
-    //- button(ng-if="$ctrl.stage.sortable")
-    //-   | #[i.fa.fa-arrows]
     button(ng-click="$ctrl.delete();")
       | #[i.fa.fa-trash]
-  
+
+  //- Inside wrapper contains content
   .challenge-stage-inner.clearfix(ng-class="{'challenge-stage-auto-width': $ctrl.stage.deleted}")
     div.ng-hide(ng-show="$ctrl.stage.deleted")
-      p Stage removed ({$ $ctrl.stage.name $}). Click #[button.btn.btn-link(ng-click="$ctrl.stage.deleted = false; $ctrl.stage.editSettings.sortable = true", title="undo") 'here'] to undo #[span(ng-click="$ctrl.delete()") #[i.fa.fa-times]]
-    
+      p Stage removed ({$ $ctrl.stage.name $})
+      p #[button.btn.btn-success.btn-xs(ng-click="$ctrl.stage.deleted = false; $ctrl.stage.editSettings.sortable = true", title="undo") Undo #[i.fa.fa-undo]] #[button.btn.btn-warning.btn-xs(ng-click="$ctrl.delete()") Remove #[i.fa.fa-times]]
+
+    //- Main content hide when stage is deleted
     div(ng-show="!$ctrl.stage.deleted")
       .grab-handle(ng-show="!$ctrl.stage.editSettings.fixed")
         i.fa.fa-ellipsis-h
@@ -25,67 +30,32 @@ article.challenge-stage.clearfix(
           h2.col-xs-12.input-fancy #[input(ng-model="$ctrl.stage.name", type="text" placeholder="give your stage a name" required)]
             .well.well-sm
               em {$ $ctrl.getStageTypeDesc($ctrl.stage.type) $}
-              //- //- Type set
-              //- .btn-group(uib-dropdown, ng-if="!$ctrl.stage.fixed")
-              //-   button.btn.btn-select(uib-dropdown-toggle, dropdown-append-to-body) {$ $ctrl.stage.type $}
-              //-   ul.dropdown-menu.list-group.stage-builder-menu
-              //-     li.list-group-item(
-              //-       ng-click="$ctrl.changeType(type)"
-              //-       ng-repeat="type in $ctrl.stageTypes track by $index"
-              //-       ng-class="type"
-              //-     ) #[span(ng-class="type")] {$ type $}
 
+        //- Heads up info about the stage
         .col-sm-6.stage-detail-hud
-          .form-group
-            //- Set Visibility
-            .btn.btn-icon-info
-              | #[.fa.fa-eye] {$ $ctrl.stage.ideaVisibility ? 'Ideas Visible' : 'Ideas Hidden' $}
-            .btn.btn-icon-info
-              | #[.fa.fa-calendar] 7 Days Left to Complete
-            //- .btn.btn-icon-info
-            //-   | #[.fa.fa-eye] {$ $ctrl.stage.ideaVisibility ? 'Ideas Visible' : 'Ideas Hidden' $}
-          .form-group
-            .btn.btn-icon-info
-              | #[.fa.fa-line-chart] 7 Votes or 5 Comments
-            | or
-            .btn.btn-icon-info
-              | #[.fa.fa-clock-o] 5 days
-            //- .btn-group(uib-dropdown)
-            //-   button.btn.btn-select(uib-dropdown-toggle) Idea visibility: {$ $ctrl.stage.ideaVisibility $}
-            //-   ul.dropdown-menu.list-group
-            //-     li.list-group-item(
-            //-       ng-show="!$ctrl.stage.ideaVisibility"
-            //-       ng-click="$ctrl.stage.ideaVisibility = true"
-            //-       ng-class="type"
-            //-     ) #[span(ng-class="type")] Visible
-            //-     li.list-group-item(
-            //-       ng-show="$ctrl.stage.ideaVisibility"
-            //-       ng-click="$ctrl.stage.ideaVisibility = false"
-            //-       ng-class="type"
-            //-     ) #[span(ng-class="type")] Hidden
-            //-     
-            //- p.input-group
-            //-   input(type="text", class="form-control", uib-datepicker-popup, ng-model="whatever", ng-required="true", close-text="Close")
-            //-   span.input-group-btn
-            //-     button.btn.btn-default(type="button") #[i.glyphicon.glyphicon-calendar]
-                
-            //- button.btn.btn-link Progression: {$ $ctrl.stage.progression.type $}
+          .btn.btn-icon-info
+            | #[.fa.fa-eye] {$ $ctrl.stage.ideaVisibility ? 'Ideas Visible' : 'Ideas Hidden' $}
+          .btn.btn-icon-info
+            | #[.fa.fa-calendar] 7 Days Left to Complete
+          .btn.btn-icon-info
+            | #[.fa.fa-line-chart] 7 Votes or 5 Comments
+          | #[span or]
+          .btn.btn-icon-info
+            | #[.fa.fa-clock-o] 5 days
 
       .row    
         .col-xs-12
+          //- Show/Hide further details
           .anim-dropdown.clearfix(ng-class="{'anim-dropdown-show': $ctrl.showMore}")
-            div(uib-tabset)
+
+            //- Stage options tabs
+            .challenge-stage-expanded-options(uib-tabset)
+
+              //- General stage settings
               div(uib-tab, heading="Stage Settings")
                 stage-builder-options(stage="$ctrl.stage", users="$ctrl.users")
-                //- .row
-                //-   .anim-dropdown.clearfix(ng-class="{'anim-dropdown-show': $ctrl.showMore}")
-                //-     .form-group
-                //-       p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.votes", placeholder="votes")]
-                //-       p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.views", placeholder="views")]
-                //-       p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.days", placeholder="days")]   
-                //-   .show-more-link
-                //-     button.btn.btn-link(ng-click="$ctrl.showMore = !$ctrl.showMore")
-                //-       | {$ $ctrl.showMore ? 'Show Less' : 'Customise' $} #[span.fa(ng-class="$ctrl.showMore ? 'fa-chevron-up' : 'fa-chevron-down'")]
+
+              //- Tab for evualator only when stage = evaluate
               div(uib-tab, heading="Evaluators", ng-if="$ctrl.stage.type === 'Evaluate'")
                 form
                   .form-group
@@ -102,22 +72,16 @@ article.challenge-stage.clearfix(
                   .form-group
                     p Evaluators receive this message when tey have an idea to evaluate:
                     textarea(name="", cols="30", rows="10")
-                    
+
+              //- Progression settings
               div(uib-tab, heading="Progression Settings")
                 stage-progression-options(progression="$ctrl.stage.progression")
-                
+
+              //- TODO: Remove this dev stage
               div.pull-right(uib-tab, heading="</>")
                 pre {$ $ctrl.stage | json $}
-                //- p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste enim dolorem aliquam a, nostrum iusto quidem odio alias maxime nam ullam, voluptate dignissimos vero commodi doloremque nesciunt magnam, reiciendis facilis.
-                //- .form-group
-                //-   span Ideas are
-                //-   select(required, ng-model="$ctrl.progress.visible")
-                //-     option(value="visible") Visible
-                //-     option(value="hidden") Hidden
-                //- .form-group
-                //-   p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.votes", placeholder="votes")]
-                //-   p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.views", placeholder="views")]
-                //-   p Progress when reach #[input(type="number", min="1", required, ng-model="$ctrl.progress.days", placeholder="days")]
+
+          //- Display expanded settings
           .show-more-link
             button.btn.btn-link(ng-click="$ctrl.showMore = !$ctrl.showMore")
               | {$ $ctrl.showMore ? 'Show Less' : 'Customise' $} #[i.fa(ng-class="$ctrl.showMore ? 'fa-chevron-up' : 'fa-chevron-down'")]

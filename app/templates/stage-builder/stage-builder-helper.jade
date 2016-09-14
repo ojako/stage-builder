@@ -22,36 +22,3 @@
           .article-viewer-body-inner
             h4 {$ $ctrl.currentArticle.name ? $ctrl.currentArticle.name : 'Help' $}
             p {$ $ctrl.currentArticle.content ? $ctrl.currentArticle.content : 'Select a help article on the left to learn more.' $}
-        
-    //- div(ng-switch-default)
-    //-   h3 Default Stage
-    //-   p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumdoloribus quis totam architecto sint id. Sit.
-    //- div(ng-switch-when="bootstrapChallenge")
-    //-   h3 {$ $ctrl.helperObjectCurrentStage $}
-    //-   p We've started you off with a basic stage setup with manual progression. The first stage is always your open stage where you can begin to collect ideas. The last stage is where we end the challenge and measure the outcome.
-    //- div(ng-switch-when="createStage")
-    //-   h3 {$ $ctrl.helperObjectCurrentStage $}
-    //-   p We've started you off with a basic stage setup with manual progression. The first stage is always your open stage where you can begin to collect ideas. The last stage is where we end the challenge and measure the outcome.
-    //-   p This is all you need in order to create a challenge. Would you like to know more about setting up your challenge?
-    //- div(ng-switch-when="removeStage")
-    //-   h3 {$ $ctrl.helperObjectCurrentStage $}
-    //-   p We've started you off with a basic stage setup with manual progression. The first stage is always your open stage where you can begin to collect ideas. The last stage is where we end the challenge and measure the outcome.
-    //-   p This is all you need in order to create a challenge. Would you like to know more about setting up your challenge?
-    //- div(ng-switch-when="editStage")
-    //-   h3 {$ $ctrl.helperObjectCurrentStage $}
-    //-   p We've started you off with a basic stage setup with manual progression. The first stage is always your open stage where you can begin to collect ideas. The last stage is where we end the challenge and measure the outcome.
-    //-   p This is all you need in order to create a challenge. Would you like to know more about setting up your challenge?
-    //- div(ng-switch-when="editTransition")
-    //-   h3 {$ $ctrl.helperObjectCurrentStage $}
-    //-   p We've started you off with a basic stage setup with manual progression. The first stage is always your open stage where you can begin to collect ideas. The last stage is where we end the challenge and measure the outcome.
-    //-   p This is all you need in order to create a challenge. Would you like to know more about setting up your challenge?
-    //- div.btn-wrapper
-    //-   button.btn.btn-default(ng-click="$ctrl.helperObjectProgress") Click here to continue
-    //-   button.btn.btn-cancel(ng-click="$ctrl.helperObjectProgress") Close help object
-    //- button(ng-click="$ctrl.nextHelp()") Click me
-    //- p {$ $ctrl.helperObjectStages.length $}
-    //- ul(
-    //-   uib-pager,
-    //-   total-items="$ctrl.helperObjectStages",
-    //-   ng-model="$ctrl.helperObjectCurrentStage"
-    //-   )
