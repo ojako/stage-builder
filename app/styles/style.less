@@ -57,10 +57,6 @@ form {
   height: 100%;
   border-radius: @challenge-border-radius;
   z-index: @challenge-stage-z-index;
-  .stage-type-label {
-    .stage-colouring();
-    margin-right: 1em;
-  }
   .grab-handle {
     @grab-handle-height: 20px;
     margin: -1px;
@@ -212,34 +208,6 @@ form {
         }
       }
     }
-    .challenge-stage-nav {
-      text-align: center;
-      border-top: 1px solid #ececec;
-      padding-top: 0.25em;
-      &:focus, &.active {
-        outline: none;
-      }
-      .fa-times {
-        color: red;
-      }
-      .fa-plus {
-        color: green;
-      }
-      .show-more-link {
-        border-top: 1px #ececec;
-      }
-    }
-    // .form-group {
-    //   padding: 0.5em 1em;
-    //   input {
-    //     outline: none;
-    //     border: none;
-    //     background: #ececec;
-    //     box-shadow: none;
-    //     border-bottom: 2px solid grey;
-    //     border-radius: 0;
-    //   }
-    // }
     .stage-detail-hud {
       clear: right;
       margin-top: 1em;
