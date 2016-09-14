@@ -19,7 +19,7 @@ article.challenge-stage.clearfix(
   .challenge-stage-inner.clearfix(ng-class="{'challenge-stage-auto-width': $ctrl.stage.deleted}")
     div.ng-hide(ng-show="$ctrl.stage.deleted")
       p Stage removed ({$ $ctrl.stage.name $})
-      p #[button.btn.btn-success.btn-xs(ng-click="$ctrl.stage.deleted = false; $ctrl.stage.editSettings.sortable = true", title="undo") Undo #[i.fa.fa-undo]] #[button.btn.btn-warning.btn-xs(ng-click="$ctrl.delete()") Remove #[i.fa.fa-times]]
+      p.clearfix #[button.btn.btn-success.btn-xs.pull-left(ng-click="$ctrl.stage.deleted = false; $ctrl.stage.editSettings.sortable = true", title="undo") Undo #[i.fa.fa-undo]] #[button.btn.btn-warning.btn-xs.pull-right(ng-click="$ctrl.delete()") Remove #[i.fa.fa-times]]
 
     //- Main content hide when stage is deleted
     div(ng-show="!$ctrl.stage.deleted")

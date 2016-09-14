@@ -9,9 +9,9 @@
   <div ng-class="{'challenge-stage-auto-width': $ctrl.stage.deleted}" class="challenge-stage-inner clearfix">
     <div ng-show="$ctrl.stage.deleted" class="ng-hide">
       <p>Stage removed ({$ $ctrl.stage.name $})</p>
-      <p>
-        <button ng-click="$ctrl.stage.deleted = false; $ctrl.stage.editSettings.sortable = true" title="undo" class="btn btn-success btn-xs">Undo <i class="fa fa-undo"></i></button> 
-        <button ng-click="$ctrl.delete()" class="btn btn-warning btn-xs">Remove <i class="fa fa-times"></i></button>
+      <p class="clearfix">
+        <button ng-click="$ctrl.stage.deleted = false; $ctrl.stage.editSettings.sortable = true" title="undo" class="btn btn-success btn-xs pull-left">Undo <i class="fa fa-undo"></i></button> 
+        <button ng-click="$ctrl.delete()" class="btn btn-warning btn-xs pull-right">Remove <i class="fa fa-times"></i></button>
       </p>
     </div>
     <div ng-show="!$ctrl.stage.deleted">
