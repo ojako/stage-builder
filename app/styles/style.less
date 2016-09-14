@@ -190,7 +190,18 @@ form {
       padding: 0;
       overflow: hidden;
       border-radius: @challenge-border-radius;
-      width: ~'calc(100% - 6em)';
+      width: ~'calc(100% - 5em)';
+      margin: 2em 0 2em 3em;
+      word-wrap: break-word;
+      white-space: normal;
+      display: block;
+      position: relative;
+      transition: 0.25s box-shadow linear;
+      @media screen and (max-width: 769px) {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 1.5em;
+      }
       &.challenge-stage-auto-width {
         width: auto;
         display: inline-block;
@@ -200,12 +211,6 @@ form {
           margin: 0;
         }
       }
-      margin: 2em 0 2em 3em;
-      word-wrap: break-word;
-      white-space: normal;
-      display: block;
-      position: relative;
-      transition: 0.25s box-shadow linear;
     }
     .challenge-stage-nav {
       text-align: center;

@@ -148,6 +148,8 @@ angular.module('stageBuilderApp')
             animation: 350,
             chosenClass: 'sortable-chosen',
             handle: '.grab-handle',
+            filter: '.fixed-item',
+            scrollSensitivity: 50,
             forceFallback: true,
         };
 
